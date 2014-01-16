@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+        "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.custom.i18n.resources" value="MessageResources" />
+    <constant name="struts.objectFactory.cdi.jndiKey" value="java:comp/BeanManager" />
+    <package name="default" extends="struts-default,json-default">
+        <interceptors>
+            <interceptor name="loginInterceptor"
+                         class="com.djr.cards.login.LoginInterceptor"/>
+        </interceptors>
+
+        <!-- login actions -->
+        <action name = "landing"
+                class = "com.djr.cards.login.LoginAction" method="loginLoad">
+            <interceptor-ref name="loginInterceptor"/>
+            <result name="login">/jsp/login.jsp</result>
+        </action>
+        <action name = "login"
+                class = "com.djr.cards.login.LoginAction" method="loginExecute">
+            <result name="error">/jsp/login.jsp</result>
+            <result name="success">/jsp/loginSuccess.jsp</result>
+        </action>
+        <action name = "createAccountLanding"
+                class = "com.djr.cards.login.LoginAction" method="loginCreateAccount">
+            <result name="createAcct">/jsp/createAccount.jsp</result>
+        </action>
+        <action name = "createAccount"
+                class = "com.djr.cards.login.LoginAction" method="createAccountExecute">
+            <result name="success" type="redirect">landing.do</result>
+            <result name="error">/jsp/createAccount.jsp</result>
+        </action>
+        <action name = "forgotPasswordLanding"
+                class = "com.djr.cards.login.LoginAction" method="forgotPassword">
+            <result name="success">/jsp/forgotPassword.jsp</result>
+        </action>
+        <action name="forgotPassword"
+                class = "com.djr.cards.login.LoginAction" method="forgotPasswordExecute">
+            <result name="success" type="redirect">changePasswordLanding.do</result>
+        </action>
+        <action name="changePasswordLanding"
+                class="com.djr.cards.login.LoginAction" method="changePassword">
+            <result name="success">/jsp/changePassword.jsp</result>
+        </action>
+        <action name="changePassword"
+                class="com.djr.cards.login.LoginAction" method="changePasswordExecute">
+            <result name="success" type="redirect">landing.do</result>
+            <result name="error">/jsp/changePassword.jsp</result>
+        </action>
+    </package>
+</struts>
