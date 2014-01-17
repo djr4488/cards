@@ -1,0 +1,50 @@
+
+Golf is played by using six decks of cards, including the joker.
+After shuffling the cards, the players draw cards from the "deck".  If the player draws exactly 15 cards the player gets
+an immediate -5 points.
+The players layout their drawn cards in a 5 by 3 grid face down.  If a player drew more than 15 cards, the remaining are
+mixed back into the deck, if the player drew less than 15 cards, the player draws what is needed to get 15 cards.
+At this point, players choose 3 cards in the deck to "turn" face up.
+Play begins with the first play and continues clockwise.
+There are "9" rounds of play.
+The first card in the deck becomes the first discarded card on the first play of the round.
+
+The player then has the choice of, to take the "last" discarded card to replace any card in his hand.
+If the discarded card is not to his liking he can draw a different card and decide if he wants to replace any
+card in his hand.  If not, he can discard the drawn card, which becomes the last discarded card.  If he does replace
+a card in his hand, then the replaced card is discarded.
+
+Play continues in this fashion until a player has "revealed" all 15 cards in his deck(out), at which time the all the other
+players get one last turn following the above rules.  When the first out players turn again, then points are added and
+ the round ends.
+
+Points are decided by the face value of the cards and how the books are formed.  A book is the 3 cards in a column.
+
+If two cards are the same and one is different(and not a joker) then those two cards don't count against you.  E.g.
+Q
+Q
+5
+
+In this case that book is +5.
+
+If all three cards are the same(suits don't count as a different card) then you get -5 points.  E.g.
+Q
+Q
+Q
+
+If you have the case of a Joker and the other two cards are different then the highest point value card is cancelled
+K
+Jkr
+5
+In this case, the Joker gives -5 points, the King normally is +10 points but is cancelled by the Joker, and the 5 is +5
+points.
+
+If you have a Joker and two of the same card, then you get the -5 for the book and -5 for the Joker.
+Jkr
+Q
+Q
+This book is -10.
+
+A book of Jokers is -5 for each Joker and -5 for the book, so -20 points.
+
+The player at the end of the game with the fewest points(usually in the hundreds) wins the game.
