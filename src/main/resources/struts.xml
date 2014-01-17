@@ -12,6 +12,8 @@
         <interceptors>
             <interceptor name="loginInterceptor"
                          class="com.djr.cards.login.LoginInterceptor"/>
+            <interceptor name="gamesInterceptor"
+                         class="com.djr.cards.games.GamesInterceptor"/>
         </interceptors>
 
         <!-- login actions -->

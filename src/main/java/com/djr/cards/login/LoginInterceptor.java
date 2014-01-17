@@ -1,5 +1,6 @@
 package com.djr.cards.login;
 
+import com.djr.cards.BaseInterceptor;
 import com.djr.cards.audit.AuditService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
@@ -18,7 +19,7 @@ import java.util.UUID;
  * Date: 1/10/14
  * Time: 7:37 PM
  */
-public class LoginInterceptor extends AbstractInterceptor implements StrutsStatics {
+public class LoginInterceptor extends BaseInterceptor {
     @Inject
     private org.slf4j.Logger logger;
     @Inject
@@ -27,9 +28,7 @@ public class LoginInterceptor extends AbstractInterceptor implements StrutsStati
     @Override
     public String intercept(ActionInvocation actionInvocation) throws Exception {
         logger.info("intercept() incoming request");
-        final ActionContext context = actionInvocation.getInvocationContext();
-        HttpServletRequest request = (HttpServletRequest) context.getContext().get(HTTP_REQUEST);
-        HttpSession session = request.getSession();
+        HttpSession session = getSession(actionInvocation, true);
         if (session.getAttribute("tracking") == null) {
             UUID uuid = UUID.randomUUID();
             session.setAttribute("tracking", uuid.toString());
