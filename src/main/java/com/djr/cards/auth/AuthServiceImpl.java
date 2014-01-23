@@ -43,6 +43,7 @@ public class AuthServiceImpl implements AuthService {
         public boolean created;
     }
 
+
     private FindUserResult createFindUserResult(User user, boolean created) {
         FindUserResult findUserResult = new FindUserResult();
         findUserResult.user = user;
@@ -50,6 +51,8 @@ public class AuthServiceImpl implements AuthService {
         return findUserResult;
     }
 
+    //may consider moving these two methods out of auth... but really this is the only time I'm
+    //going to create/find user... so I'm not sure it really matters
     private FindUserResult findOrCreateUser(AuthModel authModel, String trackingId) {
         logger.debug("findOrCreateUser() - authModel:{}, trackingId:{}", authModel, trackingId);
         try {
@@ -97,7 +100,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public LoginResult login(AuthModel authModel, String trackingId) {
-        logger.debug("auth() - authModel:{}, trackingId:{}", authModel, trackingId);
+        logger.debug("login() - authModel:{}, trackingId:{}", authModel, trackingId);
         User user = findUser(authModel, trackingId);
         LoginResult loginResult = new LoginResult();
         if (user == null || !user.hashedPassword.equals(authModel.getPassword())) {
