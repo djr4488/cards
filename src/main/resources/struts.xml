@@ -21,7 +21,7 @@
                 class = "com.djr.cards.auth.login.LoginAction"
                 method="loginLoad">
             <interceptor-ref name="loginInterceptor"/>
-            <result name="login">/jsp/auth/login/login.jsp</result>
+            <result name="success">/jsp/auth/login/login.jsp</result>
         </action>
         <action name = "login"
                 class = "com.djr.cards.auth.login.LoginAction"
