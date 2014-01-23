@@ -22,6 +22,9 @@
     </style>
 </head>
 <body>
+    <div id="titlebox" style="padding: 10px 40px; border:2px solid #a1a1a1; border-radius:25px; background:#dddddd; width:300px; box-shadow: 10px 10px 5px #888888;">
+        Password Recovery Kickoff
+    </div>
     First off, I'm sorry you forgot your password.
     <ul>
         <li>First, lets have you identify yourself, using your email address.</li>
@@ -32,7 +35,7 @@
         <li>Ready to get started?  Great!</li>
     </ul>
     <s:form id="forgotPassword" method="post" action="forgotPassword">
-        <s:textfield name="email" key="forgotPassword.email"/>
+        <s:textfield name="userName" key="forgotPassword.email"/>
         <s:submit/>
     </s:form>
 </body>

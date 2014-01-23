@@ -23,7 +23,7 @@
 </head>
 <body>
 <div id="titlebox" style="padding: 10px 40px; border:2px solid #a1a1a1; border-radius:25px; background:#dddddd; width:300px; box-shadow: 10px 10px 5px #888888;">
-    Login Page </div>
+    Create Account </div>
 <s:if test="hasActionErrors()">
     <div class="errors">
         <s:actionerror/>
@@ -33,10 +33,10 @@
 <br>
 <div id="loginbox">
     <s:form id="login" method="post" action="createAccount" validate="true">
-        <s:textfield name="email" key="login.email.address"/>
-        <s:textfield name="userName" key="login.username"/>
-        <s:password name="password" key="login.password"/>
-        <s:password name="confirmPassword" key="login.confirm.password"/>
+        <s:textfield name="userName" key="create.username"/>
+        <s:textfield name="alias" key="create.alias"/>
+        <s:password name="password" key="create.password"/>
+        <s:password name="confirmPassword" key="create.confirm.password"/>
         <s:submit/>
     </s:form>
 </div>

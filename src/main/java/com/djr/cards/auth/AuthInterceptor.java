@@ -1,14 +1,10 @@
-package com.djr.cards.login;
+package com.djr.cards.auth;
 
 import com.djr.cards.BaseInterceptor;
 import com.djr.cards.audit.AuditService;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
-import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
-import org.apache.struts2.StrutsStatics;
-
+import org.slf4j.Logger;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Calendar;
 import java.util.UUID;
@@ -19,9 +15,9 @@ import java.util.UUID;
  * Date: 1/10/14
  * Time: 7:37 PM
  */
-public class LoginInterceptor extends BaseInterceptor {
+public class AuthInterceptor extends BaseInterceptor {
     @Inject
-    private org.slf4j.Logger logger;
+    private Logger logger;
     @Inject
     private AuditService auditService;
 
@@ -35,7 +31,7 @@ public class LoginInterceptor extends BaseInterceptor {
         }
         logger.debug("intercept() tracking:{}", session.getAttribute("tracking"));
         auditService.writeAudit(auditService.getAuditLog(session.getAttribute("tracking").toString(),
-                "LoginInterceptor.intercept()", "NA", Calendar.getInstance()));
+                "AuthInterceptor.intercept()", "NA", Calendar.getInstance()));
         return actionInvocation.invoke();
     }
 }

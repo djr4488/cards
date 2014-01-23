@@ -1,4 +1,4 @@
-package com.djr.cards.login;
+package com.djr.cards.auth;
 
 import org.slf4j.Logger;
 import javax.crypto.Mac;
@@ -15,6 +15,8 @@ public class HashingUtil {
     private Logger logger;
     @Inject
     private String hmacKey;
+
+    public HashingUtil() { }
 
     public String generateHmacHash(String message) {
         logger.debug("generateHmacHash() - message:{}", message);

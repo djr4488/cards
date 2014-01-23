@@ -1,4 +1,4 @@
-package com.djr.cards.login;
+package com.djr.cards.auth;
 
 /**
  * Created with IntelliJ IDEA.
@@ -6,11 +6,11 @@ package com.djr.cards.login;
  * Date: 1/11/14
  * Time: 8:38 PM
  */
-public class LoginModel {
+public class AuthModel {
     private String userName;
     private String password;
     private String confirmPassword;
-    private String email;
+    private String alias;
     private String randomString;
 
     public String getUserName() {
@@ -29,12 +29,12 @@ public class LoginModel {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getAlias() {
+        return alias;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAlias(String alias) {
+        this.alias = alias;
     }
 
     public String getRandomString() {
@@ -55,10 +55,11 @@ public class LoginModel {
 
     @Override
     public String toString() {
-        return "LoginModel{" +
+        return "AuthModel{" +
                 "userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
+                ", password=not displayed" +
+                ", confirmPassword=not displayed"+
+                ", alias='" + alias + '\'' +
                 ", randomString='" + randomString + '\'' +
                 '}';
     }

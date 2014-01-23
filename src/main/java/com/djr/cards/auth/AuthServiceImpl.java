@@ -1,6 +1,7 @@
-package com.djr.cards.login;
+package com.djr.cards.auth;
 
 import com.djr.cards.audit.AuditService;
+import com.djr.cards.auth.login.LoginResult;
 import com.djr.cards.email.EmailService;
 import com.djr.cards.entities.User;
 import org.slf4j.Logger;
@@ -22,7 +23,7 @@ import java.util.Random;
  * Date: 1/4/14
  * Time: 5:07 PM
  */
-public class LoginServiceImpl implements LoginService {
+public class AuthServiceImpl implements AuthService {
     @Inject
     private Logger logger;
     @Inject
@@ -49,14 +50,14 @@ public class LoginServiceImpl implements LoginService {
         return findUserResult;
     }
 
-    private FindUserResult findOrCreateUser(LoginModel loginModel, String trackingId) {
-        logger.debug("findOrCreateUser() - loginModel:{}, trackingId:{}", loginModel, trackingId);
+    private FindUserResult findOrCreateUser(AuthModel authModel, String trackingId) {
+        logger.debug("findOrCreateUser() - authModel:{}, trackingId:{}", authModel, trackingId);
         try {
             TypedQuery<User> query = em.createNamedQuery("findUser", User.class);
-            query.setParameter("emailAddress", loginModel.getEmail());
+            query.setParameter("userName", authModel.getUserName());
             return createFindUserResult(query.getSingleResult(), false);
         } catch (NoResultException nrEx) {
-            User user = new User(loginModel);
+            User user = new User(authModel);
             user.createdDate = Calendar.getInstance();
             try {
                 userTx.begin();
@@ -70,11 +71,11 @@ public class LoginServiceImpl implements LoginService {
         return null;
     }
 
-    private User findUser(LoginModel loginModel, String trackingId) {
-        logger.debug("findUser() - loginModel:{}, trackingId:{}", loginModel, trackingId);
+    private User findUser(AuthModel authModel, String trackingId) {
+        logger.debug("findUser() - authModel:{}, trackingId:{}", authModel, trackingId);
         try {
             TypedQuery<User> query = em.createNamedQuery("findUser", User.class);
-            query.setParameter("emailAddress", loginModel.getUserName());
+            query.setParameter("userName", authModel.getUserName());
             return query.getSingleResult();
         } catch (NoResultException nrEx) {
             logger.debug("findUser() - No user found.");
@@ -83,9 +84,9 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public CreateResult createUser(LoginModel loginModel, String trackingId) {
-        logger.debug("createUser - loginModel:{}, trackingId:{}", loginModel, trackingId);
-        FindUserResult findUserResult = findOrCreateUser(loginModel, trackingId);
+    public CreateResult createUser(AuthModel authModel, String trackingId) {
+        logger.debug("createUser - authModel:{}, trackingId:{}", authModel, trackingId);
+        FindUserResult findUserResult = findOrCreateUser(authModel, trackingId);
         if (findUserResult == null) {
             return CreateResult.OTHER_FAILURE;
         } else if (!findUserResult.created) {
@@ -95,13 +96,13 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public LoginResult login(LoginModel loginModel, String trackingId) {
-        logger.debug("login() - loginModel:{}, trackingId:{}", loginModel, trackingId);
-        User user = findUser(loginModel, trackingId);
+    public LoginResult login(AuthModel authModel, String trackingId) {
+        logger.debug("auth() - authModel:{}, trackingId:{}", authModel, trackingId);
+        User user = findUser(authModel, trackingId);
         LoginResult loginResult = new LoginResult();
-        if (user == null || !user.hashedPassword.equals(loginModel.getPassword())) {
-            auditService.writeAudit(auditService.getAuditLog(trackingId, "LoginService.login()",
-                    loginModel.toString(), Calendar.getInstance()));
+        if (user == null || !user.hashedPassword.equals(authModel.getPassword())) {
+            auditService.writeAudit(auditService.getAuditLog(trackingId, "AuthService.auth()",
+                    authModel.toString(), Calendar.getInstance()));
             loginResult.result = LoginResult.ResultOptions.FAILED_USER_OR_PASS;
             loginResult.user = null;
             return loginResult;
@@ -112,12 +113,12 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public ForgotPasswordResult forgotPassword(LoginModel loginModel, String trackingId) {
-        logger.debug("forgotPassword() - loginModel:{}, trackingId:{}", loginModel, trackingId);
-        auditService.writeAudit(auditService.getAuditLog(trackingId, "forgotPassword()", loginModel.toString(),
+    public ForgotPasswordResult forgotPassword(AuthModel authModel, String trackingId) {
+        logger.debug("forgotPassword() - authModel:{}, trackingId:{}", authModel, trackingId);
+        auditService.writeAudit(auditService.getAuditLog(trackingId, "forgotPassword()", authModel.toString(),
                 Calendar.getInstance()));
-        loginModel.setUserName(loginModel.getEmail());
-        User user = findUser(loginModel, trackingId);
+        authModel.setUserName(authModel.getUserName());
+        User user = findUser(authModel, trackingId);
         if (user == null) {
             return ForgotPasswordResult.NOT_FOUND;
         } else {
@@ -127,7 +128,7 @@ public class LoginServiceImpl implements LoginService {
                     "to change your password.  If you didn't initiate this, don't change your password.\n\n" +
                     "Code -> " + code + ".";
             String subject = "Cards - Forgot Password Service";
-            if (emailService.sendEmail(user.emailAddress, user.alias, subject, emailBody, session)) {
+            if (emailService.sendEmail(user.userName, user.alias, subject, emailBody, session)) {
                 user.changePasswordProof = code.toString();
                 try {
                     userTx.begin();
@@ -143,22 +144,22 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public ChangePasswordResult changePassword(LoginModel loginModel, String trackingId) {
-        logger.debug("changePassword() - loginModel:{}, trackingId:{}");
-        loginModel.setUserName(loginModel.getEmail());
-        User user = findUser(loginModel, trackingId);
+    public ChangePasswordResult changePassword(AuthModel authModel, String trackingId) {
+        logger.debug("changePassword() - authModel:{}, trackingId:{}");
+        authModel.setUserName(authModel.getUserName());
+        User user = findUser(authModel, trackingId);
         if (user == null) {
-            auditService.writeAudit(auditService.getAuditLog(trackingId, "changePassword()", loginModel.toString(),
+            auditService.writeAudit(auditService.getAuditLog(trackingId, "changePassword()", authModel.toString(),
                     Calendar.getInstance()));
             return ChangePasswordResult.OTHER_FAILURE;
         } else {
             if (user.changePasswordProof == null) {
                 return ChangePasswordResult.OTHER_FAILURE;
             }
-            if (user.changePasswordProof.equals(loginModel.getRandomString()) &&
-                    loginModel.getPassword().equals(loginModel.getConfirmPassword())) {
+            if (user.changePasswordProof.equals(authModel.getRandomString()) &&
+                    authModel.getPassword().equals(authModel.getConfirmPassword())) {
                 user.changePasswordProof = null;
-                user.hashedPassword = loginModel.getPassword();
+                user.hashedPassword = authModel.getPassword();
                 try {
                     userTx.begin();
                     em.merge(user);

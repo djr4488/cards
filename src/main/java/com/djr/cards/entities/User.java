@@ -1,6 +1,6 @@
 package com.djr.cards.entities;
 
-import com.djr.cards.login.LoginModel;
+import com.djr.cards.auth.AuthModel;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Calendar;
@@ -15,7 +15,7 @@ import java.util.Calendar;
 @Table(name="cards_users")
 @NamedQueries({
         @NamedQuery(name="findUser",
-                    query="select user from User user where user.emailAddress = :emailAddress")
+                    query="select user from User user where user.userName = :userName")
 })
 public class User implements Serializable {
 
@@ -23,14 +23,12 @@ public class User implements Serializable {
     @Column(name="id", nullable=false)
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    @Column(name="login_name")
-    public String loginName;
+    @Column(name="user_name")
+    public String userName;
     @Column(name="hashed_password")
     public String hashedPassword;
     @Column(name="user_alias")
     public String alias;
-    @Column(name="email_address")
-    public String emailAddress;
     @Column(name="created_date")
     @Temporal(TemporalType.TIMESTAMP)
     public Calendar createdDate;
@@ -43,11 +41,10 @@ public class User implements Serializable {
 
     public User() { }
 
-    public User(LoginModel loginModel) {
-        loginName = loginModel.getEmail();
-        hashedPassword = loginModel.getPassword();
-        alias = loginModel.getUserName();
-        emailAddress = loginModel.getEmail();
+    public User(AuthModel authModel) {
+        userName = authModel.getUserName();
+        hashedPassword = authModel.getPassword();
+        alias = authModel.getUserName();
     }
 
     public Long getId() {
@@ -57,9 +54,8 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-                "loginName='" + loginName + '\'' +
+                "userName='" + userName + '\'' +
                 ", alias='" + alias + '\'' +
-                ", emailAddress='" + emailAddress + '\'' +
                 '}';
     }
 }
