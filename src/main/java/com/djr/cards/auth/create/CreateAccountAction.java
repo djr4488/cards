@@ -23,27 +23,26 @@ public class CreateAccountAction extends BaseAuthAction {
     private AuthService authService;
     @Inject
     private HashingUtil hashingUtil;
-    private AuthModel authModel = new AuthModel();
 
     public void validate() {
-        logger.debug("validate() - authModel:{}", authModel);
+        logger.debug("validate() - authModel:{}", getModel());
         if (getActionContext().getName().equalsIgnoreCase("createAccountLanding")) {
             return;
         }
-        if (authModel.getUserName() == null || authModel.getUserName().trim().length() == 0) {
+        if (getModel().getUserName() == null || getModel().getUserName().trim().length() == 0) {
             logger.debug("validate() - email was missing");
             addFieldError("userName", getText("create.missing.username"));
         }
-        if (authModel.getAlias() == null || authModel.getAlias().trim().length() == 0) {
+        if (getModel().getAlias() == null || getModel().getAlias().trim().length() == 0) {
             logger.debug("validate() - user name was missing");
             addFieldError("alias", getText("create.missing.alias"));
         }
-        if(authModel.getPassword() == null || authModel.getConfirmPassword() == null ||
-                authModel.getPassword().trim().length() == 0 ||
-                authModel.getConfirmPassword().trim().length() == 0) {
+        if(getModel().getPassword() == null || getModel().getConfirmPassword() == null ||
+                getModel().getPassword().trim().length() == 0 ||
+                getModel().getConfirmPassword().trim().length() == 0) {
             logger.debug("validate() - password or confirm password was missing");
             addFieldError("confirmPassword", getText("create.missing.passwords"));
-        } else if (!authModel.getPassword().equals(authModel.getConfirmPassword())) {
+        } else if (!getModel().getPassword().equals(getModel().getConfirmPassword())) {
             logger.debug("validate() - passwords not equal");
             addFieldError("confirmPassword", getText("create.no.match.passwords"));
         }
@@ -55,10 +54,10 @@ public class CreateAccountAction extends BaseAuthAction {
     }
 
     public String createAccountExecute() {
-        logger.info("createAccountExecute - authModel:{}", authModel);
-        authModel.setPassword(hashingUtil.generateHmacHash(authModel.getPassword()));
-        authModel.setConfirmPassword(hashingUtil.generateHmacHash(authModel.getConfirmPassword()));
-        AuthService.CreateResult createResult = authService.createUser(authModel, getSessionAttribute("tracking"));
+        logger.info("createAccountExecute - authModel:{}", getModel());
+        getModel().setPassword(hashingUtil.generateHmacHash(getModel().getPassword()));
+        getModel().setConfirmPassword(hashingUtil.generateHmacHash(getModel().getConfirmPassword()));
+        AuthService.CreateResult createResult = authService.createUser(getModel(), getSessionAttribute("tracking"));
         if (createResult == AuthService.CreateResult.CREATED) {
             return "success";
         } else {

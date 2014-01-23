@@ -23,27 +23,26 @@ public class ChangePasswordAction extends BaseAuthAction {
     private AuthService authService;
     @Inject
     private HashingUtil hashingUtil;
-    private AuthModel authModel = new AuthModel();
 
     public void validate() {
-        logger.debug("validate() - authModel:{}", authModel);
+        logger.debug("validate() - authModel:{}", getModel());
         if (getActionContext().getName().equalsIgnoreCase("changePasswordLanding")) {
             return;
         }
-        if (authModel.getUserName() == null || authModel.getUserName().trim().length() == 0) {
+        if (getModel().getUserName() == null || getModel().getUserName().trim().length() == 0) {
             logger.debug("validate() - email was missing");
             addFieldError("userName", getText("reset.missing.username"));
         }
-        if (authModel.getRandomString() == null || authModel.getRandomString().trim().length() == 0) {
+        if (getModel().getRandomString() == null || getModel().getRandomString().trim().length() == 0) {
             logger.debug("validate() - confirmation code missing");
             addFieldError("alias", getText("reset.missing.confirmation.code"));
         }
-        if(authModel.getPassword() == null || authModel.getConfirmPassword() == null ||
-                authModel.getPassword().trim().length() == 0 ||
-                authModel.getConfirmPassword().trim().length() == 0) {
+        if(getModel().getPassword() == null || getModel().getConfirmPassword() == null ||
+                getModel().getPassword().trim().length() == 0 ||
+                getModel().getConfirmPassword().trim().length() == 0) {
             logger.debug("validate() - password or confirm password was missing");
             addFieldError("confirmPassword", getText("reset.missing.passwords"));
-        } else if (!authModel.getPassword().equals(authModel.getConfirmPassword())) {
+        } else if (!getModel().getPassword().equals(getModel().getConfirmPassword())) {
             logger.debug("validate() - passwords not equal");
             addFieldError("confirmPassword", getText("reset.no.match.passwords"));
         }
@@ -55,10 +54,10 @@ public class ChangePasswordAction extends BaseAuthAction {
     }
 
     public String changePasswordExecute() {
-        logger.info("changePasswordExecute() - authModel:{}", authModel);
-        authModel.setPassword(hashingUtil.generateHmacHash(authModel.getPassword()));
-        authModel.setConfirmPassword(hashingUtil.generateHmacHash(authModel.getConfirmPassword()));
-        AuthService.ChangePasswordResult result = authService.changePassword(authModel,
+        logger.info("changePasswordExecute() - authModel:{}", getModel());
+        getModel().setPassword(hashingUtil.generateHmacHash(getModel().getPassword()));
+        getModel().setConfirmPassword(hashingUtil.generateHmacHash(getModel().getConfirmPassword()));
+        AuthService.ChangePasswordResult result = authService.changePassword(getModel(),
                 getSessionAttribute("tracking"));
         if (result == AuthService.ChangePasswordResult.SUCCESS  ||
                 result == AuthService.ChangePasswordResult.NOT_FOUND) {

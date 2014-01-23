@@ -22,14 +22,13 @@ public class ForgotPasswordAction extends BaseAuthAction {
     private AuthService authService;
     @Inject
     private HashingUtil hashingUtil;
-    private AuthModel authModel = new AuthModel();
 
     public void validate() {
-        logger.debug("validate() - authModel:{}", authModel);
+        logger.debug("validate() - authModel:{}", getModel());
         if (getActionContext().getName().equalsIgnoreCase("forgotPasswordLanding")) {
             return;
         }
-        if (authModel.getUserName() == null || authModel.getUserName().trim().length() == 0) {
+        if (getModel().getUserName() == null || getModel().getUserName().trim().length() == 0) {
             logger.debug("validate() - email was missing");
             addFieldError("userName", getText("forgot.password.missing.username"));
         }
@@ -41,8 +40,8 @@ public class ForgotPasswordAction extends BaseAuthAction {
     }
 
     public String forgotPasswordExecute() {
-        logger.info("forgotPasswordExecute() - authModel:{}", authModel);
-        AuthService.ForgotPasswordResult result = authService.forgotPassword(authModel,
+        logger.info("forgotPasswordExecute() - authModel:{}", getModel());
+        AuthService.ForgotPasswordResult result = authService.forgotPassword(getModel(),
                 getSessionAttribute("tracking"));
         if (result == AuthService.ForgotPasswordResult.NOT_FOUND ||
                 result == AuthService.ForgotPasswordResult.SUCCESS) {

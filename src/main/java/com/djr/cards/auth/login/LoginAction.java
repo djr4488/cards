@@ -22,18 +22,17 @@ public class LoginAction extends BaseAuthAction {
     private AuthService authService;
     @Inject
     private HashingUtil hashingUtil;
-    private AuthModel authModel = new AuthModel();
 
     public void validate() {
-        logger.debug("validate() - authModel:{}", authModel);
+        logger.debug("validate() - authModel:{}", getModel());
         if (getActionContext().getName().equalsIgnoreCase("loginLoad")) {
             return;
         }
-        if (authModel.getUserName() == null || authModel.getUserName().trim().length() == 0) {
+        if (getModel().getUserName() == null || getModel().getUserName().trim().length() == 0) {
             logger.debug("validate() - email was missing");
             addFieldError("userName", getText("login.missing.username"));
         }
-        if(authModel.getPassword() == null ||authModel.getPassword().trim().length() == 0) {
+        if(getModel().getPassword() == null ||getModel().getPassword().trim().length() == 0) {
             logger.debug("validate() - password was missing");
             addFieldError("password", getText("login.missing.password"));
         }
@@ -41,13 +40,13 @@ public class LoginAction extends BaseAuthAction {
 
     public String loginLoad() {
         logger.info("loginLoad() - landed");
-        return "login";
+        return "success";
     }
 
     public String loginExecute() {
-        authModel.setPassword(hashingUtil.generateHmacHash(authModel.getPassword()));
-        logger.info("loginExecute - authModel:{}", authModel);
-        LoginResult loginResult = authService.login(authModel, getSessionAttribute("tracking"));
+        getModel().setPassword(hashingUtil.generateHmacHash(getModel().getPassword()));
+        logger.info("loginExecute - authModel:{}", getModel());
+        LoginResult loginResult = authService.login(getModel(), getSessionAttribute("tracking"));
         if (loginResult.result == LoginResult.ResultOptions.SUCCESS) {
             getSession().setAttribute("user", loginResult.user);
             return "success";
