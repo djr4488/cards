@@ -1,6 +1,5 @@
 package com.djr.cards.auth.forgotpassword;
 
-import com.djr.cards.auth.AuthModel;
 import com.djr.cards.auth.AuthService;
 import com.djr.cards.auth.BaseAuthAction;
 import com.djr.cards.auth.HashingUtil;
