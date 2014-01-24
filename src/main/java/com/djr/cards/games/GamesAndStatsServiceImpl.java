@@ -1,9 +1,9 @@
 package com.djr.cards.games;
 
-import com.djr.cards.entities.ActiveGames;
-import com.djr.cards.entities.User;
-import com.djr.cards.entities.UserStats;
-import com.djr.cards.entities.WaitingGames;
+import com.djr.cards.data.entities.ActiveGames;
+import com.djr.cards.data.entities.User;
+import com.djr.cards.data.entities.UserStats;
+import com.djr.cards.data.entities.WaitingGames;
 
 import java.util.List;
 

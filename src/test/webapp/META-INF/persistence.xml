@@ -3,8 +3,8 @@
     <persistence-unit name="cards-pu">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <jta-data-source>CardsDBTest</jta-data-source>
-        <class>com.djr.cards.entities.User</class>
-        <class>com.djr.cards.entities.AuditLog</class>
+        <class>com.djr.cards.data.entities.User</class>
+        <class>com.djr.cards.data.entities.AuditLog</class>
         <properties>
             <property
                 name = "eclipselink.loggin.level.sql"

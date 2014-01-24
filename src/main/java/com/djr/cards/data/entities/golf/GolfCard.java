@@ -1,4 +1,4 @@
-package com.djr.cards.entities.golf;
+package com.djr.cards.data.entities.golf;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

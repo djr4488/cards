@@ -1,4 +1,4 @@
-package com.djr.cards.entities;
+package com.djr.cards.data.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

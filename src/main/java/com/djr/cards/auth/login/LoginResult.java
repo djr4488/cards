@@ -1,6 +1,6 @@
 package com.djr.cards.auth.login;
 
-import com.djr.cards.entities.User;
+import com.djr.cards.data.entities.User;
 
 /**
  * Created with IntelliJ IDEA.

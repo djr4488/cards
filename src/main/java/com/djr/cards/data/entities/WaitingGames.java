@@ -1,4 +1,4 @@
-package com.djr.cards.entities;
+package com.djr.cards.data.entities;
 
 /**
  * Created with IntelliJ IDEA.

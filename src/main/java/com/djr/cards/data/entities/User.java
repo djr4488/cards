@@ -1,4 +1,4 @@
-package com.djr.cards.entities;
+package com.djr.cards.data.entities;
 
 import com.djr.cards.auth.AuthModel;
 import javax.persistence.*;

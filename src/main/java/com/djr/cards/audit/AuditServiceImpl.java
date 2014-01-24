@@ -1,6 +1,6 @@
 package com.djr.cards.audit;
 
-import com.djr.cards.entities.AuditLog;
+import com.djr.cards.data.entities.AuditLog;
 
 import javax.annotation.Resource;
 import javax.ejb.TransactionAttribute;

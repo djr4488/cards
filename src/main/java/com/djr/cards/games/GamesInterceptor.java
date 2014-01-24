@@ -1,7 +1,7 @@
 package com.djr.cards.games;
 
 import com.djr.cards.BaseInterceptor;
-import com.djr.cards.entities.User;
+import com.djr.cards.data.entities.User;
 import com.opensymphony.xwork2.ActionInvocation;
 import org.slf4j.Logger;
 

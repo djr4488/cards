@@ -1,9 +1,12 @@
-package com.djr.cards.auth;
+package com.djr.cards.auth.service;
 
 import com.djr.cards.audit.AuditService;
+import com.djr.cards.auth.AuthModel;
+import com.djr.cards.auth.AuthService;
 import com.djr.cards.auth.login.LoginResult;
+import com.djr.cards.data.dao.UserDAO;
 import com.djr.cards.email.EmailService;
-import com.djr.cards.entities.User;
+import com.djr.cards.data.entities.User;
 import org.slf4j.Logger;
 
 import javax.annotation.Resource;
@@ -32,64 +35,15 @@ public class AuthServiceImpl implements AuthService {
     private EmailService emailService;
     @Inject
     private Session session;
-    @PersistenceContext
-    private EntityManager em;
-    @Resource
-    private UserTransaction userTx;
+    @Inject
+    private UserDAO userDao;
 
-
-    class FindUserResult {
-        public User user;
-        public boolean created;
-    }
-
-
-    private FindUserResult createFindUserResult(User user, boolean created) {
-        FindUserResult findUserResult = new FindUserResult();
-        findUserResult.user = user;
-        findUserResult.created = created;
-        return findUserResult;
-    }
-
-    //may consider moving these two methods out of auth... but really this is the only time I'm
-    //going to create/find user... so I'm not sure it really matters
-    private FindUserResult findOrCreateUser(AuthModel authModel, String trackingId) {
-        logger.debug("findOrCreateUser() - authModel:{}, trackingId:{}", authModel, trackingId);
-        try {
-            TypedQuery<User> query = em.createNamedQuery("findUser", User.class);
-            query.setParameter("userName", authModel.getUserName());
-            return createFindUserResult(query.getSingleResult(), false);
-        } catch (NoResultException nrEx) {
-            User user = new User(authModel);
-            user.createdDate = Calendar.getInstance();
-            try {
-                userTx.begin();
-                em.persist(user);
-                userTx.commit();
-                return createFindUserResult(user, true);
-            } catch (Exception ex) {
-                logger.error("findOrCreateUser() - trackingId:{}, exception:{}", trackingId, ex);
-            }
-        }
-        return null;
-    }
-
-    private User findUser(AuthModel authModel, String trackingId) {
-        logger.debug("findUser() - authModel:{}, trackingId:{}", authModel, trackingId);
-        try {
-            TypedQuery<User> query = em.createNamedQuery("findUser", User.class);
-            query.setParameter("userName", authModel.getUserName());
-            return query.getSingleResult();
-        } catch (NoResultException nrEx) {
-            logger.debug("findUser() - No user found.");
-            return null;
-        }
-    }
+    public AuthServiceImpl() { }
 
     @Override
     public CreateResult createUser(AuthModel authModel, String trackingId) {
         logger.debug("createUser - authModel:{}, trackingId:{}", authModel, trackingId);
-        FindUserResult findUserResult = findOrCreateUser(authModel, trackingId);
+        FindUserResult findUserResult = userDao.findOrCreateUser(authModel, trackingId);
         if (findUserResult == null) {
             return CreateResult.OTHER_FAILURE;
         } else if (!findUserResult.created) {
@@ -101,7 +55,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public LoginResult login(AuthModel authModel, String trackingId) {
         logger.debug("login() - authModel:{}, trackingId:{}", authModel, trackingId);
-        User user = findUser(authModel, trackingId);
+        User user = userDao.findUser(authModel, trackingId);
         LoginResult loginResult = new LoginResult();
         if (user == null || !user.hashedPassword.equals(authModel.getPassword())) {
             auditService.writeAudit(auditService.getAuditLog(trackingId, "AuthService.auth()",
@@ -121,7 +75,7 @@ public class AuthServiceImpl implements AuthService {
         auditService.writeAudit(auditService.getAuditLog(trackingId, "forgotPassword()", authModel.toString(),
                 Calendar.getInstance()));
         authModel.setUserName(authModel.getUserName());
-        User user = findUser(authModel, trackingId);
+        User user = userDao.findUser(authModel, trackingId);
         if (user == null) {
             return ForgotPasswordResult.NOT_FOUND;
         } else {
@@ -133,13 +87,7 @@ public class AuthServiceImpl implements AuthService {
             String subject = "Cards - Forgot Password Service";
             if (emailService.sendEmail(user.userName, user.alias, subject, emailBody, session)) {
                 user.changePasswordProof = code.toString();
-                try {
-                    userTx.begin();
-                    em.merge(user);
-                    userTx.commit();
-                } catch (Exception ex) {
-                    logger.error("forgotPassword() exception:", ex);
-                }
+                userDao.updateUser(user, trackingId);
                 return ForgotPasswordResult.SUCCESS;
             }
         }
@@ -150,7 +98,7 @@ public class AuthServiceImpl implements AuthService {
     public ChangePasswordResult changePassword(AuthModel authModel, String trackingId) {
         logger.debug("changePassword() - authModel:{}, trackingId:{}");
         authModel.setUserName(authModel.getUserName());
-        User user = findUser(authModel, trackingId);
+        User user = userDao.findUser(authModel, trackingId);
         if (user == null) {
             auditService.writeAudit(auditService.getAuditLog(trackingId, "changePassword()", authModel.toString(),
                     Calendar.getInstance()));
@@ -163,14 +111,7 @@ public class AuthServiceImpl implements AuthService {
                     authModel.getPassword().equals(authModel.getConfirmPassword())) {
                 user.changePasswordProof = null;
                 user.hashedPassword = authModel.getPassword();
-                try {
-                    userTx.begin();
-                    em.merge(user);
-                    userTx.commit();
-                } catch (Exception ex) {
-                    logger.error("changePassword() - exception:", ex);
-                    return ChangePasswordResult.OTHER_FAILURE;
-                }
+                userDao.updateUser(user, trackingId);
             }
         }
         return ChangePasswordResult.SUCCESS;
