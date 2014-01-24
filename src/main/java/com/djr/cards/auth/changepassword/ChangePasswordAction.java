@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
+import java.util.Calendar;
 
 /**
  * Created with IntelliJ IDEA.
@@ -54,6 +55,8 @@ public class ChangePasswordAction extends BaseAuthAction {
 
     public String changePasswordExecute() {
         logger.info("changePasswordExecute() - authModel:{}", getModel());
+        auditService.writeAudit(auditService.getAuditLog(getSessionAttribute("tracking"),
+                "ChangePasswordAction.changePasswordExecute()", getIp(), Calendar.getInstance()));
         getModel().setPassword(hashingUtil.generateHmacHash(getModel().getPassword()));
         getModel().setConfirmPassword(hashingUtil.generateHmacHash(getModel().getConfirmPassword()));
         AuthService.ChangePasswordResult result = authService.changePassword(getModel(),
@@ -62,7 +65,7 @@ public class ChangePasswordAction extends BaseAuthAction {
                 result == AuthService.ChangePasswordResult.NOT_FOUND) {
             return "success";
         }
-        addActionError("For some reason couldn't change your password!  Maybe you can try again later?");
+        addActionError(getText("reset.password.execute.error"));
         return "error";
     }
 }

@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
+import java.util.Calendar;
 
 /**
  * User: djr4488
@@ -40,13 +41,15 @@ public class ForgotPasswordAction extends BaseAuthAction {
 
     public String forgotPasswordExecute() {
         logger.info("forgotPasswordExecute() - authModel:{}", getModel());
+        auditService.writeAudit(auditService.getAuditLog(getSessionAttribute("tracking"),
+                "ForgotPasswordAction.forgotPasswordExecute()", getIp(), Calendar.getInstance()));
         AuthService.ForgotPasswordResult result = authService.forgotPassword(getModel(),
                 getSessionAttribute("tracking"));
         if (result == AuthService.ForgotPasswordResult.NOT_FOUND ||
                 result == AuthService.ForgotPasswordResult.SUCCESS) {
             return "success";
         }
-        addActionError("Something failed while sending you an email to change password.  Can you try again?");
+        addActionError(getText("forgot.password.execute.error"));
         return "error";
     }
 }

@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
+import java.util.Calendar;
 
 /**
  * Created with IntelliJ IDEA.
@@ -54,13 +55,15 @@ public class CreateAccountAction extends BaseAuthAction {
 
     public String createAccountExecute() {
         logger.info("createAccountExecute - authModel:{}", getModel());
+        auditService.writeAudit(auditService.getAuditLog(getSessionAttribute("tracking"),
+                "CreateAccountAction.createAccountExecute()", getIp(), Calendar.getInstance()));
         getModel().setPassword(hashingUtil.generateHmacHash(getModel().getPassword()));
         getModel().setConfirmPassword(hashingUtil.generateHmacHash(getModel().getConfirmPassword()));
         AuthService.CreateResult createResult = authService.createUser(getModel(), getSessionAttribute("tracking"));
         if (createResult == AuthService.CreateResult.CREATED) {
             return "success";
         } else {
-            addActionError("Login email already exists.");
+            addActionError(getText("create.account.execute.error"));
             return "error";
         }
     }

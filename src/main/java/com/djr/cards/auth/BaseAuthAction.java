@@ -1,5 +1,6 @@
 package com.djr.cards.auth;
 
+import com.djr.cards.audit.AuditService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -21,6 +22,8 @@ public class BaseAuthAction extends ActionSupport implements ModelDriven<AuthMod
         ServletResponseAware {
     @Inject
     private org.slf4j.Logger logger;
+    @Inject
+    protected AuditService auditService;
     private HttpServletRequest request;
     private HttpServletResponse response;
     private AuthModel authModel = new AuthModel();
@@ -37,6 +40,10 @@ public class BaseAuthAction extends ActionSupport implements ModelDriven<AuthMod
         ActionContext actionContext = ActionContext.getContext();
         logger.debug("getActionContext() - actionContext:{}", actionContext.getName());
         return actionContext;
+    }
+
+    public String getIp() {
+        return request.getRemoteAddr();
     }
 
     @Override

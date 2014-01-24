@@ -128,8 +128,8 @@ public class AuthServiceImpl implements AuthService {
             Random r = new Random();
             Integer code = r.nextInt(50000);
             String emailBody = "Here to help, lets make it so you can change your password!\nJust use the code below " +
-                    "to change your password.  If you didn't initiate this, don't change your password.\n\n" +
-                    "Code -> " + code + ".";
+                    "to change your password.  If you didn't initiate this, you might want to change go ahead and " +
+                    "change it anyway, just to go the cards website(link not sent).  \n\nCode -> " + code + ".";
             String subject = "Cards - Forgot Password Service";
             if (emailService.sendEmail(user.userName, user.alias, subject, emailBody, session)) {
                 user.changePasswordProof = code.toString();

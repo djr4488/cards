@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
+import java.util.Calendar;
 
 /**
  * Created with IntelliJ IDEA.
@@ -44,7 +45,9 @@ public class LoginAction extends BaseAuthAction {
 
     public String loginExecute() {
         getModel().setPassword(hashingUtil.generateHmacHash(getModel().getPassword()));
-        logger.info("loginExecute - authModel:{}", getModel());
+        logger.info("loginExecute - authModel:{}, tracking:{}", getModel(), getSessionAttribute("tracking"));
+        auditService.writeAudit(auditService.getAuditLog(getSessionAttribute("tracking"),
+                "LoginAction.loginExecute()", getIp(), Calendar.getInstance()));
         LoginResult loginResult = authService.login(getModel(), getSessionAttribute("tracking"));
         if (loginResult.result == LoginResult.ResultOptions.SUCCESS) {
             getSession().setAttribute("user", loginResult.user);
