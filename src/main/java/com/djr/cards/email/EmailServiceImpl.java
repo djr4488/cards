@@ -32,11 +32,11 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public boolean sendEmail(String recipient, String name, String subject,
-                             String body, Session session) {
-        logger.debug("sendEmail() - recipient:{}, name:{}, subject:{}, body:{}, session:{}", recipient,
-                name, subject, body, session);
+                             String body) {
+        logger.debug("sendEmail() - recipient:{}, name:{}, subject:{}, body:{}", recipient,
+                name, subject, body);
         try {
-            Message message = new MimeMessage(session);
+            Message message = new MimeMessage(getSession());
             message.setFrom(new InternetAddress("djr4488@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(recipient));
@@ -51,7 +51,6 @@ public class EmailServiceImpl implements EmailService {
         return true;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    @Produces
     public Session getSession() {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
