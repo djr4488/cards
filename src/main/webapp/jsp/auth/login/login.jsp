@@ -33,8 +33,7 @@
     </style>
 </head>
 <body class="mainbody">
-<div id="titlebox" class="titlediv">
-    Login Page </div>
+<div id="titlebox" class="titlediv"><s:text name="login.title"/></div>
 <br>
 <br>
 <s:if test="hasActionErrors()">
@@ -48,9 +47,9 @@
         <s:password name="password" key="login.password"/>
         <s:submit/>
     </s:form>
-    <strong>Don't have an account?  <a href="createAccountLanding.do">Create one</a></strong>
+    <strong><s:text name="login.no.account"/>  <a href="createAccountLanding.do"><s:text name="login.create.account"/></a></strong>
     <br/>
-    <a href="forgotPasswordLanding.do">Forgot your password?</a>
+    <a href="forgotPasswordLanding.do"><s:text name="login.forgot.password"/></a>
 </div>
 </body>
 </html>
