@@ -1,8 +1,6 @@
 package com.djr.cards.auth.login;
 
-import com.djr.cards.auth.AuthService;
 import com.djr.cards.auth.BaseAuthAction;
-import com.djr.cards.auth.HashingUtil;
 import org.slf4j.Logger;
 
 import javax.enterprise.inject.Default;
@@ -10,7 +8,6 @@ import javax.inject.Inject;
 import java.util.Calendar;
 
 /**
- * Created with IntelliJ IDEA.
  * User: djr4488
  * Date: 1/4/14
  * Time: 5:22 PM
@@ -18,10 +15,6 @@ import java.util.Calendar;
 public class LoginAction extends BaseAuthAction {
     @Inject @Default
     private Logger logger;
-    @Inject
-    private AuthService authService;
-    @Inject
-    private HashingUtil hashingUtil;
 
     public void validate() {
         logger.debug("validate() - authModel:{}", getModel());

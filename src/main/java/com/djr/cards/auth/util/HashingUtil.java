@@ -1,4 +1,4 @@
-package com.djr.cards.auth;
+package com.djr.cards.auth.util;
 
 import org.slf4j.Logger;
 import javax.crypto.Mac;

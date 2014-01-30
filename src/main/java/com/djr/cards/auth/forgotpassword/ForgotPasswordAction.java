@@ -2,7 +2,6 @@ package com.djr.cards.auth.forgotpassword;
 
 import com.djr.cards.auth.AuthService;
 import com.djr.cards.auth.BaseAuthAction;
-import com.djr.cards.auth.HashingUtil;
 import org.slf4j.Logger;
 
 import javax.enterprise.inject.Default;
@@ -18,10 +17,6 @@ public class ForgotPasswordAction extends BaseAuthAction {
     @Inject
     @Default
     private Logger logger;
-    @Inject
-    private AuthService authService;
-    @Inject
-    private HashingUtil hashingUtil;
 
     public void validate() {
         logger.debug("validate() - authModel:{}", getModel());

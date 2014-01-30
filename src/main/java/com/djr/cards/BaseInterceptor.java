@@ -10,11 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
- * Created with IntelliJ IDEA.
  * User: djr4488
  * Date: 1/16/14
  * Time: 9:10 PM
- * To change this template use File | Settings | File Templates.
  */
 public abstract class BaseInterceptor extends AbstractInterceptor implements StrutsStatics {
     public ActionContext getContext(ActionInvocation invocation) {
