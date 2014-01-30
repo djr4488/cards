@@ -19,10 +19,21 @@
         .errors li{
             list-style: none;
         }
+        .titlediv {
+            padding: 10px 40px;
+            border:2px solid #525252;
+            border-radius:25px;
+            background:#dddddd;
+            width:300px;
+            box-shadow: 10px 10px 5px #888888;
+        }
+        .mainbody {
+            background:#dddddd;
+        }
     </style>
 </head>
-<body>
-<div id="titlebox" style="padding: 10px 40px; border:2px solid #a1a1a1; border-radius:25px; background:#dddddd; width:300px; box-shadow: 10px 10px 5px #888888;">
+<body class="mainbody">
+<div id="titlebox" class="titlediv">
     Login Page </div>
 <br>
 <br>
