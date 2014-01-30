@@ -22,7 +22,7 @@ public class HashingUtil {
         logger.debug("generateHmacHash() - message:{}", message);
         String ret = "";
         try {
-            byte HEX_VALUE2[] = (byte[]) null;
+            byte HEX_VALUE2[];
             HEX_VALUE2 = new byte[hmacKey.length() / 2];
             for (int i = 0; i < HEX_VALUE2.length; i++) {
                 HEX_VALUE2[i] = (byte) Integer.parseInt(hmacKey.substring(2 * i, 2 * i + 2),
