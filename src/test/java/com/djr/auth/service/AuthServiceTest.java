@@ -1,16 +1,6 @@
 package com.djr.auth.service;
 
-import com.djr.cards.auth.AuthModel;
-import com.djr.cards.auth.AuthService;
-import com.djr.cards.auth.service.FindUserResult;
-import com.djr.cards.data.dao.UserDAO;
 import junit.framework.TestCase;
-import org.easymock.EasyMockRunner;
-import static org.easymock.EasyMock.*;
-import org.easymock.Mock;
-import org.easymock.TestSubject;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 
 /**
  * Created with IntelliJ IDEA.

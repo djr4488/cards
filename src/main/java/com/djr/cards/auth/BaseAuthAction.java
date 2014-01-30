@@ -2,6 +2,7 @@ package com.djr.cards.auth;
 
 import com.djr.cards.BaseAction;
 import com.djr.cards.audit.AuditService;
+import com.djr.cards.auth.service.AuthService;
 import com.djr.cards.auth.util.HashingUtil;
 import com.opensymphony.xwork2.ModelDriven;
 

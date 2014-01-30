@@ -2,21 +2,14 @@ package com.djr.cards.auth.service;
 
 import com.djr.cards.audit.AuditService;
 import com.djr.cards.auth.AuthModel;
-import com.djr.cards.auth.AuthService;
 import com.djr.cards.auth.login.LoginResult;
 import com.djr.cards.data.dao.UserDAO;
 import com.djr.cards.email.EmailService;
 import com.djr.cards.data.entities.User;
 import org.slf4j.Logger;
 
-import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.mail.Session;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import javax.transaction.UserTransaction;
 import java.util.Calendar;
 import java.util.Random;
 

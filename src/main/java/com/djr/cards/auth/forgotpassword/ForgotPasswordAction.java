@@ -1,6 +1,6 @@
 package com.djr.cards.auth.forgotpassword;
 
-import com.djr.cards.auth.AuthService;
+import com.djr.cards.auth.service.AuthService;
 import com.djr.cards.auth.BaseAuthAction;
 import org.slf4j.Logger;
 
