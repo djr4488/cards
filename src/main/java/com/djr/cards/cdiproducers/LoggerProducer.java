@@ -21,12 +21,11 @@ import org.slf4j.LoggerFactory;
  * Time: 9:04 AM
  */
 @ApplicationScoped
-@Default
 public class LoggerProducer {
     private static final Logger log = LoggerFactory.getLogger(LoggerProducer.class);
     public LoggerProducer() {}
 
-    @Produces
+    @Produces @Default
     public Logger getLogger(InjectionPoint ip) {
         // assume SLF4J is bound to logback in the current environment
         LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();

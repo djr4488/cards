@@ -107,20 +107,18 @@ public class AuthServiceImpl implements AuthService {
                     authModel.toString(), Calendar.getInstance()));
             return ChangePasswordResult.OTHER_FAILURE;
         } else {
-            if (user.changePasswordProof == null) {
-                auditService.writeAudit(auditService.getAuditLog(trackingId, "changePassword() - null proof",
+            if (user.changePasswordProof == null ||
+                    !user.changePasswordProof.equals(authModel.getRandomString())) {
+                auditService.writeAudit(auditService.getAuditLog(trackingId, "changePassword() - wrong proof",
                         authModel.toString(), Calendar.getInstance()));
                 return ChangePasswordResult.OTHER_FAILURE;
             }
-            if (user.changePasswordProof.equals(authModel.getRandomString()) &&
-                    authModel.getPassword().equals(authModel.getConfirmPassword())) {
-                auditService.writeAudit(auditService.getAuditLog(trackingId, "changePassword() - success",
-                        authModel.toString(), Calendar.getInstance()));
-                user.changePasswordProof = null;
-                user.hashedPassword = authModel.getPassword();
-                userDao.updateUser(user, trackingId);
-            }
         }
+        auditService.writeAudit(auditService.getAuditLog(trackingId, "changePassword() - success",
+                authModel.toString(), Calendar.getInstance()));
+        user.changePasswordProof = null;
+        user.hashedPassword = authModel.getPassword();
+        userDao.updateUser(user, trackingId);
         return ChangePasswordResult.SUCCESS;
     }
 

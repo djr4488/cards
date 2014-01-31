@@ -13,7 +13,7 @@ import java.util.Calendar;
  * Time: 5:22 PM
  */
 public class LoginAction extends BaseAuthAction {
-    @Inject @Default
+    @Inject
     private Logger logger;
 
     public void validate() {

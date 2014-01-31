@@ -2,6 +2,7 @@ package com.djr.cards.auth.service;
 
 import com.djr.cards.audit.AuditService;
 import com.djr.cards.auth.AuthModel;
+import com.djr.cards.auth.login.LoginResult;
 import com.djr.cards.data.dao.UserDAO;
 import com.djr.cards.data.entities.User;
 import com.djr.cards.email.EmailService;
@@ -90,5 +91,159 @@ public class AuthServiceTest extends TestCase {
         when(userDAO.findOrCreateUser(authModel, tracking)).thenReturn(null);
         AuthService.CreateResult cr = authSvc.createUser(authModel, tracking);
         assertEquals(AuthService.CreateResult.OTHER_FAILURE, cr);
+    }
+
+    @Test
+    public void testLoginSuccess() {
+        AuthModel authModel = new AuthModel();
+        authModel.setUserName("test");
+        authModel.setPassword("test");
+        authModel.setConfirmPassword("test");
+        authModel.setAlias("test");
+        String tracking = "TEST TRACKING";
+        User user = new User();
+        user.alias = "test";
+        user.userName = "test";
+        user.hashedPassword = "test";
+        when(userDAO.findUser(authModel, tracking)).thenReturn(user);
+        LoginResult lr = authSvc.login(authModel, tracking);
+        assertEquals(LoginResult.ResultOptions.SUCCESS, lr.result);
+    }
+
+    @Test
+    public void testFailedNoUser() {
+        AuthModel authModel = new AuthModel();
+        authModel.setUserName("test");
+        authModel.setPassword("test");
+        authModel.setConfirmPassword("test");
+        authModel.setAlias("test");
+        String tracking = "TEST TRACKING";
+        when(userDAO.findUser(authModel, tracking)).thenReturn(null);
+        LoginResult lr = authSvc.login(authModel, tracking);
+        assertEquals(LoginResult.ResultOptions.FAILED_USER_OR_PASS, lr.result);
+    }
+
+    @Test
+    public void testFailedWrongPassword() {
+        AuthModel authModel = new AuthModel();
+        authModel.setUserName("test");
+        authModel.setPassword("test");
+        authModel.setConfirmPassword("test");
+        authModel.setAlias("test");
+        String tracking = "TEST TRACKING";
+        User user = new User();
+        user.alias = "test";
+        user.userName = "test";
+        user.hashedPassword = "test1";
+        when(userDAO.findUser(authModel, tracking)).thenReturn(user);
+        LoginResult lr = authSvc.login(authModel, tracking);
+        assertEquals(LoginResult.ResultOptions.FAILED_USER_OR_PASS, lr.result);
+    }
+
+    @Test
+    public void testForgotPasswordNoUser() {
+        AuthModel authModel = new AuthModel();
+        authModel.setUserName("test");
+        authModel.setPassword("test");
+        authModel.setConfirmPassword("test");
+        authModel.setAlias("test");
+        String tracking = "TEST TRACKING";
+        when(userDAO.findUser(authModel, tracking)).thenReturn(null);
+        AuthService.ForgotPasswordResult result = authSvc.forgotPassword(authModel, tracking);
+        assertEquals(AuthService.ForgotPasswordResult.NOT_FOUND, result);
+    }
+
+    @Test
+    public void testForgotPasswordEmailFails() {
+        AuthModel authModel = new AuthModel();
+        authModel.setUserName("test");
+        authModel.setPassword("test");
+        authModel.setConfirmPassword("test");
+        authModel.setAlias("test");
+        String tracking = "TEST TRACKING";
+        User user = new User();
+        user.alias = "test";
+        user.userName = "test";
+        user.hashedPassword = "test";
+        when(userDAO.findUser(authModel, tracking)).thenReturn(user);
+        when(emailSvc.sendEmail(any(String.class), any(String.class), any(String.class), any(String.class)))
+                .thenReturn(false);
+        AuthService.ForgotPasswordResult result = authSvc.forgotPassword(authModel, tracking);
+        verify(emailSvc).sendEmail(any(String.class), any(String.class), any(String.class), any(String.class));
+        assertEquals(AuthService.ForgotPasswordResult.OTHER_FAILURE, result);
+    }
+
+    @Test
+    public void testForgotPasswordEmailSends() {
+        AuthModel authModel = new AuthModel();
+        authModel.setUserName("test");
+        authModel.setPassword("test");
+        authModel.setConfirmPassword("test");
+        authModel.setAlias("test");
+        String tracking = "TEST TRACKING";
+        User user = new User();
+        user.alias = "test";
+        user.userName = "test";
+        user.hashedPassword = "test";
+        when(userDAO.findUser(authModel, tracking)).thenReturn(user);
+        when(emailSvc.sendEmail(any(String.class), any(String.class), any(String.class), any(String.class)))
+                .thenReturn(true);
+        AuthService.ForgotPasswordResult result = authSvc.forgotPassword(authModel, tracking);
+        verify(emailSvc).sendEmail(any(String.class), any(String.class), any(String.class), any(String.class));
+        verify(userDAO).updateUser(any(User.class), any(String.class));
+        assertEquals(AuthService.ForgotPasswordResult.SUCCESS, result);
+    }
+
+    @Test
+    public void testChangePasswordNoUser() {
+        AuthModel authModel = new AuthModel();
+        authModel.setUserName("test");
+        authModel.setPassword("test");
+        authModel.setConfirmPassword("test");
+        authModel.setAlias("test");
+        String tracking = "TEST TRACKING";
+        when(userDAO.findUser(authModel, tracking)).thenReturn(null);
+        AuthService.ChangePasswordResult result = authSvc.changePassword(authModel, tracking);
+        assertEquals(AuthService.ChangePasswordResult.OTHER_FAILURE, result);
+    }
+
+    @Test
+    public void testChangePasswordWrongProof() {
+        AuthModel authModel = new AuthModel();
+        authModel.setUserName("test");
+        authModel.setPassword("test");
+        authModel.setConfirmPassword("test");
+        authModel.setAlias("test");
+        authModel.setRandomString("WRONG");
+        String tracking = "TEST TRACKING";
+        User user = new User();
+        user.alias = "test";
+        user.userName = "test";
+        user.hashedPassword = "test";
+        user.changePasswordProof = "RIGHT";
+        when(userDAO.findUser(authModel, tracking)).thenReturn(user);
+        AuthService.ChangePasswordResult result = authSvc.changePassword(authModel, tracking);
+        assertEquals(AuthService.ChangePasswordResult.OTHER_FAILURE, result);
+    }
+
+    @Test
+    public void testChangePasswordSuccess() {
+        AuthModel authModel = new AuthModel();
+        authModel.setUserName("test");
+        authModel.setPassword("test");
+        authModel.setConfirmPassword("test");
+        authModel.setAlias("test");
+        authModel.setRandomString("RIGHT");
+        String tracking = "TEST TRACKING";
+        User user = new User();
+        user.alias = "test";
+        user.userName = "test";
+        user.hashedPassword = "test";
+        user.changePasswordProof = "RIGHT";
+        when(userDAO.findUser(authModel, tracking)).thenReturn(user);
+        when(userDAO.updateUser(any(User.class), any(String.class))).thenReturn(user);
+        AuthService.ChangePasswordResult result = authSvc.changePassword(authModel, tracking);
+        verify(userDAO).updateUser(any(User.class), any(String.class));
+        assertEquals(AuthService.ChangePasswordResult.SUCCESS, result);
     }
 }
