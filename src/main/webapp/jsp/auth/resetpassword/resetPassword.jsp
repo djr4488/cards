@@ -8,27 +8,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Changing your password</title>
-    <style type="text/css">
-        .errors {
-            background-color:#FFCCCC;
-            border:1px solid #CC0000;
-            width:400px;
-            margin-bottom:8px;
-        }
-        .errors li{
-            list-style: none;
-        }
-    </style>
+    <title><s:text name="reset.title"/></title>
+    <link rel="stylesheet" href="../css/cards.css" type="text/css">
 </head>
-<body>
-    <div id="titlebox" style="padding: 10px 40px; border:2px solid #a1a1a1; border-radius:25px; background:#dddddd; width:300px; box-shadow: 10px 10px 5px #888888;">
-        Password Reset
-    </div>
-    Hey lets change your password... but first
+<body class="mainbody">
+    <div id="titlebox" class="titlediv"><s:text name="reset.title"/></div>
+    <h2><s:text name="reset.hey.lets.change"/></h2>
     <ul>
-        <li>Think you can prove who you said you were by providing the code I sent you in email?</li>
-        <li>Then, if you do that for me, I'll let you change your password!</li>
+        <li><s:text name="reset.think.you.can.tell"/></li>
+        <li><s:text name="reset.i.will.let.you"/></li>
     </ul>
     <s:form id="changePassword" method="post" action="changePassword">
         <s:textfield name="userName" key="reset.confirmation.username"/>

@@ -8,22 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Cards - Login</title>
-    <style type="text/css">
-        .errors {
-            background-color:#FFCCCC;
-            border:1px solid #CC0000;
-            width:400px;
-            margin-bottom:8px;
-        }
-        .errors li{
-            list-style: none;
-        }
-    </style>
+    <title><s:text name="create.title"/></title>
+    <link rel="stylesheet" href="../css/cards.css" type="text/css">
 </head>
-<body>
-<div id="titlebox" style="padding: 10px 40px; border:2px solid #a1a1a1; border-radius:25px; background:#dddddd; width:300px; box-shadow: 10px 10px 5px #888888;">
-    Create Account </div>
+<body class="mainbody">
+<div id="titlebox" class="titlediv"><s:text name="create.title"/></div>
 <s:if test="hasActionErrors()">
     <div class="errors">
         <s:actionerror/>

@@ -108,11 +108,9 @@ public class AuthServiceImpl implements AuthService {
         return ChangePasswordResult.SUCCESS;
     }
 
-    private String generateString(Random rng, int length)
-    {
+    private String generateString(Random rng, int length) {
         char[] text = new char[length];
-        for (int i = 0; i < length; i++)
-        {
+        for (int i = 0; i < length; i++) {
             text[i] = chars.charAt(rng.nextInt(chars.length()));
         }
         return new String(text);
