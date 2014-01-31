@@ -9,28 +9,7 @@
 <html>
 <head>
     <title>Cards - Login</title>
-    <style type="text/css">
-        .errors {
-            background-color:#FFCCCC;
-            border:1px solid #CC0000;
-            width:400px;
-            margin-bottom:8px;
-        }
-        .errors li{
-            list-style: none;
-        }
-        .titlediv {
-            padding: 10px 40px;
-            border:2px solid #525252;
-            border-radius:25px;
-            background:#dddddd;
-            width:300px;
-            box-shadow: 10px 10px 5px #888888;
-        }
-        .mainbody {
-            background:#dddddd;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/cards.css" type="text/css">
 </head>
 <body class="mainbody">
 <div id="titlebox" class="titlediv"><s:text name="login.title"/></div>
