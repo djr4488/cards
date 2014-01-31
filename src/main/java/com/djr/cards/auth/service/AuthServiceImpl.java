@@ -37,10 +37,16 @@ public class AuthServiceImpl implements AuthService {
         logger.debug("createUser - authModel:{}, trackingId:{}", authModel, trackingId);
         FindUserResult findUserResult = userDao.findOrCreateUser(authModel, trackingId);
         if (findUserResult == null) {
+            auditService.writeAudit(auditService.getAuditLog(trackingId, "createUser() - failed",
+                    authModel.toString(), Calendar.getInstance()));
             return CreateResult.OTHER_FAILURE;
         } else if (!findUserResult.created) {
+            auditService.writeAudit(auditService.getAuditLog(trackingId, "createUser() - user taken",
+                    authModel.toString(), Calendar.getInstance()));
             return CreateResult.USERNAME_TAKEN;
         }
+        auditService.writeAudit(auditService.getAuditLog(trackingId, "createUser() - created",
+                authModel.toString(), Calendar.getInstance()));
         return CreateResult.CREATED;
     }
 
@@ -50,7 +56,7 @@ public class AuthServiceImpl implements AuthService {
         User user = userDao.findUser(authModel, trackingId);
         LoginResult loginResult = new LoginResult();
         if (user == null || !user.hashedPassword.equals(authModel.getPassword())) {
-            auditService.writeAudit(auditService.getAuditLog(trackingId, "AuthService.auth()",
+            auditService.writeAudit(auditService.getAuditLog(trackingId, "auth() - user null/bad password",
                     authModel.toString(), Calendar.getInstance()));
             loginResult.result = LoginResult.ResultOptions.FAILED_USER_OR_PASS;
             loginResult.user = null;
@@ -58,17 +64,19 @@ public class AuthServiceImpl implements AuthService {
         }
         loginResult.result = LoginResult.ResultOptions.SUCCESS;
         loginResult.user = user;
+        auditService.writeAudit(auditService.getAuditLog(trackingId, "auth() - login success",
+                authModel.toString(), Calendar.getInstance()));
         return loginResult;
     }
 
     @Override
     public ForgotPasswordResult forgotPassword(AuthModel authModel, String trackingId) {
         logger.debug("forgotPassword() - authModel:{}, trackingId:{}", authModel, trackingId);
-        auditService.writeAudit(auditService.getAuditLog(trackingId, "forgotPassword()", authModel.toString(),
-                Calendar.getInstance()));
         authModel.setUserName(authModel.getUserName());
         User user = userDao.findUser(authModel, trackingId);
         if (user == null) {
+            auditService.writeAudit(auditService.getAuditLog(trackingId, "forgotPassword() - null user",
+                    authModel.toString(), Calendar.getInstance()));
             return ForgotPasswordResult.NOT_FOUND;
         } else {
             String code = generateRecoverCode();
@@ -79,9 +87,13 @@ public class AuthServiceImpl implements AuthService {
             if (emailService.sendEmail(user.userName, user.alias, subject, emailBody)) {
                 user.changePasswordProof = code.toString();
                 userDao.updateUser(user, trackingId);
+                auditService.writeAudit(auditService.getAuditLog(trackingId, "forgotPassword() - email sent",
+                        authModel.toString(), Calendar.getInstance()));
                 return ForgotPasswordResult.SUCCESS;
             }
         }
+        auditService.writeAudit(auditService.getAuditLog(trackingId, "forgotPassword() - email failed",
+                authModel.toString(), Calendar.getInstance()));
         return ForgotPasswordResult.OTHER_FAILURE;
     }
 
@@ -91,15 +103,19 @@ public class AuthServiceImpl implements AuthService {
         authModel.setUserName(authModel.getUserName());
         User user = userDao.findUser(authModel, trackingId);
         if (user == null) {
-            auditService.writeAudit(auditService.getAuditLog(trackingId, "changePassword()", authModel.toString(),
-                    Calendar.getInstance()));
+            auditService.writeAudit(auditService.getAuditLog(trackingId, "changePassword() - null user",
+                    authModel.toString(), Calendar.getInstance()));
             return ChangePasswordResult.OTHER_FAILURE;
         } else {
             if (user.changePasswordProof == null) {
+                auditService.writeAudit(auditService.getAuditLog(trackingId, "changePassword() - null proof",
+                        authModel.toString(), Calendar.getInstance()));
                 return ChangePasswordResult.OTHER_FAILURE;
             }
             if (user.changePasswordProof.equals(authModel.getRandomString()) &&
                     authModel.getPassword().equals(authModel.getConfirmPassword())) {
+                auditService.writeAudit(auditService.getAuditLog(trackingId, "changePassword() - success",
+                        authModel.toString(), Calendar.getInstance()));
                 user.changePasswordProof = null;
                 user.hashedPassword = authModel.getPassword();
                 userDao.updateUser(user, trackingId);
