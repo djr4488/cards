@@ -85,7 +85,7 @@ public class AuthServiceImpl implements AuthService {
                     "change it anyway, just to go the cards website(link not sent).  \n\nCode -> " + code + ".";
             String subject = "Cards - Forgot Password Service";
             if (emailService.sendEmail(user.userName, user.alias, subject, emailBody)) {
-                user.changePasswordProof = code.toString();
+                user.changePasswordProof = code;
                 userDao.updateUser(user, trackingId);
                 auditService.writeAudit(auditService.getAuditLog(trackingId, "forgotPassword() - email sent",
                         authModel.toString(), Calendar.getInstance()));
