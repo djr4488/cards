@@ -182,7 +182,7 @@ public class UserDAOTest  extends TestCase {
         User user = new User(authModel);
         String tracking = "testUpdateUserAsSuccess";
         try {
-            doThrow(new SystemException("Tranaction failed")).when(userTx).begin();
+            doThrow(new SystemException("Transaction failed")).when(userTx).begin();
         } catch (Exception ex) {
             fail("didn't really expect an exception here");
         }
@@ -197,7 +197,7 @@ public class UserDAOTest  extends TestCase {
         User user = new User(authModel);
         String tracking = "testUpdateUserAsSuccess";
         try {
-            doThrow(new SystemException("Tranaction failed")).when(userTx).commit();
+            doThrow(new SystemException("Transaction failed")).when(userTx).commit();
         } catch (Exception ex) {
             fail("didn't really expect an exception here");
         }
