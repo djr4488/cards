@@ -25,22 +25,23 @@ public class LoggerProducer {
     private static final Logger log = LoggerFactory.getLogger(LoggerProducer.class);
     public LoggerProducer() {}
 
-    @Produces @Default
-    public Logger getLogger(InjectionPoint ip) {
-        // assume SLF4J is bound to logback in the current environment
+    @PostConstruct
+    private void loadConfiguration() {
         LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();
-
         try {
             JoranConfigurator configurator = new JoranConfigurator();
             configurator.setContext(context);
-            // Call context.reset() to clear any previous configuration, e.g. default
-            // configuration. For multi-step configuration, omit calling context.reset().
             context.reset();
             configurator.doConfigure("/app/cards/conf/logback.xml");
         } catch (JoranException je) {
             // StatusPrinter will handle this
         }
         StatusPrinter.printInCaseOfErrorsOrWarnings(context);
+    }
+
+
+    @Produces @Default
+    public Logger getLogger(InjectionPoint ip) {
         Class<?> injectingClass = ip.getMember().getDeclaringClass();
         log.debug("getLogger() injectingClass:{}", injectingClass.getName());
         return LoggerFactory.getLogger(injectingClass);
