@@ -159,7 +159,7 @@
 <i>85</i>&nbsp;                    &quot;change it anyway, just to go the cards website(link not sent).  \n\nCode -&gt; &quot; + code + &quot;.&quot;;
 <b class="fc"><i>86</i>&nbsp;            String subject = &quot;Cards - Forgot Password Service&quot;;</b>
 <b class="fc"><i>87</i>&nbsp;            if (emailService.sendEmail(user.userName, user.alias, subject, emailBody)) {</b>
-<b class="fc"><i>88</i>&nbsp;                user.changePasswordProof = code.toString();</b>
+<b class="fc"><i>88</i>&nbsp;                user.changePasswordProof = code;</b>
 <b class="fc"><i>89</i>&nbsp;                userDao.updateUser(user, trackingId);</b>
 <b class="fc"><i>90</i>&nbsp;                auditService.writeAudit(auditService.getAuditLog(trackingId, &quot;forgotPassword() - email sent&quot;,</b>
 <i>91</i>&nbsp;                        authModel.toString(), Calendar.getInstance()));
@@ -216,7 +216,7 @@
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2014-01-30 23:40</div>
+    <div style="float:right;">generated on 2014-01-31 23:24</div>
 </div>
 </body>
 </html>
