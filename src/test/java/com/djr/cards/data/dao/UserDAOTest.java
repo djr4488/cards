@@ -103,6 +103,7 @@ public class UserDAOTest  extends TestCase {
         verify(query).getSingleResult();
         try {
             verify(userTx).begin();
+            verify(logger).error(any(String.class), any(String.class), any(Exception.class));
         } catch (Exception ex) {
             ex.printStackTrace();
             fail("Received exception");
@@ -129,6 +130,7 @@ public class UserDAOTest  extends TestCase {
             verify(userTx).begin();
             verify(em).persist(any(User.class));
             verify(userTx).commit();
+            verify(logger).error(any(String.class), any(String.class), any(Exception.class));
         } catch (Exception ex) {
             ex.printStackTrace();
             fail("Received exception");
