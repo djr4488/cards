@@ -1,12 +1,20 @@
 package com.djr.cards.email;
 
+import com.djr.cards.cdiproducers.LoggerProducer;
+import com.djr.cards.cdiproducers.PropertyProducer;
 import com.opensymphony.xwork2.interceptor.annotations.Before;
 import junit.framework.TestCase;
+import org.jglue.cdiunit.AdditionalClasses;
+import org.jglue.cdiunit.CdiRunner;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.slf4j.Logger;
+
+import javax.inject.Inject;
+
 import static org.mockito.Mockito.*;
 
 /**
@@ -14,13 +22,20 @@ import static org.mockito.Mockito.*;
  * Date: 2/1/14
  * Time: 11:16 AM
  */
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(CdiRunner.class)
+@AdditionalClasses({LoggerProducer.class, PropertyProducer.class})
 public class EmailServiceTest extends TestCase {
-    @Mock
-    private Logger logger;
-
+    //@Mock
+    //private Logger logger;
+	@Inject
+	private EmailService emailSvc;
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
     }
+
+	@Test
+	public void testSendEmailSuccess() {
+		assertNotNull(emailSvc);
+	}
 }

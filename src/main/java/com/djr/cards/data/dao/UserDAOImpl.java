@@ -5,6 +5,9 @@ import com.djr.cards.auth.service.FindUserResult;
 import com.djr.cards.data.entities.User;
 import org.slf4j.Logger;
 import javax.annotation.Resource;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -18,13 +21,12 @@ import java.util.Calendar;
  * Date: 1/23/14
  * Time: 11:22 PM
  */
+@Stateless
 public class UserDAOImpl implements UserDAO {
     @Inject
     private Logger logger;
     @PersistenceContext
     private EntityManager em;
-    @Resource
-    private UserTransaction userTx;
 
     public UserDAOImpl() { }
 
@@ -35,6 +37,7 @@ public class UserDAOImpl implements UserDAO {
         return findUserResult;
     }
 
+	@TransactionAttribute (TransactionAttributeType.REQUIRED)
     public FindUserResult findOrCreateUser(AuthModel authModel, String trackingId) {
         logger.debug("findOrCreateUser() - authModel:{}, trackingId:{}", authModel, trackingId);
         try {
@@ -45,9 +48,7 @@ public class UserDAOImpl implements UserDAO {
             User user = new User(authModel);
             user.createdDate = Calendar.getInstance();
             try {
-                userTx.begin();
                 em.persist(user);
-                userTx.commit();
                 return createFindUserResult(user, true);
             } catch (Exception ex) {
                 logger.error("findOrCreateUser() - trackingId:{}, exception:{}", trackingId, ex);
@@ -68,12 +69,11 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
     public User updateUser(User user, String trackingId) {
         logger.debug("updateUser() - user:{}, trackingId:{}", user, trackingId);
         try {
-            userTx.begin();
             em.merge(user);
-            userTx.commit();
         } catch (Exception ex) {
             logger.error("updateUser() exception:", ex);
         }

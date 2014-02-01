@@ -76,66 +76,12 @@ public class UserDAOTest  extends TestCase {
         verify(em).createNamedQuery("findUser", User.class);
         verify(query).getSingleResult();
         try {
-            verify(userTx).begin();
             verify(em).persist(any(User.class));
-            verify(userTx).commit();
         } catch (Exception ex) {
             ex.printStackTrace();
             fail("Received exception");
         }
         assertEquals(true, fur.created);
-    }
-
-    @Test
-    public void testFindOrCreateUserAsBeginFails() {
-        AuthModel authModel = generateAuthModel("test", "test", "test", "test");
-        String tracking = "testFindOrCreateUserAsCreate";
-        when(em.createNamedQuery("findUser", User.class)).thenReturn(query);
-        when(query.getSingleResult()).thenThrow(new NoResultException("No result found."));
-        try {
-            doThrow(new SystemException("Begin tx failed")).when(userTx).begin();
-        } catch (Exception ex) {
-            fail("Didn't expect exception here");
-        }
-        FindUserResult fur = userDao.findOrCreateUser(authModel, tracking);
-        verify(logger).debug(any(String.class), any(AuthModel.class), any(String.class));
-        verify(em).createNamedQuery("findUser", User.class);
-        verify(query).getSingleResult();
-        try {
-            verify(userTx).begin();
-            verify(logger).error(any(String.class), any(String.class), any(Exception.class));
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            fail("Received exception");
-        }
-        assertNull(fur);
-    }
-
-    @Test
-    public void testFindOrCreateUserAsCommitFails() {
-        AuthModel authModel = generateAuthModel("test", "test", "test", "test");
-        String tracking = "testFindOrCreateUserAsCreate";
-        when(em.createNamedQuery("findUser", User.class)).thenReturn(query);
-        when(query.getSingleResult()).thenThrow(new NoResultException("No result found."));
-        try {
-            doThrow(new SystemException("Begin tx failed")).when(userTx).commit();
-        } catch (Exception ex) {
-            fail("Didn't expect exception here");
-        }
-        FindUserResult fur = userDao.findOrCreateUser(authModel, tracking);
-        verify(logger).debug(any(String.class), any(AuthModel.class), any(String.class));
-        verify(em).createNamedQuery("findUser", User.class);
-        verify(query).getSingleResult();
-        try {
-            verify(userTx).begin();
-            verify(em).persist(any(User.class));
-            verify(userTx).commit();
-            verify(logger).error(any(String.class), any(String.class), any(Exception.class));
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            fail("Received exception");
-        }
-        assertNull(fur);
     }
 
     @Test
@@ -173,36 +119,6 @@ public class UserDAOTest  extends TestCase {
         String tracking = "testUpdateUserAsSuccess";
         User updatedUser = userDao.updateUser(user, tracking);
         verify(em).merge(user);
-        assertNotNull(updatedUser);
-    }
-
-    @Test
-    public void testUpdateUserAsFailedBeginTx() {
-        AuthModel authModel = generateAuthModel("test", "test", "test", "alias");
-        User user = new User(authModel);
-        String tracking = "testUpdateUserAsSuccess";
-        try {
-            doThrow(new SystemException("Transaction failed")).when(userTx).begin();
-        } catch (Exception ex) {
-            fail("didn't really expect an exception here");
-        }
-        User updatedUser = userDao.updateUser(user, tracking);
-        verify(logger).error(any(String.class), any(Exception.class));
-        assertNotNull(updatedUser);
-    }
-
-    @Test
-    public void testUpdateUserAsFailedCommitTx() {
-        AuthModel authModel = generateAuthModel("test", "test", "test", "alias");
-        User user = new User(authModel);
-        String tracking = "testUpdateUserAsSuccess";
-        try {
-            doThrow(new SystemException("Transaction failed")).when(userTx).commit();
-        } catch (Exception ex) {
-            fail("didn't really expect an exception here");
-        }
-        User updatedUser = userDao.updateUser(user, tracking);
-        verify(logger).error(any(String.class), any(Exception.class));
         assertNotNull(updatedUser);
     }
 }
