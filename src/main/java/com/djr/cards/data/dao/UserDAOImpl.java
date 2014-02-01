@@ -4,7 +4,6 @@ import com.djr.cards.auth.AuthModel;
 import com.djr.cards.auth.service.FindUserResult;
 import com.djr.cards.data.entities.User;
 import org.slf4j.Logger;
-
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -36,8 +35,6 @@ public class UserDAOImpl implements UserDAO {
         return findUserResult;
     }
 
-    //may consider moving these two methods out of auth... but really this is the only time I'm
-    //going to create/find user... so I'm not sure it really matters
     public FindUserResult findOrCreateUser(AuthModel authModel, String trackingId) {
         logger.debug("findOrCreateUser() - authModel:{}, trackingId:{}", authModel, trackingId);
         try {
