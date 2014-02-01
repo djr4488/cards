@@ -39,7 +39,7 @@ public class UserDAOImpl implements UserDAO {
         logger.debug("findOrCreateUser() - authModel:{}, trackingId:{}", authModel, trackingId);
         try {
             TypedQuery<User> query = em.createNamedQuery("findUser", User.class);
-            query.setParameter("userName", authModel.getUserName());
+            query.setParameter("emailAddress", authModel.getUserName());
             return createFindUserResult(query.getSingleResult(), false);
         } catch (NoResultException nrEx) {
             User user = new User(authModel);
@@ -60,7 +60,7 @@ public class UserDAOImpl implements UserDAO {
         logger.debug("findUser() - authModel:{}, trackingId:{}", authModel, trackingId);
         try {
             TypedQuery<User> query = em.createNamedQuery("findUser", User.class);
-            query.setParameter("userName", authModel.getUserName());
+            query.setParameter("emailAddress", authModel.getUserName());
             return query.getSingleResult();
         } catch (NoResultException nrEx) {
             logger.debug("findUser() - No user found.");

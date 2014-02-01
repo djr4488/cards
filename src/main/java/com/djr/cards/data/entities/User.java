@@ -15,7 +15,7 @@ import java.util.Calendar;
 @Table(name="cards_users")
 @NamedQueries({
         @NamedQuery(name="findUser",
-                    query="select user from User user where user.userName = :userName")
+                    query="select user from User user where user.emailAddress = :emailAddress")
 })
 public class User implements Serializable {
 
@@ -23,8 +23,8 @@ public class User implements Serializable {
     @Column(name="id", nullable=false)
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    @Column(name="user_name")
-    public String userName;
+    @Column(name="email_address")
+    public String emailAddress;
     @Column(name="hashed_password")
     public String hashedPassword;
     @Column(name="user_alias")
@@ -42,9 +42,9 @@ public class User implements Serializable {
     public User() { }
 
     public User(AuthModel authModel) {
-        userName = authModel.getUserName();
+        emailAddress = authModel.getUserName();
         hashedPassword = authModel.getPassword();
-        alias = authModel.getUserName();
+        alias = authModel.getAlias();
     }
 
     public Long getId() {
@@ -54,7 +54,7 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-                "userName='" + userName + '\'' +
+                "emailAddress='" + emailAddress + '\'' +
                 ", alias='" + alias + '\'' +
                 '}';
     }
