@@ -87,6 +87,56 @@ public class UserDAOTest  extends TestCase {
     }
 
     @Test
+    public void testFindOrCreateUserAsBeginFails() {
+        AuthModel authModel = generateAuthModel("test", "test", "test", "test");
+        String tracking = "testFindOrCreateUserAsCreate";
+        when(em.createNamedQuery("findUser", User.class)).thenReturn(query);
+        when(query.getSingleResult()).thenThrow(new NoResultException("No result found."));
+        try {
+            doThrow(new SystemException("Begin tx failed")).when(userTx).begin();
+        } catch (Exception ex) {
+            fail("Didn't expect exception here");
+        }
+        FindUserResult fur = userDao.findOrCreateUser(authModel, tracking);
+        verify(logger).debug(any(String.class), any(AuthModel.class), any(String.class));
+        verify(em).createNamedQuery("findUser", User.class);
+        verify(query).getSingleResult();
+        try {
+            verify(userTx).begin();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            fail("Received exception");
+        }
+        assertNull(fur);
+    }
+
+    @Test
+    public void testFindOrCreateUserAsCommitFails() {
+        AuthModel authModel = generateAuthModel("test", "test", "test", "test");
+        String tracking = "testFindOrCreateUserAsCreate";
+        when(em.createNamedQuery("findUser", User.class)).thenReturn(query);
+        when(query.getSingleResult()).thenThrow(new NoResultException("No result found."));
+        try {
+            doThrow(new SystemException("Begin tx failed")).when(userTx).commit();
+        } catch (Exception ex) {
+            fail("Didn't expect exception here");
+        }
+        FindUserResult fur = userDao.findOrCreateUser(authModel, tracking);
+        verify(logger).debug(any(String.class), any(AuthModel.class), any(String.class));
+        verify(em).createNamedQuery("findUser", User.class);
+        verify(query).getSingleResult();
+        try {
+            verify(userTx).begin();
+            verify(em).persist(any(User.class));
+            verify(userTx).commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            fail("Received exception");
+        }
+        assertNull(fur);
+    }
+
+    @Test
     public void testFindUserAsFound() {
         AuthModel authModel = generateAuthModel("test", "test", "test", "test");
         User user = new User(authModel);
