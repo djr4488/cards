@@ -32,6 +32,6 @@ public class EmailServiceTest extends TestCase {
 	@Test
 	public void testSendEmailSuccess() {
 		assertNotNull(emailSvc);
-		assertTrue(emailSvc.sendEmail("testing@testing.com", "Test", "Test", "Testing email"));
+		assertTrue(emailSvc.sendEmail("djr4488@gmail.com", "Test", "Test", "Testing email"));
 	}
 }

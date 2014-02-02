@@ -30,6 +30,12 @@ public class EmailServiceImpl implements EmailService {
     private String username;
     @Inject
     private String password;
+	@Inject
+	private Boolean authRequired;
+	@Inject
+	private Boolean enableTls;
+	@Inject
+	private Integer timeout;
 
     @Override
     public boolean sendEmail(String recipient, String name, String subject,
@@ -53,12 +59,14 @@ public class EmailServiceImpl implements EmailService {
     }
 
     public Session getSession() {
+		logger.debug("getSession() - authRequired:{}, enableTls:{}, host:{}, port:{}, timeout:{}",
+				authRequired, enableTls, host, port, timeout);
         Properties properties = new Properties();
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.auth", authRequired.toString());
+        properties.put("mail.smtp.starttls.enable", enableTls.toString());
         properties.put("mail.smtp.host", host);
         properties.put("mail.smtp.port", port);
-		properties.put("mail.smtp.timeout", 10000);
+		properties.put("mail.smtp.timeout", timeout);
         return Session.getInstance(properties,
             new javax.mail.Authenticator() {
                 protected PasswordAuthentication getPasswordAuthentication() {
