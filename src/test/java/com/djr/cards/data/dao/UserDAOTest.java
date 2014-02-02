@@ -16,8 +16,6 @@ import static org.mockito.Mockito.*;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
-import javax.transaction.SystemException;
-import javax.transaction.UserTransaction;
 
 /**
  * User: djr4488
@@ -28,8 +26,6 @@ import javax.transaction.UserTransaction;
 public class UserDAOTest  extends TestCase {
     @Mock
     private EntityManager em;
-    @Mock
-    private UserTransaction userTx;
     @Mock
     private Logger logger;
     @Mock

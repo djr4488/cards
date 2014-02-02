@@ -40,7 +40,7 @@ public class LoggerProducer {
     }
 
 
-    @Produces @Default
+    @Produces
     public Logger getLogger(InjectionPoint ip) {
         Class<?> injectingClass = ip.getMember().getDeclaringClass();
         log.debug("getLogger() injectingClass:{}", injectingClass.getName());

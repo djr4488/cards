@@ -4,7 +4,6 @@ import com.djr.cards.auth.AuthModel;
 import com.djr.cards.auth.service.FindUserResult;
 import com.djr.cards.data.entities.User;
 import org.slf4j.Logger;
-import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -13,7 +12,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.transaction.UserTransaction;
 import java.util.Calendar;
 
 /**

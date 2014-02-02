@@ -2,6 +2,7 @@ package com.djr.cards.email;
 
 import org.slf4j.Logger;
 import javax.annotation.Resource;
+import javax.enterprise.inject.Default;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.mail.Message;
@@ -57,6 +58,7 @@ public class EmailServiceImpl implements EmailService {
         properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.host", host);
         properties.put("mail.smtp.port", port);
+		properties.put("mail.smtp.timeout", 10000);
         return Session.getInstance(properties,
             new javax.mail.Authenticator() {
                 protected PasswordAuthentication getPasswordAuthentication() {

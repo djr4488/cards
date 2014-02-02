@@ -8,11 +8,7 @@ import org.jglue.cdiunit.AdditionalClasses;
 import org.jglue.cdiunit.CdiRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.runners.MockitoJUnitRunner;
-import org.slf4j.Logger;
-
 import javax.inject.Inject;
 
 import static org.mockito.Mockito.*;
@@ -23,12 +19,11 @@ import static org.mockito.Mockito.*;
  * Time: 11:16 AM
  */
 @RunWith(CdiRunner.class)
-@AdditionalClasses({LoggerProducer.class, PropertyProducer.class})
+@AdditionalClasses({PropertyProducer.class, LoggerProducer.class, EmailServiceImpl.class})
 public class EmailServiceTest extends TestCase {
-    //@Mock
-    //private Logger logger;
 	@Inject
 	private EmailService emailSvc;
+
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
@@ -37,5 +32,6 @@ public class EmailServiceTest extends TestCase {
 	@Test
 	public void testSendEmailSuccess() {
 		assertNotNull(emailSvc);
+		assertTrue(emailSvc.sendEmail("testing@testing.com", "Test", "Test", "Testing email"));
 	}
 }

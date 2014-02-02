@@ -1,14 +1,12 @@
 package com.djr.cards.audit;
 
 import com.djr.cards.data.entities.AuditLog;
-
-import javax.annotation.Resource;
+import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.UserTransaction;
 import java.util.Calendar;
 
 /**
@@ -17,22 +15,19 @@ import java.util.Calendar;
  * Date: 1/12/14
  * Time: 9:37 PM
  */
+@Stateless
 public class AuditServiceImpl implements AuditService {
     @Inject
     private org.slf4j.Logger logger;
     @PersistenceContext
     private EntityManager em;
-    @Resource
-    private UserTransaction userTx;
 
     @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void writeAudit(AuditLog auditLog) {
         logger.debug("writeAudit() auditLog:{}", auditLog);
         try {
-            userTx.begin();
             em.persist(auditLog);
-            userTx.commit();
         } catch (Exception ex) {
             logger.error("writeAudit() ex:{}", ex);
         }
