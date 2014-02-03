@@ -56,9 +56,8 @@ public class CreateAccountAction extends BaseAuthAction {
         AuthService.CreateResult createResult = authService.createUser(getModel(), getSessionAttribute("tracking"));
         if (createResult == AuthService.CreateResult.CREATED) {
             return "success";
-        } else {
-            addActionError(getText("create.account.execute.error"));
-            return "error";
-        }
+		}
+		addActionError(getText("create.account.execute.error"));
+		return "error";
     }
 }
