@@ -8,7 +8,7 @@
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
     <constant name="struts.custom.i18n.resources" value="MessageResources" />
     <constant name="struts.objectFactory.cdi.jndiKey" value="java:comp/BeanManager" />
-    <package name="default" extends="struts-default,json-default">
+    <package name="cards" namespace="/cards" extends="struts-default">
         <interceptors>
             <interceptor name="loginInterceptor"
                          class="com.djr.cards.auth.AuthInterceptor"/>
