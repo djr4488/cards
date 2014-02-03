@@ -1,6 +1,7 @@
 package com.djr.cards.auth.login;
 
 import com.djr.cards.auth.BaseAuthAction;
+import org.apache.struts2.interceptor.validation.SkipValidation;
 import org.slf4j.Logger;
 
 import javax.enterprise.inject.Default;
@@ -18,9 +19,6 @@ public class LoginAction extends BaseAuthAction {
 
     public void validate() {
         logger.debug("validate() - authModel:{}", getModel());
-        if (getActionContext().getName().equalsIgnoreCase("loginLoad")) {
-            return;
-        }
         if (getModel().getUserName() == null || getModel().getUserName().trim().length() == 0) {
             logger.debug("validate() - email was missing");
             addFieldError("userName", getText("login.missing.username"));
@@ -31,6 +29,7 @@ public class LoginAction extends BaseAuthAction {
         }
     }
 
+	@SkipValidation
     public String loginLoad() {
         logger.info("loginLoad() - landed");
         return "success";

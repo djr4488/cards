@@ -2,6 +2,7 @@ package com.djr.cards.auth.changepassword;
 
 import com.djr.cards.auth.service.AuthService;
 import com.djr.cards.auth.BaseAuthAction;
+import org.apache.struts2.interceptor.validation.SkipValidation;
 import org.slf4j.Logger;
 
 import javax.enterprise.inject.Default;
@@ -21,9 +22,6 @@ public class ChangePasswordAction extends BaseAuthAction {
 
     public void validate() {
         logger.debug("validate() - authModel:{}", getModel());
-        if (getActionContext().getName().equalsIgnoreCase("changePasswordLanding")) {
-            return;
-        }
         if (getModel().getUserName() == null || getModel().getUserName().trim().length() == 0) {
             logger.debug("validate() - email was missing");
             addFieldError("userName", getText("reset.missing.username"));
@@ -43,6 +41,7 @@ public class ChangePasswordAction extends BaseAuthAction {
         }
     }
 
+	@SkipValidation
     public String changePassword() {
         logger.info("changePassword()");
         return "success";

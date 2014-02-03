@@ -2,6 +2,7 @@ package com.djr.cards.auth.forgotpassword;
 
 import com.djr.cards.auth.service.AuthService;
 import com.djr.cards.auth.BaseAuthAction;
+import org.apache.struts2.interceptor.validation.SkipValidation;
 import org.slf4j.Logger;
 
 import javax.enterprise.inject.Default;
@@ -19,16 +20,14 @@ public class ForgotPasswordAction extends BaseAuthAction {
     private Logger logger;
 
     public void validate() {
-        logger.debug("validate() - authModel:{}", getModel());
-        if (getActionContext().getName().equalsIgnoreCase("forgotPasswordLanding")) {
-            return;
-        }
+		logger.debug("validate() - authModel:{}", getModel());
         if (getModel().getUserName() == null || getModel().getUserName().trim().length() == 0) {
             logger.debug("validate() - email was missing");
             addFieldError("userName", getText("forgot.password.missing.username"));
         }
     }
 
+	@SkipValidation
     public String forgotPassword() {
         logger.info("forgotPassword()");
         return "success";
