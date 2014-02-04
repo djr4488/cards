@@ -1,6 +1,11 @@
 package com.djr.cards.data.entities;
 
 import com.djr.cards.auth.AuthModel;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Calendar;
@@ -53,42 +58,16 @@ public class User implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User user = (User) o;
-
-        if (alias != null ? !alias.equals(user.alias) : user.alias != null) return false;
-        if (changePasswordProof != null ? !changePasswordProof.equals(user.changePasswordProof) : user.changePasswordProof != null)
-            return false;
-        if (createdDate != null ? !createdDate.equals(user.createdDate) : user.createdDate != null) return false;
-        if (emailAddress != null ? !emailAddress.equals(user.emailAddress) : user.emailAddress != null) return false;
-        if (hashedPassword != null ? !hashedPassword.equals(user.hashedPassword) : user.hashedPassword != null)
-            return false;
-        if (id != null ? !id.equals(user.id) : user.id != null) return false;
-        if (lastLoginDate != null ? !lastLoginDate.equals(user.lastLoginDate) : user.lastLoginDate != null)
-            return false;
-
-        return true;
+        return EqualsBuilder.reflectionEquals(this, o, null);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (emailAddress != null ? emailAddress.hashCode() : 0);
-        result = 31 * result + (hashedPassword != null ? hashedPassword.hashCode() : 0);
-        result = 31 * result + (alias != null ? alias.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        result = 31 * result + (lastLoginDate != null ? lastLoginDate.hashCode() : 0);
-        result = 31 * result + (changePasswordProof != null ? changePasswordProof.hashCode() : 0);
-        return result;
+        return HashCodeBuilder.reflectionHashCode(this, null);
     }
 
     @Override
     public String toString() {
-        return "User{" +
-                "emailAddress='" + emailAddress + '\'' +
-                ", alias='" + alias + '\'' +
-                '}';
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.DEFAULT_STYLE);
     }
 }

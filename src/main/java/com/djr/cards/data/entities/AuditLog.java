@@ -1,5 +1,10 @@
 package com.djr.cards.data.entities;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import javax.persistence.*;
 import java.util.Calendar;
 
@@ -32,38 +37,16 @@ public class AuditLog {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        AuditLog auditLog = (AuditLog) o;
-
-        if (id != null ? !id.equals(auditLog.id) : auditLog.id != null) return false;
-        if (info != null ? !info.equals(auditLog.info) : auditLog.info != null) return false;
-        if (time != null ? !time.equals(auditLog.time) : auditLog.time != null) return false;
-        if (what != null ? !what.equals(auditLog.what) : auditLog.what != null) return false;
-        if (who != null ? !who.equals(auditLog.who) : auditLog.who != null) return false;
-
-        return true;
+        return EqualsBuilder.reflectionEquals(this, o, null);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (who != null ? who.hashCode() : 0);
-        result = 31 * result + (what != null ? what.hashCode() : 0);
-        result = 31 * result + (info != null ? info.hashCode() : 0);
-        result = 31 * result + (time != null ? time.hashCode() : 0);
-        return result;
+        return HashCodeBuilder.reflectionHashCode(this, null);
     }
 
     @Override
     public String toString() {
-        return "AuditLog{" +
-                "id=" + id +
-                ", who='" + who + '\'' +
-                ", what='" + what + '\'' +
-                ", info='" + info + '\'' +
-                ", time=" + time +
-                '}';
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.DEFAULT_STYLE);
     }
 }

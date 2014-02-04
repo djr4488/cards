@@ -1,5 +1,10 @@
 package com.djr.cards.data.entities;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import javax.persistence.*;
 
 /**
@@ -36,40 +41,17 @@ public class UserStats implements Comparable<UserStats> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof UserStats)) return false;
-
-        UserStats userStats = (UserStats) o;
-
-        if (gameType != null ? !gameType.equals(userStats.gameType) : userStats.gameType != null) return false;
-        if (id != null ? !id.equals(userStats.id) : userStats.id != null) return false;
-        if (totalPlayed != null ? !totalPlayed.equals(userStats.totalPlayed) : userStats.totalPlayed != null)
-            return false;
-        if (user != null ? !user.equals(userStats.user) : userStats.user != null) return false;
-        if (wins != null ? !wins.equals(userStats.wins) : userStats.wins != null) return false;
-
-        return true;
+        return EqualsBuilder.reflectionEquals(this, o, null);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (user != null ? user.hashCode() : 0);
-        result = 31 * result + (gameType != null ? gameType.hashCode() : 0);
-        result = 31 * result + (wins != null ? wins.hashCode() : 0);
-        result = 31 * result + (totalPlayed != null ? totalPlayed.hashCode() : 0);
-        return result;
+        return HashCodeBuilder.reflectionHashCode(this, null);
     }
 
     @Override
     public String toString() {
-        return "UserStats{" +
-                "id=" + id +
-                ", user=" + user +
-                ", gameType='" + gameType + '\'' +
-                ", wins=" + wins +
-                ", totalPlayed=" + totalPlayed +
-                '}';
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.DEFAULT_STYLE);
     }
 
     @Override
