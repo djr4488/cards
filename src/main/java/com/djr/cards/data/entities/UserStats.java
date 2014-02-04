@@ -12,10 +12,10 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(name="findUserStatsByEmail",
                 query="select userStats from UserStats userStats where userStats.user.emailAddress = :emailAddress"),
-        @NamedQuery(name="findUserStatsByUser",
-                query="select userStats from UserStats userStats where userStats.user = :user")
+        @NamedQuery(name="findUserStats",
+                query="select userStats from UserStats userStats")
 })
-public class UserStats {
+public class UserStats implements Comparable<UserStats> {
     @Id
     @Column(name="id", nullable=false)
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -70,5 +70,15 @@ public class UserStats {
                 ", wins=" + wins +
                 ", totalPlayed=" + totalPlayed +
                 '}';
+    }
+
+    @Override
+    public int compareTo(UserStats userStats) {
+        if (this.wins > userStats.wins) {
+            return 1;
+        } else if (this.wins < userStats.wins) {
+            return -1;
+        }
+        return 0;
     }
 }
