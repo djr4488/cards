@@ -2,6 +2,7 @@ package com.djr.cards.data.dao;
 
 import com.djr.cards.auth.AuthModel;
 import com.djr.cards.auth.service.FindUserResult;
+import com.djr.cards.data.dao.user.UserDAOImpl;
 import com.djr.cards.data.entities.User;
 import com.opensymphony.xwork2.interceptor.annotations.Before;
 import junit.framework.TestCase;

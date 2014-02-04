@@ -5,6 +5,7 @@
         <jta-data-source>CardsDB</jta-data-source>
         <class>com.djr.cards.data.entities.User</class>
         <class>com.djr.cards.data.entities.AuditLog</class>
+        <class>com.djr.cards.data.entities.UserStats</class>
         <properties>
             <property
                 name = "eclipselink.loggin.level.sql"
