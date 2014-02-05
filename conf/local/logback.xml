@@ -1,7 +1,7 @@
 <configuration scan="true">
     <property name="USER_HOME" value="/app/cards/logs" />
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>${USER_HOME}/myApp.log</file>
+        <file>${USER_HOME}/cards.log</file>
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
