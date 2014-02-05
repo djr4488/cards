@@ -1,4 +1,4 @@
-package com.djr.cards.com.djr.cards.auth.changepassword;
+package com.djr.cards.auth.changepassword;
 
 import com.djr.cards.audit.AuditService;
 import com.djr.cards.auth.AuthModel;

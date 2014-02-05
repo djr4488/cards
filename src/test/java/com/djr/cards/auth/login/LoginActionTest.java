@@ -1,10 +1,12 @@
-package com.djr.cards.com.djr.cards.auth.forgotpassword;
+package com.djr.cards.auth.login;
 
 import com.djr.cards.audit.AuditService;
 import com.djr.cards.auth.AuthModel;
-import com.djr.cards.auth.forgotpassword.ForgotPasswordAction;
+import com.djr.cards.auth.login.LoginAction;
+import com.djr.cards.auth.login.LoginResult;
 import com.djr.cards.auth.service.AuthService;
 import com.djr.cards.auth.util.HashingUtil;
+import com.djr.cards.data.entities.User;
 import com.opensymphony.xwork2.interceptor.annotations.Before;
 import junit.framework.TestCase;
 import org.junit.Test;
@@ -13,20 +15,18 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.slf4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+import org.slf4j.Logger;
 
 /**
  * @author dannyrucker
  *         Date: 2/3/14
- *         Time: 4:45 PM
+ *         Time: 1:26 PM
  */
 @RunWith (MockitoJUnitRunner.class)
-public class ForgotPasswordActionTest extends TestCase {
+public class LoginActionTest extends TestCase {
 	@Mock
 	private Logger logger;
 	@Mock
@@ -39,7 +39,7 @@ public class ForgotPasswordActionTest extends TestCase {
 	private AuthModel authModel;
 
 	@InjectMocks
-	private ForgotPasswordAction forgotPasswordAction = new ForgotPasswordAction();
+	private LoginAction loginAction = new LoginAction();
 
 	@Before
 	public void setup() {
@@ -47,15 +47,17 @@ public class ForgotPasswordActionTest extends TestCase {
 	}
 
 	@Test
-	public void testForgotPasswordSuccess() {
+	public void testLoginSuccess() {
 		HttpServletRequest request = mock(HttpServletRequest.class);
 		HttpSession session = mock(HttpSession.class);
-		forgotPasswordAction.setServletRequest(request);
-		AuthService.ForgotPasswordResult success = AuthService.ForgotPasswordResult.SUCCESS;
+		LoginResult result = new LoginResult();
+		result.user = new User();
+		result.result = LoginResult.ResultOptions.SUCCESS;
+		when(authService.login(any(AuthModel.class), any(String.class))).thenReturn(result);
 		when(request.getSession(false)).thenReturn(session);
-		when(session.getAttribute("tracking")).thenReturn("testForgotPasswordSuccess");
-		when(authService.forgotPassword(any(AuthModel.class), any(String.class))).thenReturn(success);
-		String actionResult = forgotPasswordAction.forgotPasswordExecute();
+		loginAction.setServletRequest(request);
+		String actionResult = loginAction.loginExecute();
+		verify(session).setAttribute("user", result.user);
 		assertEquals("success", actionResult);
 	}
 }
