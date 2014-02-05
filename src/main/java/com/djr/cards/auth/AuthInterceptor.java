@@ -10,7 +10,6 @@ import java.util.Calendar;
 import java.util.UUID;
 
 /**
- * Created with IntelliJ IDEA.
  * User: djr4488
  * Date: 1/10/14
  * Time: 7:37 PM

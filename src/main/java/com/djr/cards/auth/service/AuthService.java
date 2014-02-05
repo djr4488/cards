@@ -4,7 +4,6 @@ import com.djr.cards.auth.AuthModel;
 import com.djr.cards.auth.login.LoginResult;
 
 /**
- * Created with IntelliJ IDEA.
  * User: djr4488
  * Date: 1/4/14
  * Time: 5:07 PM

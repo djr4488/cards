@@ -15,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Created with IntelliJ IDEA.
  * User: djr4488
  * Date: 1/6/14
  * Time: 9:04 AM

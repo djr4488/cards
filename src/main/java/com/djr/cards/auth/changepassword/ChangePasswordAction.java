@@ -10,7 +10,6 @@ import javax.inject.Inject;
 import java.util.Calendar;
 
 /**
- * Created with IntelliJ IDEA.
  * User: djr4488
  * Date: 1/22/14
  * Time: 9:45 PM

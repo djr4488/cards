@@ -13,7 +13,6 @@ import java.util.Calendar;
 import java.util.Random;
 
 /**
- * Created with IntelliJ IDEA.
  * User: djr4488
  * Date: 1/4/14
  * Time: 5:07 PM

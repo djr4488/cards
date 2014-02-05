@@ -5,7 +5,6 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import javax.inject.Inject;
 /**
- * Created with IntelliJ IDEA.
  * User: djr4488
  * Date: 1/4/14
  * Time: 6:17 PM

@@ -10,7 +10,6 @@ import javax.persistence.PersistenceContext;
 import java.util.Calendar;
 
 /**
- * Created with IntelliJ IDEA.
  * User: djr4488
  * Date: 1/12/14
  * Time: 9:37 PM

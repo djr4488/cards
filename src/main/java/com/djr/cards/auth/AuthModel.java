@@ -3,7 +3,6 @@ package com.djr.cards.auth;
 import java.io.Serializable;
 
 /**
- * Created with IntelliJ IDEA.
  * User: djr4488
  * Date: 1/11/14
  * Time: 8:38 PM

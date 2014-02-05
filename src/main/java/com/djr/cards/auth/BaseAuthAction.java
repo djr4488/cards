@@ -9,7 +9,6 @@ import com.opensymphony.xwork2.ModelDriven;
 import javax.inject.Inject;
 
 /**
- * Created with IntelliJ IDEA.
  * User: djr4488
  * Date: 1/22/14
  * Time: 11:26 PM

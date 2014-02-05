@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * Created with IntelliJ IDEA.
  * User: djr4488
  * Date: 1/6/14
  * Time: 9:04 AM
