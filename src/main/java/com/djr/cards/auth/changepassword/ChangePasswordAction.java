@@ -17,7 +17,6 @@ import java.util.Calendar;
  */
 public class ChangePasswordAction extends BaseAuthAction {
     @Inject
-    @Default
     private Logger logger;
 
     public void validate() {
