@@ -46,14 +46,9 @@ public class UserDAOImpl implements UserDAO {
         } catch (NoResultException nrEx) {
             User user = new User(authModel);
             user.createdDate = Calendar.getInstance();
-            try {
-                em.persist(user);
-                return createFindUserResult(user, true);
-            } catch (Exception ex) {
-                logger.error("findOrCreateUser() - trackingId:{}, exception:{}", trackingId, ex);
-            }
+            em.persist(user);
+            return createFindUserResult(user, true);
         }
-        return null;
     }
 
     public User findUser(AuthModel authModel, String trackingId) {
@@ -71,11 +66,7 @@ public class UserDAOImpl implements UserDAO {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
     public User updateUser(User user, String trackingId) {
         logger.debug("updateUser() - user:{}, trackingId:{}", user, trackingId);
-        try {
-            em.merge(user);
-        } catch (Exception ex) {
-            logger.error("updateUser() exception:", ex);
-        }
+        em.merge(user);
         return user;
     }
 }
