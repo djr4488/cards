@@ -1,12 +1,17 @@
 package com.djr.cards.data.dao.userstats;
 
 import com.djr.cards.data.dao.UserStatsDAO;
+import com.djr.cards.data.entities.User;
 import com.djr.cards.data.entities.UserStats;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * User: djr4488
@@ -18,15 +23,41 @@ public class UserStatsDAOImpl implements UserStatsDAO {
     @Inject
     private org.slf4j.Logger logger;
     @PersistenceContext
-    private javax.persistence.EntityManager entityManager;
+    private javax.persistence.EntityManager em;
 
     @Override
-    public UserStats findStatsByEmailAddress(String emailAddress) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public UserStats findStatsByUser(User user, String gameType, String tracking) {
+        logger.debug("findStatsByUser() - user:{}, gameType:{}, tracking:{}", user, gameType, tracking);
+        UserStats userStats = null;
+        try {
+            TypedQuery<UserStats> query = em.createNamedQuery("findUserStatsByUser", UserStats.class);
+            query.setParameter("user", user);
+            query.setParameter("gameType", gameType);
+            userStats = query.getSingleResult();
+        } catch (NoResultException nrEx) {
+            userStats = new UserStats();
+            userStats.totalPlayed = 0L;
+            userStats.gameType = gameType;
+            userStats.user = user;
+            userStats.wins = 0L;
+            em.persist(userStats);
+        }
+        logger.debug("findStatsByUser() - userStats:{}", userStats);
+        return userStats;
     }
 
     @Override
-    public List<UserStats> loadStatistics(String emailAddress) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public List<UserStats> loadStatistics(User user, String gameType, String tracking) {
+        logger.debug("loadStatistics() - user:{}, gameType:{}, tracking:{}", user, gameType, tracking);
+        try {
+            TypedQuery<UserStats> query = em.createNamedQuery("findUserStats", UserStats.class);
+            List<UserStats> unorderedStats = query.getResultList();
+            return unorderedStats;
+        } catch (NoResultException nrEx) {
+            //what to do here? findStatsByUser should have created something before here..
+            //for now log the error and return null
+            logger.error("loadStatistics() - ", nrEx);
+        }
+        return null;
     }
 }

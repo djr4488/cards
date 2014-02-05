@@ -15,8 +15,9 @@ import javax.persistence.*;
 @Entity
 @Table(name="user_stats")
 @NamedQueries({
-        @NamedQuery(name="findUserStatsByEmail",
-                query="select userStats from UserStats userStats where userStats.user.emailAddress = :emailAddress"),
+        @NamedQuery(name="findUserStatsByUser",
+                query="select userStats from UserStats userStats where userStats.user = :user and " +
+                        "userStats.gameType = :gameType"),
         @NamedQuery(name="findUserStats",
                 query="select userStats from UserStats userStats")
 })
