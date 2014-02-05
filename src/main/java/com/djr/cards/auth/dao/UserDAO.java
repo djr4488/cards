@@ -1,4 +1,4 @@
-package com.djr.cards.data.dao;
+package com.djr.cards.auth.dao;
 
 import com.djr.cards.auth.AuthModel;
 import com.djr.cards.auth.service.FindUserResult;

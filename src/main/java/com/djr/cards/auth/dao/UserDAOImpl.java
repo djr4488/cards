@@ -1,8 +1,8 @@
-package com.djr.cards.data.dao.user;
+package com.djr.cards.auth.dao;
 
 import com.djr.cards.auth.AuthModel;
 import com.djr.cards.auth.service.FindUserResult;
-import com.djr.cards.data.dao.UserDAO;
+import com.djr.cards.auth.dao.UserDAO;
 import com.djr.cards.data.entities.User;
 import org.slf4j.Logger;
 import javax.ejb.Stateless;
