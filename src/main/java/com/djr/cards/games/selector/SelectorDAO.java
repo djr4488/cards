@@ -1,6 +1,6 @@
 package com.djr.cards.games.selector;
 
-import com.djr.cards.data.entities.GameSelections;
+import com.djr.cards.data.entities.GameSelection;
 
 import java.util.List;
 
@@ -10,6 +10,6 @@ import java.util.List;
  *         Time: 2:37 PM
  */
 public interface SelectorDAO {
-	public List<GameSelections> findGameSelectionOptions();
-	public GameSelections findGameSelection(String gameType);
+	public List<GameSelection> findGameSelectionOptions();
+	public GameSelection findGameSelection(String gameType);
 }

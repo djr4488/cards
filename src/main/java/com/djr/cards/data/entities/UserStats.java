@@ -27,7 +27,7 @@ public class UserStats implements Comparable<UserStats> {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     @OneToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="user_id")
     public User user;
     @Column(name="game_type")
     public String gameType;

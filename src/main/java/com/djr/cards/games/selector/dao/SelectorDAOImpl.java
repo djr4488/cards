@@ -1,6 +1,6 @@
 package com.djr.cards.games.selector.dao;
 
-import com.djr.cards.data.entities.GameSelections;
+import com.djr.cards.data.entities.GameSelection;
 import com.djr.cards.games.selector.SelectorDAO;
 
 import java.util.List;
@@ -12,12 +12,12 @@ import java.util.List;
  */
 public class SelectorDAOImpl implements SelectorDAO {
 	@Override
-	public List<GameSelections> findGameSelectionOptions() {
+	public List<GameSelection> findGameSelectionOptions() {
 		return null;  //To change body of implemented methods use File | Settings | File Templates.
 	}
 
 	@Override
-	public GameSelections findGameSelection(String gameType) {
+	public GameSelection findGameSelection(String gameType) {
 		return null;  //To change body of implemented methods use File | Settings | File Templates.
 	}
 }
