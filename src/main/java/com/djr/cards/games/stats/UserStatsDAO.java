@@ -1,4 +1,4 @@
-package com.djr.cards.data.dao;
+package com.djr.cards.games.stats;
 
 import com.djr.cards.data.entities.User;
 import com.djr.cards.data.entities.UserStats;
@@ -11,5 +11,5 @@ import java.util.List;
  */
 public interface UserStatsDAO {
     public UserStats findStatsByUser(User user, String gameType, String tracking);
-    public List<UserStats> loadStatistics(User user, String gameType, String tracking);
+	public List<UserStats> loadStatistics(String gameType, String tracking);
 }

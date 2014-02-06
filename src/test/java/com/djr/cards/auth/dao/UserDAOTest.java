@@ -73,12 +73,7 @@ public class UserDAOTest  extends TestCase {
         verify(logger).debug(any(String.class), any(AuthModel.class), any(String.class));
         verify(em).createNamedQuery("findUser", User.class);
         verify(query).getSingleResult();
-        try {
-            verify(em).persist(any(User.class));
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            fail("Received exception");
-        }
+        verify(em).persist(any(User.class));
         assertEquals(true, fur.created);
     }
 

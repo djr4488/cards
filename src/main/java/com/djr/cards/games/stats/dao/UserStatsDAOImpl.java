@@ -1,6 +1,6 @@
-package com.djr.cards.data.dao.userstats;
+package com.djr.cards.games.stats.dao;
 
-import com.djr.cards.data.dao.UserStatsDAO;
+import com.djr.cards.games.stats.UserStatsDAO;
 import com.djr.cards.data.entities.User;
 import com.djr.cards.data.entities.UserStats;
 
@@ -10,8 +10,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * User: djr4488
@@ -47,8 +45,8 @@ public class UserStatsDAOImpl implements UserStatsDAO {
     }
 
     @Override
-    public List<UserStats> loadStatistics(User user, String gameType, String tracking) {
-        logger.debug("loadStatistics() - user:{}, gameType:{}, tracking:{}", user, gameType, tracking);
+    public List<UserStats> loadStatistics(String gameType, String tracking) {
+        logger.debug("loadStatistics() - gameType:{}, tracking:{}", gameType, tracking);
         try {
             TypedQuery<UserStats> query = em.createNamedQuery("findUserStats", UserStats.class);
             List<UserStats> unorderedStats = query.getResultList();
