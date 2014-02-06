@@ -1,5 +1,7 @@
 package com.djr.cards.games.selector.service;
 
+import junit.framework.TestCase;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
@@ -9,5 +11,9 @@ import org.mockito.runners.MockitoJUnitRunner;
  * Time: 9:47 PM
  */
 @RunWith(MockitoJUnitRunner.class)
-public class SelectorServiceTest {
+public class SelectorServiceTest extends TestCase {
+    @Test
+    public void testTest() {
+        assertTrue(true);
+    }
 }
