@@ -52,7 +52,7 @@ public class User implements Serializable {
         alias = authModel.getAlias();
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 

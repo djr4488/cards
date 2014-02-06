@@ -36,7 +36,7 @@ public class UserStats implements Comparable<UserStats> {
     @Column(name="total_played")
     public Long totalPlayed;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 

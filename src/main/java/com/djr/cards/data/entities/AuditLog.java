@@ -31,7 +31,7 @@ public class AuditLog {
     @Temporal(TemporalType.TIMESTAMP)
     public Calendar time;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
