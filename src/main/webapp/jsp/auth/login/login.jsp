@@ -24,7 +24,7 @@
             <s:form id="login" method="post" action="login">
                 <s:textfield name="userName" key="login.username"/>
                 <s:password name="password" key="login.password"/>
-                <s:submit cssClass="button"/>
+                <s:submit cssClass="buttonauth"/>
             </s:form>
             <strong><s:text name="login.no.account"/>  <a href="createAccountLanding.do"><s:text name="login.create.account"/></a></strong>
             <br/>

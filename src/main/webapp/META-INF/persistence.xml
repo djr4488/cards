@@ -9,7 +9,7 @@
         <class>com.djr.cards.data.entities.GameSelection</class>
         <properties>
             <property
-                name = "eclipselink.loggin.level.sql"
+                name = "eclipselink.logging.level.sql"
                 value = "FINE"/>
             <property
                 name="eclipselink.logging.parameters"

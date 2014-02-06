@@ -26,7 +26,7 @@ public class AuthServiceImpl implements AuthService {
     private EmailService emailService;
     @Inject
     private UserDAO userDao;
-    private final String chars = "ABCDEFGHIJKLMNPQRSTUVWXYZ";
+    private final String chars = "ABCDEFGHIJKLMNPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
     public AuthServiceImpl() { }
 
@@ -77,7 +77,7 @@ public class AuthServiceImpl implements AuthService {
                     authModel.toString(), Calendar.getInstance()));
             return ForgotPasswordResult.NOT_FOUND;
         } else {
-            String code = generateRecoverCode();
+            String code = generateRecoverCode(new Random(), 10);
             String emailBody = "Here to help, lets make it so you can change your password!\nJust use the code below " +
                     "to change your password.  If you didn't initiate this, you might want to change go ahead and " +
                     "change it anyway, just to go the cards website(link not sent).  \n\nCode -> " + code + ".";
@@ -120,18 +120,11 @@ public class AuthServiceImpl implements AuthService {
         return ChangePasswordResult.SUCCESS;
     }
 
-    private String generateString(Random rng, int length) {
+    private String generateRecoverCode(Random rng, int length) {
         char[] text = new char[length];
         for (int i = 0; i < length; i++) {
             text[i] = chars.charAt(rng.nextInt(chars.length()));
         }
         return new String(text);
-    }
-
-    private String generateRecoverCode() {
-        Random random = new Random();
-        Integer code = random.nextInt(99999);
-        String letters = generateString(random, 2);
-        return letters+code;
     }
 }

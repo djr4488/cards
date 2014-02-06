@@ -23,7 +23,7 @@
         <s:textfield name="randomString" key="reset.confirmation.code"/>
         <s:password name="password" key="reset.confirmation.password"/>
         <s:password name="confirmPassword" key="reset.confirmation.confirm.password"/>
-        <s:submit cssClass="button"/>
+        <s:submit cssClass="buttonauth"/>
     </s:form>
 </body>
 </html>

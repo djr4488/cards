@@ -26,7 +26,7 @@
         <s:textfield name="alias" key="create.alias"/>
         <s:password name="password" key="create.password"/>
         <s:password name="confirmPassword" key="create.confirm.password"/>
-        <s:submit cssClass="button"/>
+        <s:submit cssClass="buttonauth"/>
     </s:form>
 </div>
 </body>

@@ -24,7 +24,7 @@
     </ul>
     <s:form id="forgotPassword" method="post" action="forgotPassword">
         <s:textfield name="userName" key="forgotPassword.email"/>
-        <s:submit cssClass="button"/>
+        <s:submit cssClass="buttonauth"/>
     </s:form>
 </body>
 </html>
