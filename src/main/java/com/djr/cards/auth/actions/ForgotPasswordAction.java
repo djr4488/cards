@@ -1,4 +1,4 @@
-package com.djr.cards.auth.forgotpassword;
+package com.djr.cards.auth.actions;
 
 import com.djr.cards.auth.service.AuthService;
 import com.djr.cards.auth.BaseAuthAction;

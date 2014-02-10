@@ -1,4 +1,4 @@
-package com.djr.cards.auth.create;
+package com.djr.cards.auth.actions;
 
 import com.djr.cards.auth.service.AuthService;
 import com.djr.cards.auth.BaseAuthAction;
@@ -12,9 +12,9 @@ import java.util.Calendar;
 /**
  * User: djr4488
  * Date: 1/22/14
- * Time: 9:17 PM
+ * Time: 9:45 PM
  */
-public class CreateAccountAction extends BaseAuthAction {
+public class ChangePasswordAction extends BaseAuthAction {
     @Inject
     private Logger logger;
 
@@ -22,40 +22,42 @@ public class CreateAccountAction extends BaseAuthAction {
         logger.debug("validate() - authModel:{}", getModel());
         if (getModel().getUserName() == null || getModel().getUserName().trim().length() == 0) {
             logger.debug("validate() - email was missing");
-            addFieldError("userName", getText("create.missing.username"));
+            addFieldError("userName", getText("reset.missing.username"));
         }
-        if (getModel().getAlias() == null || getModel().getAlias().trim().length() == 0) {
-            logger.debug("validate() - user name was missing");
-            addFieldError("alias", getText("create.missing.alias"));
+        if (getModel().getRandomString() == null || getModel().getRandomString().trim().length() == 0) {
+            logger.debug("validate() - confirmation code missing");
+            addFieldError("alias", getText("reset.missing.confirmation.code"));
         }
         if(getModel().getPassword() == null || getModel().getConfirmPassword() == null ||
                 getModel().getPassword().trim().length() == 0 ||
                 getModel().getConfirmPassword().trim().length() == 0) {
             logger.debug("validate() - password or confirm password was missing");
-            addFieldError("confirmPassword", getText("create.missing.passwords"));
+            addFieldError("confirmPassword", getText("reset.missing.passwords"));
         } else if (!getModel().getPassword().equals(getModel().getConfirmPassword())) {
             logger.debug("validate() - passwords not equal");
-            addFieldError("confirmPassword", getText("create.no.match.passwords"));
+            addFieldError("confirmPassword", getText("reset.no.match.passwords"));
         }
     }
 
 	@SkipValidation
-    public String createAccountLanding() {
-        logger.info("createAccountLanding - landed");
-        return "createAcct";
+    public String changePassword() {
+        logger.info("changePassword()");
+        return "success";
     }
 
-    public String createAccountExecute() {
-        logger.info("createAccountExecute - authModel:{}", getModel());
+    public String changePasswordExecute() {
+        logger.info("changePasswordExecute() - authModel:{}", getModel());
         auditService.writeAudit(auditService.getAuditLog(getSessionAttribute("tracking"),
-                "CreateAccountAction.createAccountExecute()", getIp(), Calendar.getInstance()));
+                "ChangePasswordAction.changePasswordExecute()", getIp(), Calendar.getInstance()));
         getModel().setPassword(hashingUtil.generateHmacHash(getModel().getPassword()));
         getModel().setConfirmPassword(hashingUtil.generateHmacHash(getModel().getConfirmPassword()));
-        AuthService.CreateResult createResult = authService.createUser(getModel(), getSessionAttribute("tracking"));
-        if (createResult == AuthService.CreateResult.CREATED) {
+        AuthService.ChangePasswordResult result = authService.changePassword(getModel(),
+                getSessionAttribute("tracking"));
+        if (result == AuthService.ChangePasswordResult.SUCCESS  ||
+                result == AuthService.ChangePasswordResult.NOT_FOUND) {
             return "success";
-		}
-		addActionError(getText("create.account.execute.error"));
-		return "error";
+        }
+        addActionError(getText("reset.password.execute.error"));
+        return "error";
     }
 }

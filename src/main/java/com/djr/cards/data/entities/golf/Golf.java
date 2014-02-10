@@ -1,9 +1,12 @@
 package com.djr.cards.data.entities.golf;
 
+import com.djr.cards.data.entities.GameSelection;
 import com.djr.cards.games.golf.GolfPhase;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -17,9 +20,12 @@ import javax.persistence.Table;
 public class Golf {
     @Id
     private Long id;
-    private String gameName;
-    private String password;
-    private GolfPhase golfPhase;
-    private Long outPlayerId;
-    private Long playerTurnId;
+    public String gameName;
+	public String password;
+	public GolfPhase golfPhase;
+	public Long outPlayerId;
+	public Long playerTurnId;
+	@ManyToOne
+	@JoinColumn (name="game_type_id")
+	public GameSelection gameTypeId;
 }

@@ -1,32 +1,32 @@
-package com.djr.cards.auth.login;
+package com.djr.cards.auth.actions;
 
 import com.djr.cards.audit.AuditService;
 import com.djr.cards.auth.AuthModel;
-import com.djr.cards.auth.login.LoginAction;
-import com.djr.cards.auth.login.LoginResult;
+import com.djr.cards.auth.actions.ChangePasswordAction;
 import com.djr.cards.auth.service.AuthService;
 import com.djr.cards.auth.util.HashingUtil;
-import com.djr.cards.data.entities.User;
-import com.opensymphony.xwork2.interceptor.annotations.Before;
 import junit.framework.TestCase;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.slf4j.Logger;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import static org.mockito.Mockito.*;
-import org.slf4j.Logger;
 
 /**
  * @author dannyrucker
  *         Date: 2/3/14
- *         Time: 1:26 PM
+ *         Time: 5:07 PM
  */
 @RunWith (MockitoJUnitRunner.class)
-public class LoginActionTest extends TestCase {
+public class ChangePasswordActionTest extends TestCase {
 	@Mock
 	private Logger logger;
 	@Mock
@@ -39,7 +39,7 @@ public class LoginActionTest extends TestCase {
 	private AuthModel authModel;
 
 	@InjectMocks
-	private LoginAction loginAction = new LoginAction();
+	private ChangePasswordAction changePasswordAction = new ChangePasswordAction();
 
 	@Before
 	public void setup() {
@@ -47,17 +47,15 @@ public class LoginActionTest extends TestCase {
 	}
 
 	@Test
-	public void testLoginSuccess() {
+	public void testChangePasswordSuccess() {
 		HttpServletRequest request = mock(HttpServletRequest.class);
 		HttpSession session = mock(HttpSession.class);
-		LoginResult result = new LoginResult();
-		result.user = new User();
-		result.result = LoginResult.ResultOptions.SUCCESS;
-		when(authService.login(any(AuthModel.class), any(String.class))).thenReturn(result);
+		changePasswordAction.setServletRequest(request);
+		AuthService.ChangePasswordResult result = AuthService.ChangePasswordResult.SUCCESS;
 		when(request.getSession(false)).thenReturn(session);
-		loginAction.setServletRequest(request);
-		String actionResult = loginAction.loginExecute();
-		verify(session).setAttribute("user", result.user);
+		when(session.getAttribute("tracking")).thenReturn("testCreateAccountSuccess");
+		when(authService.changePassword(any(AuthModel.class), any(String.class))).thenReturn(result);
+		String actionResult = changePasswordAction.changePasswordExecute();
 		assertEquals("success", actionResult);
 	}
 }
