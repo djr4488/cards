@@ -1,12 +1,9 @@
-The purpose of this card game is to write a simple application for some popular card games using 
-TomEE, Java, and a few other Java technologies.
+The purpose of this card game is to write a simple application for some popular card games using TomEE, Java, and a few other Java technologies.
 
-Golf is a conversion of a game I originally had written using C# and Windows Desktop client and 
-Windows Server applications.  
+Golf is a conversion of a game I originally had written using C# and Windows Desktop client and Windows Server applications.  
 
 During the conversion, I've been stating to myself did I really write that?  Sadly, yes I did.
-So part of this is to better organize and utilize Java technologies.  With that said, I pretty
-much suck at pretty UI design, I can write code at JSP levels and do .css but pretty css?  Not
-too great at it, maybe I'll get better at it as time goes on.
+
+So part of this is to better organize and utilize Java technologies.  With that said, I pretty much suck at pretty UI design, I can write code at JSP levels and do .css but pretty css?  Not too great at it, maybe I'll get better at it as time goes on.
 
 Thanks for reading.
