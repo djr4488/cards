@@ -37,6 +37,10 @@ public class SelectorServiceImpl implements SelectorService {
 				tracking, selectorModel);
 		GameSelection gameSelection = selectorDao.findGameSelection(selectorModel.getGameTypes().
 				get(selectorModel.getSelectedOption()));
-		return gameSelection.landingAction;
+		if (gameSelection != null && gameSelection.landingAction != null &&
+				gameSelection.landingAction.trim().length() > 0) {
+			return gameSelection.landingAction;
+		}
+		return "error";
 	}
 }
