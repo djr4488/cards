@@ -1,4 +1,4 @@
-package com.djr.cards.games.actions;
+package com.djr.cards.games.selector.actions;
 
 import com.djr.cards.BaseAction;
 import com.djr.cards.games.selector.SelectorService;
@@ -26,24 +26,24 @@ public class SelectorAction extends BaseAction implements ModelDriven<SelectorMo
 
     public String displaySelectOptions() {
         logger.info("displaySelectOptions() - tracking:{}", getSessionAttribute("tracking"));
-        selectorModel.gameTypes = selectorService.getGameList(getSessionAttribute("tracking"));
-        if (selectorModel.gameTypes == null || selectorModel.gameTypes.size() == 0) {
+        selectorModel.setGameTypes(selectorService.getGameList(getSessionAttribute("tracking")));
+        if (selectorModel.getGameTypes() == null || selectorModel.getGameTypes().size() == 0) {
             logger.debug("displaySelectOptions() - no game types found for tracking id:{}",
                     getSessionAttribute("tracking"));
             return "error";
         }
         logger.debug("displaySelectOptions() - returning {} game options for tracking id:{}",
-                selectorModel.gameTypes.size(), getSessionAttribute("tracking"));
+                selectorModel.getGameTypes().size(), getSessionAttribute("tracking"));
         return "success";
     }
 
     public String redirectToGameLanding() {
         logger.info("redirectToGameLanding() - tracking:{}, gameType:{}", getSessionAttribute("tracking"),
-                selectorModel.selectedGameType);
-        if (selectorModel.selectedGameType == null || selectorModel.selectedGameType.trim().equals("")) {
+                selectorModel.getSelectedGameType());
+        if (selectorModel.getSelectedGameType() == null || selectorModel.getSelectedGameType().trim().equals("")) {
             addActionError("error.selector.action.game.landing");
             return "error";
         }
-        return selectorModel.selectedGameType;
+        return selectorModel.getSelectedGameType();
     }
 }

@@ -8,7 +8,7 @@
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
     <constant name="struts.custom.i18n.resources" value="MessageResources" />
     <constant name="struts.objectFactory.cdi.jndiKey" value="java:comp/BeanManager" />
-    <package name="cards" extends="struts-default">
+    <package name="cards" namespace="/cards" extends="struts-default">
         <interceptors>
             <interceptor name="loginInterceptor"
                          class="com.djr.cards.auth.AuthInterceptor"/>
@@ -28,7 +28,7 @@
                 method="loginExecute">
             <result name="input">/jsp/auth/login/login.jsp</result>
             <result name="error">/jsp/auth/login/login.jsp</result>
-            <result name="success">/jsp/auth/login/loginSuccess.jsp</result>
+            <result name="success" type="redirect">displayGames.do</result>
         </action>
         <action name = "createAccountLanding"
                 class = "com.djr.cards.auth.actions.CreateAccountAction"
@@ -67,6 +67,21 @@
             <result name="input">/jsp/auth/resetpassword/resetPassword.jsp</result>
             <result name="success" type="redirect">landing.do</result>
             <result name="error">/jsp/auth/resetpassword/resetPassword.jsp</result>
+        </action>
+
+        <!-- selector actions -->
+        <action name="displayGames"
+                class="com.djr.cards.games.selector.actions.SelectorAction"
+                method="displaySelectOptions">
+            <result name="input">/jsp/games/gamesSelector.jsp</result>
+            <result name="stats">gameStatsLanding.do</result>
+            <result name="error">/jsp/games/error.jsp</result>
+        </action>
+        <action name="gameStatsLanding"
+                class="com.djr.cards.games.selector.actions.SelectorAction"
+                method="redirectToGameLanding">
+            <interceptor-ref name="gamesInterceptor"/>
+            <result name="error">/jsp/games/error.jsp</result>
         </action>
     </package>
 </struts>
