@@ -10,5 +10,5 @@ import java.util.List;
  * Time: 9:47 PM
  */
 public interface SelectorService {
-	public List<GameSelection> getGameList(String tracking);
+    public List<String> getGameList(String tracking);
 }
