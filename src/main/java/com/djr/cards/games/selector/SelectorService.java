@@ -1,6 +1,7 @@
 package com.djr.cards.games.selector;
 
 import com.djr.cards.data.entities.GameSelection;
+import com.djr.cards.games.selector.model.SelectorModel;
 
 import java.util.List;
 
@@ -11,5 +12,5 @@ import java.util.List;
  */
 public interface SelectorService {
     public List<String> getGameList(String tracking);
-    public GameSelection findGameSelection(String gameType);
+	public String getSelectedLandingAction(String tracking, SelectorModel selectorModel);
 }

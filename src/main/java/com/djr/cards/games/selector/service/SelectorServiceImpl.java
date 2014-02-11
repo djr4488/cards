@@ -3,6 +3,7 @@ package com.djr.cards.games.selector.service;
 import com.djr.cards.data.entities.GameSelection;
 import com.djr.cards.games.selector.SelectorDAO;
 import com.djr.cards.games.selector.SelectorService;
+import com.djr.cards.games.selector.model.SelectorModel;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
@@ -29,5 +30,13 @@ public class SelectorServiceImpl implements SelectorService {
             gameTypes.add(gs.gameType);
         }
 		return gameTypes;
+	}
+
+	public String getSelectedLandingAction(String tracking, SelectorModel selectorModel) {
+		logger.debug("getSelectedLandingAction() - tracking:{}, selectorModel:{}",
+				tracking, selectorModel);
+		GameSelection gameSelection = selectorDao.findGameSelection(selectorModel.getGameTypes().
+				get(selectorModel.getSelectedOption()));
+		return gameSelection.landingAction;
 	}
 }

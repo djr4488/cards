@@ -45,11 +45,8 @@ public class SelectorAction extends BaseAction implements ModelDriven<SelectorMo
             addActionError("error.selector.action.game.landing");
             return "error";
         }
-        GameSelection gameSelection = selectorService.findGameSelection(
-                selectorModel.getGameTypes().get(Integer.parseInt(selectorModel.getSelectedGameType())));
-        if (gameSelection != null) {
-            return gameSelection.landingAction;
-        }
-        return "error";
+        String landingAction = selectorService.getSelectedLandingAction(
+				getSessionAttribute("tracking"), selectorModel);
+        return landingAction;
     }
 }
