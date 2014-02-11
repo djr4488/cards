@@ -1,6 +1,7 @@
 package com.djr.cards.games.selector.actions;
 
 import com.djr.cards.BaseAction;
+import com.djr.cards.data.entities.GameSelection;
 import com.djr.cards.games.selector.SelectorService;
 import com.djr.cards.games.selector.model.SelectorModel;
 import com.opensymphony.xwork2.ModelDriven;
@@ -44,6 +45,11 @@ public class SelectorAction extends BaseAction implements ModelDriven<SelectorMo
             addActionError("error.selector.action.game.landing");
             return "error";
         }
-        return selectorModel.getSelectedGameType();
+        GameSelection gameSelection = selectorService.findGameSelection(
+                selectorModel.getGameTypes().get(Integer.parseInt(selectorModel.getSelectedGameType())));
+        if (gameSelection != null) {
+            return gameSelection.landingAction;
+        }
+        return "error";
     }
 }

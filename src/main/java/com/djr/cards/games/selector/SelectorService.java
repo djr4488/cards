@@ -11,4 +11,5 @@ import java.util.List;
  */
 public interface SelectorService {
     public List<String> getGameList(String tracking);
+    public GameSelection findGameSelection(String gameType);
 }
