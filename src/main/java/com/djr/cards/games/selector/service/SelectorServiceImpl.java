@@ -41,6 +41,6 @@ public class SelectorServiceImpl implements SelectorService {
 				gameSelection.landingAction.trim().length() > 0) {
 			return gameSelection.landingAction;
 		}
-		return "error";
+		return "error1";
 	}
 }
