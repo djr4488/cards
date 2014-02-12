@@ -14,20 +14,54 @@
                          class="com.djr.cards.auth.AuthInterceptor"/>
             <interceptor name="gamesInterceptor"
                          class="com.djr.cards.games.GamesInterceptor"/>
+            <interceptor-stack name="defaultStack">
+                <interceptor-ref name="exception"/>
+                <interceptor-ref name="alias"/>
+                <interceptor-ref name="servletConfig"/>
+                <interceptor-ref name="i18n"/>
+                <interceptor-ref name="prepare"/>
+                <interceptor-ref name="chain"/>
+                <interceptor-ref name="debugging"/>
+                <interceptor-ref name="scopedModelDriven"/>
+                <interceptor-ref name="modelDriven"/>
+                <interceptor-ref name="fileUpload"/>
+                <interceptor-ref name="checkbox"/>
+                <interceptor-ref name="multiselect"/>
+                <interceptor-ref name="staticParams"/>
+                <interceptor-ref name="actionMappingParams"/>
+                <interceptor-ref name="params">
+                    <param name="excludeParams">dojo\..*,^struts\..*</param>
+                </interceptor-ref>
+                <interceptor-ref name="conversionError"/>
+                <interceptor-ref name="validation">
+                    <param name="excludeMethods">input,back,cancel,browse</param>
+                </interceptor-ref>
+                <interceptor-ref name="workflow">
+                    <param name="excludeMethods">input,back,cancel,browse</param>
+                </interceptor-ref>
+            </interceptor-stack>
+            <interceptor-stack name="loginStack">
+                <interceptor-ref name="loginInterceptor"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+            <interceptor-stack name="gamesStack">
+                <interceptor-ref name="gamesInterceptor"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
         </interceptors>
 
         <!-- auth actions -->
         <action name = "landing"
                 class = "com.djr.cards.auth.actions.LoginAction"
                 method="loginLoad">
-            <interceptor-ref name="loginInterceptor"/>
+            <interceptor-ref name="loginStack"/>
             <result name="success">/jsp/auth/login/login.jsp</result>
         </action>
         <action name = "login"
                 class = "com.djr.cards.auth.actions.LoginAction"
                 method="loginExecute">
             <result name="input">/jsp/auth/login/login.jsp</result>
-            <result name="error">/jsp/auth/login/login.jsp</result>
+            <result name="error" type="redirect">error.do</result>
             <result name="success" type="redirect">displayGames.do</result>
         </action>
         <action name = "createAccountLanding"
@@ -73,14 +107,14 @@
         <action name="displayGames"
                 class="com.djr.cards.games.selector.actions.SelectorAction"
                 method="displaySelectOptions">
-            <result name="input">/jsp/games/gamesSelector.jsp</result>
-            <result name="stats">gameStatsLanding.do</result>
+            <interceptor-ref name="gamesStack"/>
+            <result name="success">/jsp/games/gamesSelector.jsp</result>
             <result name="error" type="redirect">error.do</result>
         </action>
         <action name="gameStatsLanding"
                 class="com.djr.cards.games.selector.actions.SelectorAction"
                 method="redirectToGameLanding">
-            <interceptor-ref name="gamesInterceptor"/>
+            <interceptor-ref name="gamesStack"/>
             <result name="golfstats" type="redirect">golfstats.do</result>
             <result name="error" type="redirect">error.do</result>
         </action>

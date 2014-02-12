@@ -32,7 +32,7 @@ public class LoginAction extends BaseAuthAction {
 
 	@SkipValidation
     public String loginLoad() {
-        logger.info("loginLoad() - landed");
+        logger.info("loginLoad() - landed with tracking:{}", getSessionAttribute("tracking"));
         return "success";
     }
 
@@ -46,7 +46,8 @@ public class LoginAction extends BaseAuthAction {
             getSession().setAttribute("user", loginResult.user);
             return "success";
         }
-        addActionError(getText("login.no.user"));
+		getRequest().setAttribute("msgbold", "error.login.failed.bold");
+		getRequest().setAttribute("msgtext", "error.login.failed.text");
         return "error";
     }
 }
