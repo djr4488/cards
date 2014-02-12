@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../css/cards.css" type="text/css">
 </head>
 <body class="mainbody">
-    <div id="titlebox" class="titlediv"><s:text name="error.title"/></div>
+    <div id="titlebox" class="titlediv"><s:text name="error.title.div"/></div>
     <br/>
     <h3>${requestScope.msgbold}</h3>
     <p>${requestScope.msgtext}</p>
