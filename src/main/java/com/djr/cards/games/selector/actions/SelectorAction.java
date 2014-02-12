@@ -31,6 +31,8 @@ public class SelectorAction extends BaseAction implements ModelDriven<SelectorMo
         if (selectorModel.getGameTypes() == null || selectorModel.getGameTypes().size() == 0) {
             logger.debug("displaySelectOptions() - no game types found for tracking id:{}",
                     getSessionAttribute("tracking"));
+            getSession().setAttribute("msgbold", "error.load.game.choices.bold");
+            getSession().setAttribute("msgtext", "error.load.game.choices.text");
             return "error";
         }
         logger.debug("displaySelectOptions() - returning {} game options for tracking id:{}",

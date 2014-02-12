@@ -40,6 +40,10 @@ public class BaseAction extends ActionSupport implements ServletRequestAware, Se
 		return request.getSession(false);
 	}
 
+    public HttpServletRequest getRequest() {
+        return request;
+    }
+
 	public ActionContext getActionContext() {
 		ActionContext actionContext = ActionContext.getContext();
 		logger.debug("getActionContext() - actionContext:{}", actionContext.getName());

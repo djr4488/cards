@@ -75,13 +75,31 @@
                 method="displaySelectOptions">
             <result name="input">/jsp/games/gamesSelector.jsp</result>
             <result name="stats">gameStatsLanding.do</result>
-            <result name="error">/jsp/games/error.jsp</result>
+            <result name="error" type="redirect">error.do</result>
         </action>
         <action name="gameStatsLanding"
                 class="com.djr.cards.games.selector.actions.SelectorAction"
                 method="redirectToGameLanding">
             <interceptor-ref name="gamesInterceptor"/>
-            <result name="error">/jsp/games/error.jsp</result>
+            <result name="golfstats" type="redirect">golfstats.do</result>
+            <result name="error" type="redirect">error.do</result>
+        </action>
+
+        <!-- golf game actions -->
+        <!--<action name="golfstats"
+                class="com.djr.cards.games.golf.actions.GolfStatsAction"
+                method="loadPlayStats">
+            <interceptor-ref name="gamesInterceptor"/>
+            <result name="create" type="redirect">createGolfGameLanding.do</result>
+            <result name="load" type="redirect">myGamesLanding.do</result>
+            <result name="join" type="redirect">waitingGamesLanding.do</result>
+            <result name="error" type="redirect">error.do</result>
+        </action>-->
+
+        <!-- error action handler -->
+        <action name="error"
+                class="com.djr.cards.errors.actions.ErrorAction">
+            <result name="success">/jsp/error.jsp</result>
         </action>
     </package>
 </struts>
