@@ -22,8 +22,8 @@ public class ErrorAction extends BaseAction  {
                 getSessionAttribute("msgbold"), getSessionAttribute("msgtext"));
         auditSvc.writeAudit(auditSvc.getAuditLog(getSessionAttribute("tracking"), getSessionAttribute("msgbold"),
                 getIp(), Calendar.getInstance()));
-        String msgBoldKey = getSessionAttribute("msgbold");
-        String msgTextKey = getSessionAttribute("msgtext");
+        String msgBoldKey = (String)getAndRemoveSessionAttribute("msgbold");
+        String msgTextKey = (String)getAndRemoveSessionAttribute("msgtext");
         if (msgBoldKey == null) {
             msgBoldKey = "error.general.bold";
             msgTextKey = "error.general.text";

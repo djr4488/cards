@@ -46,8 +46,8 @@ public class LoginAction extends BaseAuthAction {
             getSession().setAttribute("user", loginResult.user);
             return "success";
         }
-		getRequest().setAttribute("msgbold", "error.login.failed.bold");
-		getRequest().setAttribute("msgtext", "error.login.failed.text");
+		getSession().setAttribute("msgbold", "error.login.failed.bold");
+		getSession().setAttribute("msgtext", "error.login.failed.text");
         return "error";
     }
 }

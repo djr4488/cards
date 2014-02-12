@@ -36,6 +36,12 @@ public class BaseAction extends ActionSupport implements ServletRequestAware, Se
 		return (String)getSession().getAttribute(attributeName);
 	}
 
+	public Object getAndRemoveSessionAttribute(String attributeName) {
+		Object attribute = getSession().getAttribute(attributeName);
+		getSession().removeAttribute(attributeName);
+		return attribute;
+	}
+
 	public HttpSession getSession() {
 		return request.getSession(false);
 	}
