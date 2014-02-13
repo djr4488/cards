@@ -24,6 +24,11 @@ public class GolfStatsServiceImpl implements GolfStatsService {
     @Inject
     private UserStatsDAO userStatsDao;
 
+    private boolean findOrCreateStats(String tracking, User user) {
+        logger.debug("findOrCreateStats() - tracking:{}, user:{}");
+        return userStatsDao.findStatsByUser(user, "Golf", tracking) != null;
+    }
+
     private List<UserStats> loadUserStats(String tracking) {
         logger.debug("loadGolfStats() - tracking:{}");
         List<UserStats> userStats = userStatsDao.loadStatistics("Golf", tracking);
@@ -63,15 +68,15 @@ public class GolfStatsServiceImpl implements GolfStatsService {
     @Override
     public GolfStats loadGolfStats(String tracking, User user) {
         logger.debug("loadGolfStats() - tracking:{}, user:{}", tracking, user);
-        List<UserStats> userStats = loadUserStats(tracking);
-        if (userStats == null || userStats.size() == 0) {
-            logger.debug("loadGolfStats() - tracking:{}, no stats loaded returning null", tracking);
-            return null;
+        if (findOrCreateStats(tracking, user)) {
+            List<UserStats> userStats = loadUserStats(tracking);
+            Collections.sort(userStats);
+            List<PlayerStats> playerStatsList = topTenGolfPlayers(tracking, userStats);
+            PlayerStats playerStats = getUserStats(tracking, user, userStats);
+            GolfStats golfStats = new GolfStats(playerStatsList, playerStats);
+            return golfStats;
         }
-        Collections.sort(userStats);
-        List<PlayerStats> playerStatsList = topTenGolfPlayers(tracking, userStats);
-        PlayerStats playerStats = getUserStats(tracking, user, userStats);
-        GolfStats golfStats = new GolfStats(playerStatsList, playerStats);
-        return golfStats;
+        logger.debug("loadGolfStats() - tracking:{} failed to load stats");
+        return null;
     }
 }
