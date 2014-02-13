@@ -1,10 +1,10 @@
-package com.djr.cards.games.golf.stats;
+package com.djr.cards.games.stats.service;
 
 import com.djr.cards.data.entities.User;
 import com.djr.cards.data.entities.UserStats;
-import com.djr.cards.games.stats.model.GameStats;
-import com.djr.cards.games.golf.stats.service.GolfStatsServiceImpl;
+import com.djr.cards.games.stats.GameStatsService;
 import com.djr.cards.games.stats.UserStatsDAO;
+import com.djr.cards.games.stats.model.GameStats;
 import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,20 +19,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * User: djr4488
- * Date: 2/11/14
- * Time: 8:24 PM
+ * @author dannyrucker
+ *         Date: 2/13/14
+ *         Time: 4:53 PM
  */
 @RunWith(MockitoJUnitRunner.class)
-public class GolfStatsServiceTest extends TestCase {
-    //TODO --
-    //modify and move this test to games.stats and test the generic service
+public class GameStatsServiceTest extends TestCase {
     @Mock
     private Logger logger;
     @Mock
     private UserStatsDAO userStatsDao;
     @InjectMocks
-    private GolfStatsService golfStatsSvc = new GolfStatsServiceImpl();
+    private GameStatsService golfStatsSvc = new GameStatsServiceImpl();
 
     @Before
     public void initMocks() {
@@ -66,8 +64,11 @@ public class GolfStatsServiceTest extends TestCase {
         player2.alias = "Player-2";
         player2.emailAddress = "Player.p2@test.com";
         String tracking = "12345";
+        UserStats userStats = new UserStats();
+        when(userStatsDao.findStatsByUser(any(User.class), any(String.class), any(String.class)))
+                .thenReturn(userStats);
         when(userStatsDao.loadStatistics(any(String.class), any(String.class))).thenReturn(userStatsList);
-        GameStats gameStats = golfStatsSvc.loadGolfStats(tracking, player2);
+        GameStats gameStats = golfStatsSvc.loadGameStats(tracking, player2, "Game");
         verify(userStatsDao).loadStatistics(any(String.class), any(String.class));
         assertNotNull(gameStats);
         assertEquals(player2.alias, gameStats.getUserStats().getAlias());
@@ -75,14 +76,15 @@ public class GolfStatsServiceTest extends TestCase {
     }
 
     @Test
-    public void testLoadGolfStatsUserStatsFails() {
+    public void testLoadGolfStatsUserStatsMissing() {
         User player2 = new User();
         player2.alias = "Player-2";
         player2.emailAddress = "Player.p2@test.com";
         String tracking = "12345";
-        when(userStatsDao.loadStatistics(any(String.class), any(String.class))).thenReturn(null);
-        GameStats gameStats = golfStatsSvc.loadGolfStats(tracking, player2);
-        verify(userStatsDao).loadStatistics(any(String.class), any(String.class));
+        when(userStatsDao.findStatsByUser(any(User.class), any(String.class), any(String.class)))
+                .thenReturn(null);
+        GameStats gameStats = golfStatsSvc.loadGameStats(tracking, player2, "Game");
+        verify(userStatsDao).findStatsByUser(any(User.class), any(String.class), any(String.class));
         assertNull(gameStats);
     }
 }

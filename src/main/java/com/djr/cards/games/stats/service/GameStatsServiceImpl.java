@@ -30,7 +30,7 @@ public class GameStatsServiceImpl implements GameStatsService {
     }
 
     private List<UserStats> loadUserStats(String tracking, String gameType) {
-        logger.debug("loadGolfStats() - tracking:{}, gameType:{}", tracking, gameType);
+        logger.debug("loadUserStats() - tracking:{}, gameType:{}", tracking, gameType);
         List<UserStats> userStats = userStatsDao.loadStatistics(gameType, tracking);
         return userStats;
     }
@@ -67,7 +67,7 @@ public class GameStatsServiceImpl implements GameStatsService {
 
     @Override
     public GameStats loadGameStats(String tracking, User user, String gameType) {
-        logger.debug("loadGolfStats() - tracking:{}, user:{}, gameType:{}", tracking, user, gameType);
+        logger.debug("loadGameStats() - tracking:{}, user:{}, gameType:{}", tracking, user, gameType);
         if (findOrCreateStats(tracking, user, gameType)) {
             List<UserStats> userStats = loadUserStats(tracking, gameType);
             Collections.sort(userStats);
