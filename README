@@ -22,5 +22,3 @@ Places this can be seen, is data.entities is packaged at com.djr.cards and the e
 Another example is in the games package.  Where I have a games.stats package with just a UserStatsDAO.  But note the more specific games.golf.stats package where the golf stats are implemented which depend on the games.stats.UserStatsDAO.  Since nothing outside of games needs access to games.stats.UserStatsDAO, that general stats package won't go any higher than that.
 
 I also use interfaces for all my "service" layer code and inheritance for managing things that several classes are going to need.  I do this to avoid code duplication, think DRY from CS 101 if you will.
-
-Am I perfect?  Heck no, but I like what I do and will learn better ways to do things throughout my career and constantly work to improve this and anything I work on.
