@@ -1,11 +1,11 @@
-package com.djr.cards.games.golf.stats.service;
+package com.djr.cards.games.stats.service;
 
 import com.djr.cards.data.entities.User;
 import com.djr.cards.data.entities.UserStats;
-import com.djr.cards.games.golf.stats.GolfStatsService;
+import com.djr.cards.games.stats.GameStatsService;
+import com.djr.cards.games.stats.UserStatsDAO;
 import com.djr.cards.games.stats.model.GameStats;
 import com.djr.cards.games.stats.model.PlayerStats;
-import com.djr.cards.games.stats.UserStatsDAO;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
@@ -15,23 +15,23 @@ import java.util.List;
 
 /**
  * User: djr4488
- * Date: 2/12/14
- * Time: 7:50 PM
+ * Date: 2/13/14
+ * Time: 8:42 AM
  */
-public class GolfStatsServiceImpl implements GolfStatsService {
+public class GameStatsServiceImpl implements GameStatsService {
     @Inject
     private Logger logger;
     @Inject
     private UserStatsDAO userStatsDao;
 
-    private boolean findOrCreateStats(String tracking, User user) {
-        logger.debug("findOrCreateStats() - tracking:{}, user:{}");
-        return userStatsDao.findStatsByUser(user, "Golf", tracking) != null;
+    private boolean findOrCreateStats(String tracking, User user, String gameType) {
+        logger.debug("findOrCreateStats() - tracking:{}, gameType{}", tracking, gameType);
+        return userStatsDao.findStatsByUser(user, gameType, tracking) != null;
     }
 
-    private List<UserStats> loadUserStats(String tracking) {
-        logger.debug("loadGolfStats() - tracking:{}");
-        List<UserStats> userStats = userStatsDao.loadStatistics("Golf", tracking);
+    private List<UserStats> loadUserStats(String tracking, String gameType) {
+        logger.debug("loadGolfStats() - tracking:{}, gameType:{}", tracking, gameType);
+        List<UserStats> userStats = userStatsDao.loadStatistics(gameType, tracking);
         return userStats;
     }
 
@@ -66,17 +66,17 @@ public class GolfStatsServiceImpl implements GolfStatsService {
     }
 
     @Override
-    public GameStats loadGolfStats(String tracking, User user) {
-        logger.debug("loadGolfStats() - tracking:{}, user:{}", tracking, user);
-        if (findOrCreateStats(tracking, user)) {
-            List<UserStats> userStats = loadUserStats(tracking);
+    public GameStats loadGameStats(String tracking, User user, String gameType) {
+        logger.debug("loadGolfStats() - tracking:{}, user:{}, gameType:{}", tracking, user, gameType);
+        if (findOrCreateStats(tracking, user, gameType)) {
+            List<UserStats> userStats = loadUserStats(tracking, gameType);
             Collections.sort(userStats);
             List<PlayerStats> playerStatsList = topTenGolfPlayers(tracking, userStats);
             PlayerStats playerStats = getUserStats(tracking, user, userStats);
             GameStats gameStats = new GameStats(playerStatsList, playerStats);
             return gameStats;
         }
-        logger.debug("loadGolfStats() - tracking:{} failed to load stats");
+        logger.debug("loadGameStats() - tracking:{}, gameType:{} - failed to load stats");
         return null;
     }
 }

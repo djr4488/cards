@@ -2,7 +2,7 @@ package com.djr.cards.games.golf.stats;
 
 import com.djr.cards.data.entities.User;
 import com.djr.cards.data.entities.UserStats;
-import com.djr.cards.games.golf.stats.model.GolfStats;
+import com.djr.cards.games.stats.model.GameStats;
 import com.djr.cards.games.golf.stats.service.GolfStatsServiceImpl;
 import com.djr.cards.games.stats.UserStatsDAO;
 import junit.framework.TestCase;
@@ -25,6 +25,8 @@ import java.util.List;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class GolfStatsServiceTest extends TestCase {
+    //TODO --
+    //modify and move this test to games.stats and test the generic service
     @Mock
     private Logger logger;
     @Mock
@@ -65,11 +67,11 @@ public class GolfStatsServiceTest extends TestCase {
         player2.emailAddress = "Player.p2@test.com";
         String tracking = "12345";
         when(userStatsDao.loadStatistics(any(String.class), any(String.class))).thenReturn(userStatsList);
-        GolfStats golfStats = golfStatsSvc.loadGolfStats(tracking, player2);
+        GameStats gameStats = golfStatsSvc.loadGolfStats(tracking, player2);
         verify(userStatsDao).loadStatistics(any(String.class), any(String.class));
-        assertNotNull(golfStats);
-        assertEquals(player2.alias, golfStats.getUserStats().getAlias());
-        assertEquals(13, golfStats.getUserStats().getRank());
+        assertNotNull(gameStats);
+        assertEquals(player2.alias, gameStats.getUserStats().getAlias());
+        assertEquals(13, gameStats.getUserStats().getRank());
     }
 
     @Test
@@ -79,8 +81,8 @@ public class GolfStatsServiceTest extends TestCase {
         player2.emailAddress = "Player.p2@test.com";
         String tracking = "12345";
         when(userStatsDao.loadStatistics(any(String.class), any(String.class))).thenReturn(null);
-        GolfStats golfStats = golfStatsSvc.loadGolfStats(tracking, player2);
+        GameStats gameStats = golfStatsSvc.loadGolfStats(tracking, player2);
         verify(userStatsDao).loadStatistics(any(String.class), any(String.class));
-        assertNull(golfStats);
+        assertNull(gameStats);
     }
 }

@@ -1,7 +1,7 @@
 package com.djr.cards.games.golf.stats;
 
 import com.djr.cards.data.entities.User;
-import com.djr.cards.games.golf.stats.model.GolfStats;
+import com.djr.cards.games.stats.model.GameStats;
 
 /**
  * User: djr4488
@@ -9,5 +9,5 @@ import com.djr.cards.games.golf.stats.model.GolfStats;
  * Time: 7:50 PM
  */
 public interface GolfStatsService {
-    public GolfStats loadGolfStats(String tracking, User user);
+    public GameStats loadGolfStats(String tracking, User user);
 }

@@ -1,4 +1,4 @@
-package com.djr.cards.games.golf.stats.model;
+package com.djr.cards.games.stats.model;
 
 import com.djr.cards.data.entities.UserStats;
 

@@ -1,4 +1,4 @@
-package com.djr.cards.games.golf.stats.model;
+package com.djr.cards.games.stats.model;
 
 import java.util.List;
 
@@ -7,13 +7,13 @@ import java.util.List;
  * Date: 2/12/14
  * Time: 7:33 PM
  */
-public class GolfStats {
+public class GameStats {
     private List<PlayerStats> top10;
     private PlayerStats userStats;
 
-    public GolfStats() { }
+    public GameStats() { }
 
-    public GolfStats(List<PlayerStats> top10, PlayerStats userStats) {
+    public GameStats(List<PlayerStats> top10, PlayerStats userStats) {
         this.top10 = top10;
         this.userStats = userStats;
     }

@@ -3,7 +3,8 @@ package com.djr.cards.games.golf.stats.action;
 import com.djr.cards.BaseAction;
 import com.djr.cards.data.entities.User;
 import com.djr.cards.games.golf.stats.GolfStatsService;
-import com.djr.cards.games.golf.stats.model.GolfStats;
+import com.djr.cards.games.stats.GameStatsService;
+import com.djr.cards.games.stats.model.GameStats;
 import com.opensymphony.xwork2.ModelDriven;
 import org.slf4j.Logger;
 import javax.inject.Inject;
@@ -13,24 +14,24 @@ import javax.inject.Inject;
  * Date: 2/12/14
  * Time: 7:29 PM
  */
-public class GolfStatsAction extends BaseAction implements ModelDriven<GolfStats> {
+public class GolfStatsAction extends BaseAction implements ModelDriven<GameStats> {
     @Inject
     private Logger logger;
     @Inject
-    private GolfStatsService golfStatsSvc;
+    private GameStatsService gameStatsSvc;
 
-    private GolfStats golfStats = new GolfStats();
+    private GameStats gameStats = new GameStats();
 
     @Override
-    public GolfStats getModel() {
-        return golfStats;
+    public GameStats getModel() {
+        return gameStats;
     }
 
     public String loadPlayStats() {
         logger.info("loadPlayStats() - tracking:{}", getSessionAttribute("tracking"));
-        golfStats = golfStatsSvc.loadGolfStats(getSessionAttribute("tracking"),
-                (User)getSession().getAttribute("user"));
-        if (golfStats == null) {
+        gameStats = gameStatsSvc.loadGameStats(getSessionAttribute("tracking"),
+                (User)getSession().getAttribute("user"), "Golf");
+        if (gameStats == null) {
             getSession().setAttribute("msgbold", "error.golf.stats.bold");
             getSession().setAttribute("msgtext", "error.golf.stats.text");
             return "error";
