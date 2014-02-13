@@ -62,6 +62,6 @@ public class UserStats implements Comparable<UserStats> {
         } else if (this.wins < userStats.wins) {
             return -1;
         }
-        return 0;
+        return this.user.alias.compareToIgnoreCase(userStats.user.alias);
     }
 }

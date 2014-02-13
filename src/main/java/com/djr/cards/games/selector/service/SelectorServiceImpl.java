@@ -35,8 +35,7 @@ public class SelectorServiceImpl implements SelectorService {
 	public String getSelectedLandingAction(String tracking, SelectorModel selectorModel) {
 		logger.debug("getSelectedLandingAction() - tracking:{}, selectorModel:{}",
 				tracking, selectorModel);
-		GameSelection gameSelection = selectorDao.findGameSelection(selectorModel.getGameTypes().
-				get(selectorModel.getSelectedOption()));
+		GameSelection gameSelection = selectorDao.findGameSelection(selectorModel.getSelectedGameType());
 		if (gameSelection != null && gameSelection.landingAction != null &&
 				gameSelection.landingAction.trim().length() > 0) {
 			return gameSelection.landingAction;

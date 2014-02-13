@@ -108,7 +108,7 @@
                 class="com.djr.cards.games.selector.actions.SelectorAction"
                 method="displaySelectOptions">
             <interceptor-ref name="gamesStack"/>
-            <result name="success">/jsp/games/gamesSelector.jsp</result>
+            <result name="success">/jsp/games/selector/gamesSelector.jsp</result>
             <result name="error" type="redirect">error.do</result>
         </action>
         <action name="gameStatsLanding"
@@ -120,15 +120,15 @@
         </action>
 
         <!-- golf game actions -->
-        <!--<action name="golfstats"
-                class="com.djr.cards.games.golf.actions.GolfStatsAction"
+        <action name="golfstats"
+                class="com.djr.cards.games.golf.stats.action.GolfStatsAction"
                 method="loadPlayStats">
             <interceptor-ref name="gamesInterceptor"/>
             <result name="create" type="redirect">createGolfGameLanding.do</result>
             <result name="load" type="redirect">myGamesLanding.do</result>
             <result name="join" type="redirect">waitingGamesLanding.do</result>
             <result name="error" type="redirect">error.do</result>
-        </action>-->
+        </action>
 
         <!-- error action handler -->
         <action name="error"

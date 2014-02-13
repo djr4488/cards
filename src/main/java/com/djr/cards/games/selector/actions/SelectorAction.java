@@ -44,7 +44,8 @@ public class SelectorAction extends BaseAction implements ModelDriven<SelectorMo
         logger.info("redirectToGameLanding() - tracking:{}, gameType:{}", getSessionAttribute("tracking"),
                 selectorModel.getSelectedGameType());
         if (selectorModel.getSelectedGameType() == null || selectorModel.getSelectedGameType().trim().equals("")) {
-            addActionError("error.selector.action.game.landing");
+            getSession().setAttribute("msgbold", "error.game.selected.bold");
+            getSession().setAttribute("msgtext", "error.game.selected.text");
             return "error";
         }
         String landingAction = selectorService.getSelectedLandingAction(

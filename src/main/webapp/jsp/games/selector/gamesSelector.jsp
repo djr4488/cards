@@ -7,10 +7,11 @@
 </head>
 <body class="mainbody">
     <div id="titlebox" class="titlediv"><s:text name="selector.title"/></div>
+    <br/>
     <s:form id="selector" method="post" action="gameStatsLanding">
         <s:select key="selector.list.label"
                   headerKey="-1" list="gameTypes"
-                  name="gameSelector"/>
+                  name="selectedGameType"/>
         <s:submit cssClass="buttonauth"/>
     </s:form>
 </body>
