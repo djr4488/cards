@@ -1,11 +1,10 @@
 package com.djr.cards.auth.actions;
 
 import com.djr.cards.auth.BaseAuthAction;
-import com.djr.cards.auth.login.LoginResult;
+import com.djr.cards.auth.service.LoginResult;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 import org.slf4j.Logger;
 
-import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import java.util.Calendar;
 

@@ -1,7 +1,6 @@
 package com.djr.cards.auth.service;
 
 import com.djr.cards.auth.AuthModel;
-import com.djr.cards.auth.login.LoginResult;
 
 /**
  * User: djr4488

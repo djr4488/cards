@@ -2,7 +2,6 @@ package com.djr.cards.auth.service;
 
 import com.djr.cards.audit.AuditService;
 import com.djr.cards.auth.AuthModel;
-import com.djr.cards.auth.login.LoginResult;
 import com.djr.cards.auth.dao.UserDAO;
 import com.djr.cards.email.EmailService;
 import com.djr.cards.data.entities.User;

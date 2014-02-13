@@ -1,4 +1,4 @@
-package com.djr.cards.auth.login;
+package com.djr.cards.auth.service;
 
 import com.djr.cards.data.entities.User;
 
