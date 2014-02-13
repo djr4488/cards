@@ -58,9 +58,9 @@ public class UserStats implements Comparable<UserStats> {
     @Override
     public int compareTo(UserStats userStats) {
         if (this.wins > userStats.wins) {
-            return 1;
-        } else if (this.wins < userStats.wins) {
             return -1;
+        } else if (this.wins < userStats.wins) {
+            return 1;
         }
         return this.user.alias.compareToIgnoreCase(userStats.user.alias);
     }

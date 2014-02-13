@@ -1,6 +1,6 @@
 package com.djr.cards.games.golf.stats.model;
 
-import java.util.List;
+import com.djr.cards.data.entities.UserStats;
 
 /**
  * User: djr4488
@@ -12,6 +12,15 @@ public class PlayerStats {
     private long totalGames;
     private long rank;
     private String alias;
+
+    public PlayerStats() { }
+
+    public PlayerStats(UserStats userStats, int rank) {
+        wins = userStats.wins;
+        totalGames = userStats.totalPlayed;
+        this.rank = rank;
+        alias = userStats.user.alias;
+    }
 
     public long getWins() {
         return wins;

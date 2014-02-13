@@ -11,6 +11,13 @@ public class GolfStats {
     private List<PlayerStats> top10;
     private PlayerStats userStats;
 
+    public GolfStats() { }
+
+    public GolfStats(List<PlayerStats> top10, PlayerStats userStats) {
+        this.top10 = top10;
+        this.userStats = userStats;
+    }
+
     public List<PlayerStats> getTop10() {
         return top10;
     }
