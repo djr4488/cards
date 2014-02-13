@@ -65,7 +65,7 @@ public class GolfStatsServiceImpl implements GolfStatsService {
         logger.debug("loadGolfStats() - tracking:{}, user:{}", tracking, user);
         List<UserStats> userStats = loadUserStats(tracking);
         if (userStats == null || userStats.size() == 0) {
-            logger.debug("loadGolfStats() - tracking:{}, no stats loaded returning null");
+            logger.debug("loadGolfStats() - tracking:{}, no stats loaded returning null", tracking);
             return null;
         }
         Collections.sort(userStats);
