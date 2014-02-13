@@ -1,0 +1,150 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: UserStats</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.djr.cards.data.entities</a> ]
+</div>
+
+<h1>Coverage Summary for Class: UserStats (com.djr.cards.data.entities)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UserStats</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (3/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    40%
+  </span>
+  <span class="absValue">
+    (4/ 10)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.djr.cards.data.entities;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.apache.commons.lang3.builder.EqualsBuilder;
+<i>4</i>&nbsp;import org.apache.commons.lang3.builder.HashCodeBuilder;
+<i>5</i>&nbsp;import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+<i>6</i>&nbsp;import org.apache.commons.lang3.builder.ToStringStyle;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import javax.persistence.*;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;/**
+<i>11</i>&nbsp; * User: djr4488
+<i>12</i>&nbsp; * Date: 1/4/14
+<i>13</i>&nbsp; * Time: 4:39 PM
+<i>14</i>&nbsp; */
+<i>15</i>&nbsp;@Entity
+<i>16</i>&nbsp;@Table(name=&quot;user_stats&quot;)
+<i>17</i>&nbsp;@NamedQueries({
+<i>18</i>&nbsp;        @NamedQuery(name=&quot;findUserStatsByUser&quot;,
+<i>19</i>&nbsp;                query=&quot;select userStats from UserStats userStats where userStats.user = :user and &quot; +
+<i>20</i>&nbsp;                        &quot;userStats.gameType = :gameType&quot;),
+<i>21</i>&nbsp;        @NamedQuery(name=&quot;findUserStats&quot;,
+<i>22</i>&nbsp;                query=&quot;select userStats from UserStats userStats&quot;)
+<i>23</i>&nbsp;})
+<b class="fc"><i>24</i>&nbsp;public class UserStats implements Comparable&lt;UserStats&gt; {</b>
+<i>25</i>&nbsp;    @Id
+<i>26</i>&nbsp;    @Column(name=&quot;id&quot;, nullable=false)
+<i>27</i>&nbsp;    @GeneratedValue(strategy=GenerationType.IDENTITY)
+<i>28</i>&nbsp;    private Long id;
+<i>29</i>&nbsp;    @OneToOne
+<i>30</i>&nbsp;    @JoinColumn(name=&quot;user_id&quot;)
+<i>31</i>&nbsp;    public User user;
+<i>32</i>&nbsp;    @Column(name=&quot;game_type&quot;)
+<i>33</i>&nbsp;    public String gameType;
+<i>34</i>&nbsp;    @Column(name=&quot;wins&quot;)
+<i>35</i>&nbsp;    public Long wins;
+<i>36</i>&nbsp;    @Column(name=&quot;total_played&quot;)
+<i>37</i>&nbsp;    public Long totalPlayed;
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    public long getId() {
+<b class="nc"><i>40</i>&nbsp;        return id;</b>
+<i>41</i>&nbsp;    }
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    @Override
+<i>44</i>&nbsp;    public boolean equals(Object o) {
+<b class="fc"><i>45</i>&nbsp;        return EqualsBuilder.reflectionEquals(this, o, null);</b>
+<i>46</i>&nbsp;    }
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    @Override
+<i>49</i>&nbsp;    public int hashCode() {
+<b class="nc"><i>50</i>&nbsp;        return HashCodeBuilder.reflectionHashCode(this, null);</b>
+<i>51</i>&nbsp;    }
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    @Override
+<i>54</i>&nbsp;    public String toString() {
+<b class="nc"><i>55</i>&nbsp;        return ReflectionToStringBuilder.toString(this, ToStringStyle.DEFAULT_STYLE);</b>
+<i>56</i>&nbsp;    }
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    @Override
+<i>59</i>&nbsp;    public int compareTo(UserStats userStats) {
+<b class="fc"><i>60</i>&nbsp;        if (this.wins &gt; userStats.wins) {</b>
+<b class="fc"><i>61</i>&nbsp;            return -1;</b>
+<b class="nc"><i>62</i>&nbsp;        } else if (this.wins &lt; userStats.wins) {</b>
+<b class="nc"><i>63</i>&nbsp;            return 1;</b>
+<i>64</i>&nbsp;        }
+<b class="nc"><i>65</i>&nbsp;        return this.user.alias.compareToIgnoreCase(userStats.user.alias);</b>
+<i>66</i>&nbsp;    }
+<i>67</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2014-02-13 17:11</div>
+</div>
+</body>
+</html>

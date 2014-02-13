@@ -1,0 +1,123 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Card</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.djr.cards.data.entities</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Card (com.djr.cards.data.entities)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Card</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 6)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.djr.cards.data.entities;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import javax.persistence.Entity;
+<i>4</i>&nbsp;import javax.persistence.Id;
+<i>5</i>&nbsp;import javax.persistence.Table;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;/**
+<i>8</i>&nbsp; * Created with IntelliJ IDEA.
+<i>9</i>&nbsp; * User: djr4488
+<i>10</i>&nbsp; * Date: 1/4/14
+<i>11</i>&nbsp; * Time: 4:41 PM
+<i>12</i>&nbsp; */
+<i>13</i>&nbsp;@Entity
+<i>14</i>&nbsp;@Table(name=&quot;cards&quot;)
+<b class="nc"><i>15</i>&nbsp;public class Card {</b>
+<i>16</i>&nbsp;    @Id
+<i>17</i>&nbsp;    public Long id;
+<i>18</i>&nbsp;    public String fileName;
+<i>19</i>&nbsp;    public Boolean isBacking;
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    public Long getId() {
+<b class="nc"><i>22</i>&nbsp;        return id;</b>
+<i>23</i>&nbsp;    }
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    public String getFileName() {
+<b class="nc"><i>26</i>&nbsp;        return fileName;</b>
+<i>27</i>&nbsp;    }
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    public void setFileName(String fileName) {
+<b class="nc"><i>30</i>&nbsp;        this.fileName = fileName;</b>
+<i>31</i>&nbsp;    }
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    public Boolean getBacking() {
+<b class="nc"><i>34</i>&nbsp;        return isBacking;</b>
+<i>35</i>&nbsp;    }
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    public void setBacking(Boolean backing) {
+<b class="nc"><i>38</i>&nbsp;        isBacking = backing;</b>
+<i>39</i>&nbsp;    }
+<i>40</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2014-02-13 17:11</div>
+</div>
+</body>
+</html>

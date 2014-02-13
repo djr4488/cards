@@ -1,0 +1,114 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: GamesInterceptor</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.djr.cards.games</a> ]
+</div>
+
+<h1>Coverage Summary for Class: GamesInterceptor (com.djr.cards.games)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GamesInterceptor</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 8)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.djr.cards.games;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.djr.cards.BaseInterceptor;
+<i>4</i>&nbsp;import com.djr.cards.data.entities.User;
+<i>5</i>&nbsp;import com.opensymphony.xwork2.ActionInvocation;
+<i>6</i>&nbsp;import org.slf4j.Logger;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import javax.inject.Inject;
+<i>9</i>&nbsp;import javax.servlet.http.HttpSession;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;/**
+<i>12</i>&nbsp; * User: djr4488
+<i>13</i>&nbsp; * Date: 1/16/14
+<i>14</i>&nbsp; * Time: 9:07 PM
+<i>15</i>&nbsp; */
+<b class="nc"><i>16</i>&nbsp;public class GamesInterceptor extends BaseInterceptor {</b>
+<i>17</i>&nbsp;    @Inject
+<i>18</i>&nbsp;    private Logger logger;
+<i>19</i>&nbsp;    @Override
+<i>20</i>&nbsp;    public String intercept(ActionInvocation actionInvocation) throws Exception {
+<b class="nc"><i>21</i>&nbsp;        logger.info(&quot;intercept() actionInvocation:{}&quot;, actionInvocation);</b>
+<b class="nc"><i>22</i>&nbsp;        HttpSession session = getSession(actionInvocation, false);</b>
+<b class="nc"><i>23</i>&nbsp;        if (session != null) {</b>
+<b class="nc"><i>24</i>&nbsp;            User user = (User)session.getAttribute(&quot;user&quot;);</b>
+<b class="nc"><i>25</i>&nbsp;            if (user == null) {</b>
+<b class="nc"><i>26</i>&nbsp;                return &quot;error&quot;;</b>
+<i>27</i>&nbsp;            }
+<i>28</i>&nbsp;        }
+<b class="nc"><i>29</i>&nbsp;        return actionInvocation.invoke();</b>
+<i>30</i>&nbsp;    }
+<i>31</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2014-02-13 17:11</div>
+</div>
+</body>
+</html>

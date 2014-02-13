@@ -1,0 +1,66 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AuditService</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.djr.cards.audit</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AuditService (com.djr.cards.audit)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">AuditService$$EnhancerByMockitoWithCGLIB$$422247c8</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.djr.cards.audit;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.djr.cards.data.entities.AuditLog;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.util.Calendar;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;/**
+<i>8</i>&nbsp; * Created with IntelliJ IDEA.
+<i>9</i>&nbsp; * User: djr4488
+<i>10</i>&nbsp; * Date: 1/12/14
+<i>11</i>&nbsp; * Time: 9:28 PM
+<i>12</i>&nbsp; */
+<i>13</i>&nbsp;public interface AuditService {
+<i>14</i>&nbsp;    public void writeAudit(AuditLog auditLog);
+<i>15</i>&nbsp;    public AuditLog getAuditLog(String who, String what, String info, Calendar timestamp);
+<i>16</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2014-02-13 17:11</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: GolfCard</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.djr.cards.data.entities.golf</a> ]
+</div>
+
+<h1>Coverage Summary for Class: GolfCard (com.djr.cards.data.entities.golf)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GolfCard</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.djr.cards.data.entities.golf;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import javax.persistence.Entity;
+<i>4</i>&nbsp;import javax.persistence.Id;
+<i>5</i>&nbsp;import javax.persistence.Table;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;/**
+<i>8</i>&nbsp; * Created with IntelliJ IDEA.
+<i>9</i>&nbsp; * User: djr4488
+<i>10</i>&nbsp; * Date: 1/4/14
+<i>11</i>&nbsp; * Time: 4:40 PM
+<i>12</i>&nbsp; */
+<i>13</i>&nbsp;@Entity
+<i>14</i>&nbsp;@Table(name=&quot;golf_cards&quot;)
+<b class="nc"><i>15</i>&nbsp;public class GolfCard {</b>
+<i>16</i>&nbsp;    @Id
+<i>17</i>&nbsp;    private Integer id;
+<i>18</i>&nbsp;    private Integer position;
+<i>19</i>&nbsp;    private Long playerId;
+<i>20</i>&nbsp;    private Long golfId;
+<i>21</i>&nbsp;    private Boolean faceUp;
+<i>22</i>&nbsp;    private Integer points;
+<i>23</i>&nbsp;    private Integer cardId;
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    public Integer getId() {
+<b class="nc"><i>26</i>&nbsp;        return id;</b>
+<i>27</i>&nbsp;    }
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    public Integer getPosition() {
+<b class="nc"><i>30</i>&nbsp;        return position;</b>
+<i>31</i>&nbsp;    }
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    public void setPosition(Integer position) {
+<b class="nc"><i>34</i>&nbsp;        this.position = position;</b>
+<i>35</i>&nbsp;    }
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    public Long getPlayerId() {
+<b class="nc"><i>38</i>&nbsp;        return playerId;</b>
+<i>39</i>&nbsp;    }
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;    public void setPlayerId(Long playerId) {
+<b class="nc"><i>42</i>&nbsp;        this.playerId = playerId;</b>
+<i>43</i>&nbsp;    }
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;    public Long getGolfId() {
+<b class="nc"><i>46</i>&nbsp;        return golfId;</b>
+<i>47</i>&nbsp;    }
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    public void setGolfId(Long golfId) {
+<b class="nc"><i>50</i>&nbsp;        this.golfId = golfId;</b>
+<i>51</i>&nbsp;    }
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    public Boolean getFaceUp() {
+<b class="nc"><i>54</i>&nbsp;        return faceUp;</b>
+<i>55</i>&nbsp;    }
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;    public void setFaceUp(Boolean faceUp) {
+<b class="nc"><i>58</i>&nbsp;        this.faceUp = faceUp;</b>
+<i>59</i>&nbsp;    }
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;    public Integer getPoints() {
+<b class="nc"><i>62</i>&nbsp;        return points;</b>
+<i>63</i>&nbsp;    }
+<i>64</i>&nbsp;
+<i>65</i>&nbsp;    public void setPoints(Integer points) {
+<b class="nc"><i>66</i>&nbsp;        this.points = points;</b>
+<i>67</i>&nbsp;    }
+<i>68</i>&nbsp;
+<i>69</i>&nbsp;    public Integer getCardId() {
+<b class="nc"><i>70</i>&nbsp;        return cardId;</b>
+<i>71</i>&nbsp;    }
+<i>72</i>&nbsp;
+<i>73</i>&nbsp;    public void setCardId(Integer cardId) {
+<b class="nc"><i>74</i>&nbsp;        this.cardId = cardId;</b>
+<i>75</i>&nbsp;    }
+<i>76</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2014-02-13 17:11</div>
+</div>
+</body>
+</html>

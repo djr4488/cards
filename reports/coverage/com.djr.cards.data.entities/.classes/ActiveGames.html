@@ -1,0 +1,132 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ActiveGames</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.djr.cards.data.entities</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ActiveGames (com.djr.cards.data.entities)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ActiveGames</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 8)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.djr.cards.data.entities;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import javax.persistence.Entity;
+<i>4</i>&nbsp;import javax.persistence.Id;
+<i>5</i>&nbsp;import javax.persistence.Table;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;/**
+<i>8</i>&nbsp; * Created with IntelliJ IDEA.
+<i>9</i>&nbsp; * User: djr4488
+<i>10</i>&nbsp; * Date: 1/4/14
+<i>11</i>&nbsp; * Time: 4:40 PM
+<i>12</i>&nbsp; */
+<i>13</i>&nbsp;@Entity
+<i>14</i>&nbsp;@Table(name=&quot;active_games&quot;)
+<b class="nc"><i>15</i>&nbsp;public class ActiveGames {</b>
+<i>16</i>&nbsp;    @Id
+<i>17</i>&nbsp;    private Long id;
+<i>18</i>&nbsp;    private Long userId;
+<i>19</i>&nbsp;    private Long gameId;
+<i>20</i>&nbsp;    private String gameType;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;    public Long getId() {
+<b class="nc"><i>23</i>&nbsp;        return id;</b>
+<i>24</i>&nbsp;    }
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    public Long getUserId() {
+<b class="nc"><i>27</i>&nbsp;        return userId;</b>
+<i>28</i>&nbsp;    }
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    public void setUserId(Long userId) {
+<b class="nc"><i>31</i>&nbsp;        this.userId = userId;</b>
+<i>32</i>&nbsp;    }
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    public Long getGameId() {
+<b class="nc"><i>35</i>&nbsp;        return gameId;</b>
+<i>36</i>&nbsp;    }
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;    public void setGameId(Long gameId) {
+<b class="nc"><i>39</i>&nbsp;        this.gameId = gameId;</b>
+<i>40</i>&nbsp;    }
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    public String getGameType() {
+<b class="nc"><i>43</i>&nbsp;        return gameType;</b>
+<i>44</i>&nbsp;    }
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    public void setGameType(String gameType) {
+<b class="nc"><i>47</i>&nbsp;        this.gameType = gameType;</b>
+<i>48</i>&nbsp;    }
+<i>49</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2014-02-13 17:11</div>
+</div>
+</body>
+</html>

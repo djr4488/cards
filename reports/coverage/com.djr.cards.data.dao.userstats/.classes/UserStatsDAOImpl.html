@@ -1,0 +1,146 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: UserStatsDAOImpl</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.djr.cards.data.dao.userstats</a> ]
+</div>
+
+<h1>Coverage Summary for Class: UserStatsDAOImpl (com.djr.cards.data.dao.userstats)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UserStatsDAOImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 24)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.djr.cards.data.dao.userstats;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.djr.cards.games.stats.UserStatsDAO;
+<i>4</i>&nbsp;import com.djr.cards.data.entities.User;
+<i>5</i>&nbsp;import com.djr.cards.data.entities.UserStats;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import javax.ejb.Stateless;
+<i>8</i>&nbsp;import javax.inject.Inject;
+<i>9</i>&nbsp;import javax.persistence.NoResultException;
+<i>10</i>&nbsp;import javax.persistence.PersistenceContext;
+<i>11</i>&nbsp;import javax.persistence.TypedQuery;
+<i>12</i>&nbsp;import java.util.List;
+<i>13</i>&nbsp;import java.util.Map;
+<i>14</i>&nbsp;import java.util.TreeMap;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;/**
+<i>17</i>&nbsp; * User: djr4488
+<i>18</i>&nbsp; * Date: 2/3/14
+<i>19</i>&nbsp; * Time: 10:16 PM
+<i>20</i>&nbsp; */
+<i>21</i>&nbsp;@Stateless
+<b class="nc"><i>22</i>&nbsp;public class UserStatsDAOImpl implements UserStatsDAO {</b>
+<i>23</i>&nbsp;    @Inject
+<i>24</i>&nbsp;    private org.slf4j.Logger logger;
+<i>25</i>&nbsp;    @PersistenceContext
+<i>26</i>&nbsp;    private javax.persistence.EntityManager em;
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    @Override
+<i>29</i>&nbsp;    public UserStats findStatsByUser(User user, String gameType, String tracking) {
+<b class="nc"><i>30</i>&nbsp;        logger.debug(&quot;findStatsByUser() - user:{}, gameType:{}, tracking:{}&quot;, user, gameType, tracking);</b>
+<b class="nc"><i>31</i>&nbsp;        UserStats userStats = null;</b>
+<i>32</i>&nbsp;        try {
+<b class="nc"><i>33</i>&nbsp;            TypedQuery&lt;UserStats&gt; query = em.createNamedQuery(&quot;findUserStatsByUser&quot;, UserStats.class);</b>
+<b class="nc"><i>34</i>&nbsp;            query.setParameter(&quot;user&quot;, user);</b>
+<b class="nc"><i>35</i>&nbsp;            query.setParameter(&quot;gameType&quot;, gameType);</b>
+<b class="nc"><i>36</i>&nbsp;            userStats = query.getSingleResult();</b>
+<b class="nc"><i>37</i>&nbsp;        } catch (NoResultException nrEx) {</b>
+<b class="nc"><i>38</i>&nbsp;            userStats = new UserStats();</b>
+<b class="nc"><i>39</i>&nbsp;            userStats.totalPlayed = 0L;</b>
+<b class="nc"><i>40</i>&nbsp;            userStats.gameType = gameType;</b>
+<b class="nc"><i>41</i>&nbsp;            userStats.user = user;</b>
+<b class="nc"><i>42</i>&nbsp;            userStats.wins = 0L;</b>
+<b class="nc"><i>43</i>&nbsp;            em.persist(userStats);</b>
+<b class="nc"><i>44</i>&nbsp;        }</b>
+<b class="nc"><i>45</i>&nbsp;        logger.debug(&quot;findStatsByUser() - userStats:{}&quot;, userStats);</b>
+<b class="nc"><i>46</i>&nbsp;        return userStats;</b>
+<i>47</i>&nbsp;    }
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    @Override
+<i>50</i>&nbsp;    public List&lt;UserStats&gt; loadStatistics(User user, String gameType, String tracking) {
+<b class="nc"><i>51</i>&nbsp;        logger.debug(&quot;loadStatistics() - user:{}, gameType:{}, tracking:{}&quot;, user, gameType, tracking);</b>
+<i>52</i>&nbsp;        try {
+<b class="nc"><i>53</i>&nbsp;            TypedQuery&lt;UserStats&gt; query = em.createNamedQuery(&quot;findUserStats&quot;, UserStats.class);</b>
+<b class="nc"><i>54</i>&nbsp;            List&lt;UserStats&gt; unorderedStats = query.getResultList();</b>
+<b class="nc"><i>55</i>&nbsp;            return unorderedStats;</b>
+<b class="nc"><i>56</i>&nbsp;        } catch (NoResultException nrEx) {</b>
+<i>57</i>&nbsp;            //what to do here? findStatsByUser should have created something before here..
+<i>58</i>&nbsp;            //for now log the error and return null
+<b class="nc"><i>59</i>&nbsp;            logger.error(&quot;loadStatistics() - &quot;, nrEx);</b>
+<i>60</i>&nbsp;        }
+<b class="nc"><i>61</i>&nbsp;        return null;</b>
+<i>62</i>&nbsp;    }
+<i>63</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2014-02-05 12:03</div>
+</div>
+</body>
+</html>

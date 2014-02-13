@@ -1,0 +1,145 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: BaseAction</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.djr.cards</a> ]
+</div>
+
+<h1>Coverage Summary for Class: BaseAction (com.djr.cards)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BaseAction</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    55.6%
+  </span>
+  <span class="absValue">
+    (5/ 9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    40%
+  </span>
+  <span class="absValue">
+    (6/ 15)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.djr.cards;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.opensymphony.xwork2.ActionContext;
+<i>4</i>&nbsp;import com.opensymphony.xwork2.ActionSupport;
+<i>5</i>&nbsp;import org.apache.struts2.interceptor.ServletRequestAware;
+<i>6</i>&nbsp;import org.apache.struts2.interceptor.ServletResponseAware;
+<i>7</i>&nbsp;import org.slf4j.Logger;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import javax.inject.Inject;
+<i>10</i>&nbsp;import javax.servlet.http.HttpServletRequest;
+<i>11</i>&nbsp;import javax.servlet.http.HttpServletResponse;
+<i>12</i>&nbsp;import javax.servlet.http.HttpSession;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;/**
+<i>15</i>&nbsp; * @author dannyrucker
+<i>16</i>&nbsp; *         Date: 1/30/14
+<i>17</i>&nbsp; *         Time: 4:22 PM
+<i>18</i>&nbsp; */
+<b class="fc"><i>19</i>&nbsp;public class BaseAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {</b>
+<i>20</i>&nbsp;	@Inject
+<i>21</i>&nbsp;	private Logger logger;
+<i>22</i>&nbsp;	private HttpServletRequest request;
+<i>23</i>&nbsp;	private HttpServletResponse response;
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;	@Override
+<i>26</i>&nbsp;	public void setServletRequest(HttpServletRequest httpServletRequest) {
+<b class="fc"><i>27</i>&nbsp;		request = httpServletRequest;</b>
+<b class="fc"><i>28</i>&nbsp;	}</b>
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;	@Override
+<i>31</i>&nbsp;	public void setServletResponse(HttpServletResponse httpServletResponse) {
+<b class="nc"><i>32</i>&nbsp;		response = httpServletResponse;</b>
+<b class="nc"><i>33</i>&nbsp;	}</b>
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;	public String getSessionAttribute(String attributeName) {
+<b class="fc"><i>36</i>&nbsp;		return (String)getSession().getAttribute(attributeName);</b>
+<i>37</i>&nbsp;	}
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;	public Object getAndRemoveSessionAttribute(String attributeName) {
+<b class="nc"><i>40</i>&nbsp;		Object attribute = getSession().getAttribute(attributeName);</b>
+<b class="nc"><i>41</i>&nbsp;		getSession().removeAttribute(attributeName);</b>
+<b class="nc"><i>42</i>&nbsp;		return attribute;</b>
+<i>43</i>&nbsp;	}
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;	public HttpSession getSession() {
+<b class="fc"><i>46</i>&nbsp;		return request.getSession(false);</b>
+<i>47</i>&nbsp;	}
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    public HttpServletRequest getRequest() {
+<b class="nc"><i>50</i>&nbsp;        return request;</b>
+<i>51</i>&nbsp;    }
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;	public ActionContext getActionContext() {
+<b class="nc"><i>54</i>&nbsp;		ActionContext actionContext = ActionContext.getContext();</b>
+<b class="nc"><i>55</i>&nbsp;		logger.debug(&quot;getActionContext() - actionContext:{}&quot;, actionContext.getName());</b>
+<b class="nc"><i>56</i>&nbsp;		return actionContext;</b>
+<i>57</i>&nbsp;	}
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;	public String getIp() {
+<b class="fc"><i>60</i>&nbsp;		return request.getRemoteAddr();</b>
+<i>61</i>&nbsp;	}
+<i>62</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2014-02-13 17:11</div>
+</div>
+</body>
+</html>

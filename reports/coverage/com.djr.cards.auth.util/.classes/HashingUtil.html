@@ -1,0 +1,141 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: HashingUtil</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.djr.cards.auth.util</a> ]
+</div>
+
+<h1>Coverage Summary for Class: HashingUtil (com.djr.cards.auth.util)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">HashingUtil</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 21)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">HashingUtil$$EnhancerByMockitoWithCGLIB$$2d91aac9</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 21)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.djr.cards.auth.util;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.slf4j.Logger;
+<i>4</i>&nbsp;import javax.crypto.Mac;
+<i>5</i>&nbsp;import javax.crypto.spec.SecretKeySpec;
+<i>6</i>&nbsp;import javax.inject.Inject;
+<i>7</i>&nbsp;/**
+<i>8</i>&nbsp; * User: djr4488
+<i>9</i>&nbsp; * Date: 1/4/14
+<i>10</i>&nbsp; * Time: 6:17 PM
+<i>11</i>&nbsp; */
+<i>12</i>&nbsp;public class HashingUtil {
+<i>13</i>&nbsp;    @Inject
+<i>14</i>&nbsp;    private Logger logger;
+<i>15</i>&nbsp;    @Inject
+<i>16</i>&nbsp;    private String hmacKey;
+<i>17</i>&nbsp;
+<b class="nc"><i>18</i>&nbsp;    public HashingUtil() { }</b>
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    public String generateHmacHash(String message) {
+<b class="nc"><i>21</i>&nbsp;        logger.debug(&quot;generateHmacHash() - message:{}&quot;, message);</b>
+<b class="nc"><i>22</i>&nbsp;        String ret = &quot;&quot;;</b>
+<i>23</i>&nbsp;        try {
+<i>24</i>&nbsp;            byte HEX_VALUE2[];
+<b class="nc"><i>25</i>&nbsp;            HEX_VALUE2 = new byte[hmacKey.length() / 2];</b>
+<b class="nc"><i>26</i>&nbsp;            for (int i = 0; i &lt; HEX_VALUE2.length; i++) {</b>
+<b class="nc"><i>27</i>&nbsp;                HEX_VALUE2[i] = (byte) Integer.parseInt(hmacKey.substring(2 * i, 2 * i + 2),</b>
+<i>28</i>&nbsp;                        16);
+<i>29</i>&nbsp;            }
+<b class="nc"><i>30</i>&nbsp;            String resultHmacHash = &quot;&quot;;</b>
+<b class="nc"><i>31</i>&nbsp;            StringBuffer resultHmacReceiver = new StringBuffer();</b>
+<b class="nc"><i>32</i>&nbsp;            SecretKeySpec secretKeySpec = new SecretKeySpec(HEX_VALUE2, &quot;hmacsha512&quot;);</b>
+<b class="nc"><i>33</i>&nbsp;            Mac mac = Mac.getInstance(&quot;hmacsha512&quot;);</b>
+<b class="nc"><i>34</i>&nbsp;            mac.init(secretKeySpec);</b>
+<b class="nc"><i>35</i>&nbsp;            String message2 = message;</b>
+<b class="nc"><i>36</i>&nbsp;            byte messageFinal[] = mac.doFinal(message2.getBytes());</b>
+<b class="nc"><i>37</i>&nbsp;            byte encryptedMessage[] = org.apache.commons.codec.binary.Base64</b>
+<i>38</i>&nbsp;                    .encodeBase64(messageFinal, false);
+<b class="nc"><i>39</i>&nbsp;            resultHmacHash = new String(encryptedMessage);</b>
+<b class="nc"><i>40</i>&nbsp;            resultHmacReceiver.append(resultHmacHash);</b>
+<b class="nc"><i>41</i>&nbsp;            ret = resultHmacReceiver.toString();</b>
+<i>42</i>&nbsp;        }
+<b class="nc"><i>43</i>&nbsp;        catch (Exception e) {</b>
+<b class="nc"><i>44</i>&nbsp;            logger.error(&quot;generateHmacHash() - exception:&quot;, e);</b>
+<b class="nc"><i>45</i>&nbsp;        }</b>
+<b class="nc"><i>46</i>&nbsp;        return ret;</b>
+<i>47</i>&nbsp;    }
+<i>48</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2014-02-13 17:11</div>
+</div>
+</body>
+</html>
