@@ -4,6 +4,14 @@
 <head>
     <title>${sessionScope.statsTitle}</title>
     <link rel="stylesheet" href="../css/cards.css" type="text/css">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.js"></script>
+    <script>
+        $(function() {
+            $( "#accordion" ).accordion();
+        })
+    </script>
 </head>
 <body class="mainbody">
 <div id="titlebox" class="titlediv">${sessionScope.statsTitle}</div>
@@ -38,7 +46,14 @@
             </table>
         </li>
         <li class="last">
-            Something else will go here
+            <div id="accordion">
+                <h3>Create A Game</h3>
+                <div>Create game will go here.</div>
+                <h3>Join A Game</h3>
+                <div>Games not yet in progress/started will be listed here.</div>
+                <h3>Your Current Games</h3>
+                <div>List of the games user is currently active in.</div>
+            </div>
         </li>
     </ul>
 </div>
