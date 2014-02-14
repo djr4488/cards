@@ -53,4 +53,14 @@ public class PlayerStats {
     public void setAlias(String alias) {
         this.alias = alias;
     }
+
+    @Override
+    public String toString() {
+        return "PlayerStats{" +
+                "wins=" + wins +
+                ", totalGames=" + totalGames +
+                ", rank=" + rank +
+                ", alias='" + alias + '\'' +
+                '}';
+    }
 }

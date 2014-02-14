@@ -33,4 +33,12 @@ public class GameStats {
     public void setUserStats(PlayerStats userStats) {
         this.userStats = userStats;
     }
+
+    @Override
+    public String toString() {
+        return "GameStats{" +
+                "top10=" + top10 +
+                ", userStats=" + userStats +
+                '}';
+    }
 }

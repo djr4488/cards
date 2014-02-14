@@ -35,6 +35,7 @@ public class GolfStatsAction extends BaseAction implements ModelDriven<GameStats
             getSession().setAttribute("msgtext", "error.golf.stats.text");
             return "error";
         }
+        logger.debug("loadPlayStats() - gameStats:{}", gameStats);
         removeAndSetSessionAttribute("statsTitle", getText("golf.stats.title"));
         removeAndSetSessionAttribute("gameType", "Golf");
         return "success";
