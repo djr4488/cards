@@ -2,8 +2,7 @@ package com.djr.cards.auth.actions;
 
 import com.djr.cards.audit.AuditService;
 import com.djr.cards.auth.AuthModel;
-import com.djr.cards.auth.actions.LoginAction;
-import com.djr.cards.auth.login.LoginResult;
+import com.djr.cards.auth.service.LoginResult;
 import com.djr.cards.auth.service.AuthService;
 import com.djr.cards.auth.util.HashingUtil;
 import com.djr.cards.data.entities.User;
