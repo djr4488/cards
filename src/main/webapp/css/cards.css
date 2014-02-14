@@ -77,4 +77,26 @@
     width: 776px;
 }
 
+.box-options {
+    width: 955px;
+    margin: 20px 0 20px -20px;
+}
+
+.box-options ul li {
+    display: inline;
+    float: left;
+    width: 440px;
+    min-height: 310px;
+    padding: 5px;
+    border-bottom: 1px solid #dadada;
+    border-right: 1px solid #dadada;
+    background: #5E5E5E;
+}
+
+.box-options ul li.last {
+    float: right;
+}
+
+
+
 

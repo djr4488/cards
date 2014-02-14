@@ -124,6 +124,7 @@
                 class="com.djr.cards.games.golf.stats.action.GolfStatsAction"
                 method="loadPlayStats">
             <interceptor-ref name="gamesStack"/>
+            <result name="success">/jsp/games/stats.jsp</result>
             <result name="create" type="redirect">createGolfGameLanding.do</result>
             <result name="load" type="redirect">myGamesLanding.do</result>
             <result name="join" type="redirect">waitingGamesLanding.do</result>

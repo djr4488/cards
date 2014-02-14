@@ -2,7 +2,6 @@ package com.djr.cards.games.golf.stats.action;
 
 import com.djr.cards.BaseAction;
 import com.djr.cards.data.entities.User;
-import com.djr.cards.games.golf.stats.GolfStatsService;
 import com.djr.cards.games.stats.GameStatsService;
 import com.djr.cards.games.stats.model.GameStats;
 import com.opensymphony.xwork2.ModelDriven;
@@ -36,6 +35,8 @@ public class GolfStatsAction extends BaseAction implements ModelDriven<GameStats
             getSession().setAttribute("msgtext", "error.golf.stats.text");
             return "error";
         }
+        removeAndSetSessionAttribute("statsTitle", getText("golf.stats.title"));
+        removeAndSetSessionAttribute("gameType", "Golf");
         return "success";
     }
 }
