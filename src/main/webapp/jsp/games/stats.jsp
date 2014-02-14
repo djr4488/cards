@@ -9,7 +9,7 @@
     <script src="../js/jquery-ui-1.10.4.custom.js"></script>
     <script>
         $(function() {
-            $( "#accordion" ).accordion();
+            $( "#accordion" ).accordion({ autoHeight: false });
         })
     </script>
 </head>
