@@ -48,11 +48,19 @@
         <li class="last">
             <div id="accordion">
                 <h3>Create A Game</h3>
-                <div style="display: block; height: 140px">Create game will go here.</div>
+                <div >
+                    <s:set var="gameAction" value="model.gameAction"/>
+                    <s:form id="create" method="post" action="%{#gameAction}">
+                        <s:hidden value="#session.gameType"/>
+                        <s:textfield name="gameName" key="games.gameName"/>
+                        <s:password name="password" key="games.password"/>
+                        <s:submit cssClass="buttonauth"/>
+                    </s:form>
+                </div>
                 <h3>Join A Game</h3>
-                <div style="display: block; height: 140px">Games not yet in progress/started will be listed here.</div>
+                <div>Games not yet in progress/started will be listed here.</div>
                 <h3>Your Current Games</h3>
-                <div style="display: block; height: 140px">List of the games user is currently active in.</div>
+                <div>List of the games user is currently active in.</div>
             </div>
         </li>
     </ul>
