@@ -9,5 +9,10 @@
         JdbcUrl		jdbc:mysql://localhost/cards
         UserName	root
         Password	##
+        DataSourceCreator  dbcp
+        JtaManaged  true
+        InitialSize  50
+        MaxActive   100
+        MaxIdle  3
     </Resource>
 </tomee>
