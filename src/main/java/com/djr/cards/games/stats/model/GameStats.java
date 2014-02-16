@@ -10,6 +10,7 @@ import java.util.List;
 public class GameStats {
     private List<PlayerStats> top10;
     private PlayerStats userStats;
+    private String gameAction;
 
     public GameStats() { }
 
@@ -33,6 +34,10 @@ public class GameStats {
     public void setUserStats(PlayerStats userStats) {
         this.userStats = userStats;
     }
+
+    public String getGameAction() { return gameAction; }
+
+    public void setGameAction(String gameAction) { this.gameAction = gameAction; }
 
     @Override
     public String toString() {
