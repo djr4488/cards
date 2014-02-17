@@ -23,7 +23,10 @@ public class GamesInterceptor extends BaseInterceptor {
         if (session != null) {
             User user = (User)session.getAttribute("user");
             if (user == null) {
-                return "error";
+                return "landing";
+            }
+            if (session.getAttribute("tracking") == null) {
+                return "landing";
             }
         }
         return actionInvocation.invoke();

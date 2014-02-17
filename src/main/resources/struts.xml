@@ -126,6 +126,7 @@
             <interceptor-ref name="gamesStack"/>
             <result name="success">/jsp/games/stats.jsp</result>
             <result name="error" type="redirect">error.do</result>
+            <result name="landing" type="redirect">landing.do</result>
         </action>
         <action name="golfCreate"
                 class="com.djr.cards.games.golf.actions.GolfAction"
