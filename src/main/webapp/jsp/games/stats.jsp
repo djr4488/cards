@@ -48,19 +48,34 @@
         <li class="last">
             <div id="accordion">
                 <h3>Create A Game</h3>
-                <div >
-                    <s:set var="gameAction" value="model.gameAction"/>
-                    <s:form id="create" method="post" action="%{#gameAction}">
-                        <s:hidden value="#session.gameType"/>
-                        <s:textfield name="gameName" key="games.gameName"/>
-                        <s:password name="password" key="games.password"/>
+                <div>
+                    <s:form id="create" method="post" action="gameCreate">
+                        <s:hidden name="model.gameType" value="%{#session.gameType}"/>
+                        <s:label cssStyle="color: #ffffff; font-size: 75%" value="%{gameNameLabel}"/>
+                        <s:textfield name="model.gameName"/>
+                        <s:label cssStyle="color: #ffffff; font-size: 75%" value="%{gamePasswordLabel}"/>
+                        <s:textfield name="model.gamePassword"/>
                         <s:submit cssClass="buttonauth"/>
                     </s:form>
                 </div>
                 <h3>Join A Game</h3>
-                <div>Games not yet in progress/started will be listed here.</div>
+                <div>
+                    <s:form id="join" method="post" action="gameJoin">
+                        <s:hidden name="model.gameType" value="%{#session.gameType}"/>
+                        <s:label cssStyle="color: #ffffff; font-size: 75%" value="%{gameNameLabel}"/>
+                        <s:textfield name="model.gameName"/>
+                        <s:label cssStyle="color: #ffffff; font-size: 75%" value="%{gamePasswordLabel}"/>
+                        <s:textfield name="model.gamePassword"/>
+                        <s:submit cssClass="buttonauth"/>
+                    </s:form>
+                </div>
                 <h3>Your Current Games</h3>
-                <div>List of the games user is currently active in.</div>
+                <div>
+                    <s:form id="yourGames" method="post" action="gamePlay">
+                        <s:hidden name="model.gameType" value="%{#session.gameType}"/>
+                        <s:submit cssClass="buttonauth"/>
+                    </s:form>
+                </div>
             </div>
         </li>
     </ul>

@@ -26,6 +26,16 @@ public class GolfStatsAction extends BaseAction implements ModelDriven<GameStats
         return gameStats;
     }
 
+    public String getGameNameLabel() {
+        logger.debug("getGameNameLabel() - {}", getText("game.create.name"));
+        return getText("game.create.name");
+    }
+
+    public String getGamePasswordLabel() {
+        logger.debug("getGamePasswordLabel() - {}", getText("game.create.password"));
+        return getText("game.create.password");
+    }
+
     public String loadPlayStats() {
         logger.info("loadPlayStats() - tracking:{}", getSessionAttribute("tracking"));
         gameStats = gameStatsSvc.loadGameStats(getSessionAttribute("tracking"),

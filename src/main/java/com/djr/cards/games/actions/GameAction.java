@@ -23,8 +23,22 @@ public class GameAction extends BaseAction implements ModelDriven<GameModel> {
     }
 
     public String createGame() {
-        removeAndSetSessionAttribute("msgbold", "error.create.game.unimplemented.bold");
-        removeAndSetSessionAttribute("msgtext", "error.create.game.unimplemented.text");
+        logger.info("createGame() - gameType:{}, gameName:{}, gamePassword:{}", gameModel.getGameType(),
+                gameModel.getGameName(), gameModel.getGamePassword());
+        removeAndSetSessionAttribute("msgbold", "error.unimplemented.bold");
+        removeAndSetSessionAttribute("msgtext", "error.unimplemented.text");
+        return "error";
+    }
+
+    public String joinWaitingGame() {
+        removeAndSetSessionAttribute("msgbold", "error.unimplemented.bold");
+        removeAndSetSessionAttribute("msgtext", "error.unimplemented.text");
+        return "error";
+    }
+
+    public String playGame() {
+        removeAndSetSessionAttribute("msgbold", "error.unimplemented.bold");
+        removeAndSetSessionAttribute("msgtext", "error.unimplemented.text");
         return "error";
     }
 }

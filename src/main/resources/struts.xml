@@ -110,6 +110,7 @@
             <interceptor-ref name="gamesStack"/>
             <result name="success">/jsp/games/selector/gamesSelector.jsp</result>
             <result name="error" type="redirect">error.do</result>
+            <result name="landing" type="redirect">landing.do</result>
         </action>
         <action name="gameStatsLanding"
                 class="com.djr.cards.games.selector.actions.SelectorAction"
@@ -117,6 +118,29 @@
             <interceptor-ref name="gamesStack"/>
             <result name="golfstats" type="redirect">golfstats.do</result>
             <result name="error" type="redirect">error.do</result>
+            <result name="landing" type="redirect">landing.do</result>
+        </action>
+        <action name="gameCreate"
+                class="com.djr.cards.games.actions.GameAction"
+                method="createGame">
+            <interceptor-ref name="gamesStack"/>
+            <result name="error" type="redirect">error.do</result>
+            <result name="landing" type="redirect">landing.do</result>
+        </action>
+        <action name="gameJoin"
+                class="com.djr.cards.games.actions.GameAction"
+                method="joinWaitingGame">
+            <interceptor-ref name="gamesStack"/>
+            <result name="input">/jsp/games/stats.jsp</result>
+            <result name="error" type="redirect">error.do</result>
+            <result name="landing" type="redirect">landing.do</result>
+        </action>
+        <action name="gamePlay"
+                class="com.djr.cards.games.actions.GameAction"
+                method="playGame">
+            <interceptor-ref name="gamesStack"/>
+            <result name="error" type="redirect">error.do</result>
+            <result name="landing" type="redirect">landing.do</result>
         </action>
 
         <!-- golf game actions -->
