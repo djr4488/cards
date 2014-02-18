@@ -43,8 +43,7 @@ public class GameAction extends BaseAction implements ModelDriven<GameModel> {
         User user = (User)getSession().getAttribute("user");
         String action = null;
         try {
-            action = gameService.createGame(gameModel.getGameType(), gameModel.getGameName(),
-                    gameModel.getGamePassword(), user, getSessionAttribute("tracking"));
+            action = gameService.createGame(gameModel, user, getSessionAttribute("tracking"));
         } catch (CreateGameException cgEx) {
             addActionError("error.game.name.exists");
             return "inline";

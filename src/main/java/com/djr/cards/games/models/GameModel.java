@@ -33,4 +33,13 @@ public class GameModel {
     public void setGameType(String gameType) {
         this.gameType = gameType;
     }
+
+    @Override
+    public String toString() {
+        return "GameModel{" +
+                "gameName='" + gameName + '\'' +
+                ", gamePassword='" + gamePassword + '\'' +
+                ", gameType='" + gameType + '\'' +
+                '}';
+    }
 }
