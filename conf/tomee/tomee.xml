@@ -14,5 +14,7 @@
         InitialSize  50
         MaxActive   100
         MaxIdle  3
+        ValidationQuery select 1
+        TestOnBorrow true
     </Resource>
 </tomee>
