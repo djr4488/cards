@@ -1,5 +1,6 @@
 package com.djr.cards.games.services;
 
+import com.djr.cards.data.entities.User;
 import com.djr.cards.games.GameService;
 import com.djr.cards.games.exceptions.CreateGameException;
 
@@ -10,7 +11,8 @@ import com.djr.cards.games.exceptions.CreateGameException;
  */
 public class GameServiceImpl implements GameService {
     @Override
-    public String createGame(String gameType, String gameName, String gamePassword, String alias) throws CreateGameException {
+    public String createGame(String gameType, String gameName, String gamePassword, User user, String tracking)
+    throws CreateGameException {
         return null;
     }
 }
