@@ -63,6 +63,7 @@ public class GameDAOImpl implements GameDAO {
                 return game;
             } catch (OptimisticLockException olEx) {
                 logger.debug("createGame() - {} was just created before this instance.", gameModel.getGameName());
+                throw new CreateGameException("Game already exists - Optimistic Lock Exception");
             }
         }
         logger.debug("createGame() - {} already exists", gameModel.getGameName());
