@@ -68,4 +68,11 @@ public class GameDAOImpl implements GameDAO {
         logger.debug("createGame() - {} already exists", gameModel.getGameName());
         return null;
     }
+
+    @Override
+    public void updateGameStatus(Game game, boolean isWaiting, String tracking) {
+        logger.debug("updateGameStatus() - game:{}, isWaiting:{}, tracking:{}");
+        game.isWaitingForPlayers = isWaiting;
+        em.merge(game);
+    }
 }

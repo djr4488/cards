@@ -44,6 +44,7 @@ public class GameServiceImpl implements GameService {
             auditService.writeAudit(auditService.getAuditLog(tracking, "createGame()", gameModel.toString(),
                     Calendar.getInstance()));
             playerDao.createPlayer(game, user, tracking);
+            gameDao.updateGameStatus(game, true, tracking);
             CreateGameResult result = new CreateGameResult();
             result.game = game;
             result.actionLanding = selectorDao.findGameSelection(gameModel.getGameType()).gameAction;
