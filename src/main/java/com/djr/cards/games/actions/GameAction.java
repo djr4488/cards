@@ -3,6 +3,7 @@ package com.djr.cards.games.actions;
 import com.djr.cards.BaseAction;
 import com.djr.cards.data.entities.User;
 import com.djr.cards.games.GameService;
+import com.djr.cards.games.daos.CreateGameResult;
 import com.djr.cards.games.exceptions.CreateGameException;
 import com.djr.cards.games.models.GameModel;
 import com.opensymphony.xwork2.ModelDriven;
@@ -41,20 +42,22 @@ public class GameAction extends BaseAction implements ModelDriven<GameModel> {
                 getSessionAttribute("tracking"), gameModel.getGameType(), gameModel.getGameName(),
                 gameModel.getGamePassword());
         User user = (User)getSession().getAttribute("user");
-        String action = null;
+        CreateGameResult createGameResult = null;
         try {
-            action = gameService.createGame(gameModel, user, getSessionAttribute("tracking"));
+            createGameResult = gameService.createGame(gameModel, user, getSessionAttribute("tracking"));
         } catch (CreateGameException cgEx) {
             addActionError("error.game.name.exists");
             return "inline";
         }
-        if (action == null || action.trim().equals("") || action.equalsIgnoreCase("error")) {
+        if (createGameResult == null || createGameResult.actionLanding == null ||
+                createGameResult.actionLanding.trim().equals("") ||
+                createGameResult.actionLanding.equalsIgnoreCase("error")) {
             removeAndSetSessionAttribute("msgbold", "error.unimplemented.bold");
             removeAndSetSessionAttribute("msgtext", "error.unimplemented.text");
             return "error";
         }
-        logger.info("createGame() - forward to {}", action);
-        return action;
+        logger.info("createGame() - forward to {}", createGameResult.actionLanding);
+        return createGameResult.actionLanding;
     }
 
     public String joinWaitingGame() {

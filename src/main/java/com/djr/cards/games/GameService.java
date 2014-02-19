@@ -1,6 +1,7 @@
 package com.djr.cards.games;
 
 import com.djr.cards.data.entities.User;
+import com.djr.cards.games.daos.CreateGameResult;
 import com.djr.cards.games.exceptions.CreateGameException;
 import com.djr.cards.games.exceptions.JoinGameException;
 import com.djr.cards.games.exceptions.PlayGameException;
@@ -20,10 +21,10 @@ public interface GameService {
      * @param gameModel GameModel
      * @param user User
      * @param tracking String
-     * @return String Is the forwarding action to take
+     * @return CreateGameResult Is pertinent information to game creation and landing action
      * @throws CreateGameException
      */
-    public String createGame(GameModel gameModel, User user, String tracking)
+    public CreateGameResult createGame(GameModel gameModel, User user, String tracking)
     throws CreateGameException;
 
     /**

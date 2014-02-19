@@ -28,6 +28,7 @@ public class GamesInterceptor extends BaseInterceptor {
             if (session.getAttribute("tracking") == null) {
                 return "landing";
             }
+            logger.debug("intercept() - user:{}, tracking:{}", user, session.getAttribute("tracking"));
         }
         return actionInvocation.invoke();
     }

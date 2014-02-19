@@ -1,4 +1,4 @@
-package com.djr.cards.games.golf.stats.action;
+package com.djr.cards.games.golf.actions;
 
 import com.djr.cards.BaseAction;
 import com.djr.cards.data.entities.User;

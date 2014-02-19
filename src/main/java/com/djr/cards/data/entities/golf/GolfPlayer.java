@@ -1,8 +1,8 @@
 package com.djr.cards.data.entities.golf;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.djr.cards.data.entities.game.Player;
+
+import javax.persistence.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,6 +14,10 @@ import javax.persistence.Table;
 @Table(name="golf_players")
 public class GolfPlayer {
     @Id
+    @Column(name="id", nullable=false)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-    private String userId;
+    @OneToOne
+    @JoinColumn(name="player_id")
+    public Player playerId;
 }

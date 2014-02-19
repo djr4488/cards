@@ -32,6 +32,8 @@ public class GameSelection {
     public String gameDescription;
     @Column(name="landing_action")
     public String landingAction;
+    @Column(name="game_landing")
+    public String gameAction;
 
     public int getId() {
         return id;

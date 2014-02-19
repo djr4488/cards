@@ -7,6 +7,9 @@
         <class>com.djr.cards.data.entities.AuditLog</class>
         <class>com.djr.cards.data.entities.UserStats</class>
         <class>com.djr.cards.data.entities.GameSelection</class>
+        <class>com.djr.cards.data.entities.game.Game</class>
+        <class>com.djr.cards.data.entities.game.Player</class>
+        <class>com.djr.cards.data.entities.golf.GolfPlayer</class>
         <properties>
             <property
                 name = "eclipselink.logging.level.sql"
