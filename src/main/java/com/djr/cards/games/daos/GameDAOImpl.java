@@ -2,13 +2,17 @@ package com.djr.cards.games.daos;
 
 import com.djr.cards.data.entities.User;
 import com.djr.cards.data.entities.game.Game;
+import com.djr.cards.data.entities.game.Player;
 import com.djr.cards.games.exceptions.CreateGameException;
 import com.djr.cards.games.models.GameModel;
 import org.slf4j.Logger;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -58,6 +62,7 @@ public class GameDAOImpl implements GameDAO {
             game.gamePassword = gameModel.getGamePassword();
             game.gameType = gameModel.getGameType();
             game.user = user;
+            game.lastUpdated = Calendar.getInstance();
             try {
                 em.persist(game);
                 return game;

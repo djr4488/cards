@@ -1,4 +1,4 @@
-package com.djr.cards.games.daos;
+package com.djr.cards.games.models;
 
 import com.djr.cards.data.entities.game.Game;
 

@@ -6,7 +6,7 @@ import com.djr.cards.data.entities.User;
 import com.djr.cards.data.entities.game.Game;
 import com.djr.cards.data.entities.game.Player;
 import com.djr.cards.games.GameService;
-import com.djr.cards.games.daos.CreateGameResult;
+import com.djr.cards.games.models.CreateGameResult;
 import com.djr.cards.games.daos.GameDAO;
 import com.djr.cards.games.daos.PlayerDAO;
 import com.djr.cards.games.exceptions.CreateGameException;

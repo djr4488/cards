@@ -3,7 +3,7 @@ package com.djr.cards.games.actions;
 import com.djr.cards.BaseAction;
 import com.djr.cards.data.entities.User;
 import com.djr.cards.games.GameService;
-import com.djr.cards.games.daos.CreateGameResult;
+import com.djr.cards.games.models.CreateGameResult;
 import com.djr.cards.games.exceptions.CreateGameException;
 import com.djr.cards.games.models.GameModel;
 import com.opensymphony.xwork2.ModelDriven;

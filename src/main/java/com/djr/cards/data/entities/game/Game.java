@@ -8,6 +8,7 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
+import java.util.Calendar;
 
 /**
  * User: djr4488
@@ -39,6 +40,9 @@ public class Game {
     public String gameType;
     @Column(name="is_waiting")
     public Boolean isWaitingForPlayers;
+    @Column(name="last_updated")
+    @Temporal(TemporalType.TIMESTAMP)
+    public Calendar lastUpdated;
     @Version
     private Long version;
 

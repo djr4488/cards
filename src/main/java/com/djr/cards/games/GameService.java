@@ -1,11 +1,12 @@
 package com.djr.cards.games;
 
 import com.djr.cards.data.entities.User;
-import com.djr.cards.games.daos.CreateGameResult;
+import com.djr.cards.games.models.CreateGameResult;
 import com.djr.cards.games.exceptions.CreateGameException;
 import com.djr.cards.games.exceptions.JoinGameException;
 import com.djr.cards.games.exceptions.PlayGameException;
 import com.djr.cards.games.models.GameModel;
+import com.djr.cards.games.models.JoinGameResult;
 
 /**
  * User: djr4488
@@ -36,7 +37,7 @@ public interface GameService {
      * @return String Is the forwarding action to take
      * @throws JoinGameException
      */
-    public String joinGame(GameModel gameModel, User user, String tracking)
+    public JoinGameResult joinGame(GameModel gameModel, User user, String tracking)
     throws JoinGameException;
 
     /**
