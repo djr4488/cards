@@ -11,4 +11,5 @@ import com.djr.cards.data.entities.game.Player;
  */
 public interface PlayerDAO {
     public Player createPlayer(Game game, User user, String tracking);
+    public boolean isUserAPlayer(Game game, User user, String tracking);
 }

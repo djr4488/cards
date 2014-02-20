@@ -13,6 +13,10 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="players")
+@NamedQueries ({
+        @NamedQuery(name="findUserAsPlayer",
+                    query="select player from Player player where player.user = :user and player.gameId = :game")
+})
 public class Player {
     @Id
     @Column(name="id", nullable=false)

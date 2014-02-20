@@ -10,7 +10,9 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.Calendar;
 
 /**
@@ -36,5 +38,17 @@ public class PlayerDAOImpl implements PlayerDAO {
         game.lastUpdated = Calendar.getInstance();
         em.merge(game);
         return null;
+    }
+
+    public boolean isUserAPlayer(Game game, User user, String tracking) {
+        logger.debug("isUserAPlayer() - game:{}, user:{}, tracking:{}", game, user.alias, tracking);
+        TypedQuery<Player> query = em.createNamedQuery("findUserAsPlayer", Player.class);
+        query.setParameter("user", user);
+        query.setParameter("game", game);
+        try {
+            return query.getSingleResult() != null;
+        } catch (NoResultException nrEx) {
+            return false;
+        }
     }
 }

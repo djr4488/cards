@@ -36,6 +36,14 @@ public class GolfStatsAction extends BaseAction implements ModelDriven<GameStats
         return getText("game.create.password");
     }
 
+    public boolean hasInlineError() {
+        return getSession().getAttribute("inlineError") != null;
+    }
+
+    public String getInlineError() {
+        return (String)getAndRemoveSessionAttribute("inlineError");
+    }
+
     public String loadPlayStats() {
         logger.info("loadPlayStats() - tracking:{}", getSessionAttribute("tracking"));
         gameStats = gameStatsSvc.loadGameStats(getSessionAttribute("tracking"),

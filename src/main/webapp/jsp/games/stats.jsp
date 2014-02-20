@@ -15,6 +15,14 @@
 </head>
 <body class="mainbody">
 <div id="titlebox" class="titlediv">${sessionScope.statsTitle}</div>
+<s:if test="hasInlineError()">
+<div class="ui-widget">
+    <div class="ui-state-error ui-corner-all" style="margin-top: 20px; padding: 0 .7em;">
+        <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+            <strong><s:text name="game.stats.hey"/> </strong>${sessionScope.inlineError}</p>
+    </div>
+</div>
+</s:if>
 <div id="stats" class="box-options">
     <ul>
         <li>

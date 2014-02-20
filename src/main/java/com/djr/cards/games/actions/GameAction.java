@@ -40,11 +40,11 @@ public class GameAction extends BaseAction implements ModelDriven<GameModel> {
 
     private boolean createGameResultHasInlineError(CreateGameResult createGameResult) {
         if (createGameResult.actionLanding.equals("inlineCreate")) {
-            addActionError("error.game.name.exists");
+            removeAndSetSessionAttribute("inlineError", getText("error.game.name.exists"));
             return true;
         }
         if (createGameResult.actionLanding.equals("inlineTriesExceeded")) {
-            addActionError("error.game.tries.exceeded");
+            removeAndSetSessionAttribute("inlineError", getText("error.game.tries.exceeded"));
             return true;
         }
         return false;
@@ -65,7 +65,7 @@ public class GameAction extends BaseAction implements ModelDriven<GameModel> {
             return "error";
         }
         if (createGameResultHasInlineError(createGameResult)) {
-            return "inline";
+            return "inline"+gameModel.getGameType();
         }
         removeAndSetSessionAttribute("gameid", createGameResult.game.getId());
         logger.info("createGame() - forward to {}", createGameResult.actionLanding);
@@ -74,15 +74,19 @@ public class GameAction extends BaseAction implements ModelDriven<GameModel> {
 
     private boolean joinGameResultHasInlineError(JoinGameResult joinGameResult) {
         if (joinGameResult.landingAction.equals("inlinePassword")) {
-            addActionError("error.game.wrong.password");
+            removeAndSetSessionAttribute("inlineError", getText("error.game.wrong.password"));
             return true;
         }
         if (joinGameResult.landingAction.equals("inlineStarted")) {
-            addActionError("error.game.started");
+            removeAndSetSessionAttribute("inlineError", getText("error.game.started"));
             return true;
         }
         if (joinGameResult.landingAction.equals("inlineTriesExceeded")) {
-            addActionError("error.game.tries.exceeded");
+            removeAndSetSessionAttribute("inlineError", getText("error.game.tries.exceeded"));
+            return true;
+        }
+        if (joinGameResult.landingAction.equals("inlineAlreadyJoined")) {
+            removeAndSetSessionAttribute("inlineError", getText("error.game.already.joined"));
             return true;
         }
         return false;
@@ -102,7 +106,7 @@ public class GameAction extends BaseAction implements ModelDriven<GameModel> {
             return "error";
         }
         if (joinGameResultHasInlineError(joinGameResult)) {
-            return "inline";
+            return "inline"+gameModel.getGameType();
         }
         logger.debug("joinWaitingGame() - with landing action {}", joinGameResult.landingAction);
         removeAndSetSessionAttribute("gameid", joinGameResult.game);

@@ -135,6 +135,8 @@
             <result name="input">/jsp/games/stats.jsp</result>
             <result name="error" type="redirect">error.do</result>
             <result name="landing" type="redirect">landing.do</result>
+            <result name="golflanding" type="redirect">golfLanding.do</result>
+            <result name="inlineGolf" type="redirect">golfstats.do</result>
         </action>
         <action name="gamePlay"
                 class="com.djr.cards.games.actions.GameAction"
