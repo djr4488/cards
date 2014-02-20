@@ -23,10 +23,8 @@ public interface GameService {
      * @param user User
      * @param tracking String
      * @return CreateGameResult Is pertinent information to game creation and landing action
-     * @throws CreateGameException
      */
-    public CreateGameResult createGame(GameModel gameModel, User user, String tracking)
-    throws CreateGameException;
+    public CreateGameResult createGame(GameModel gameModel, User user, String tracking);
 
     /**
      * This method will attempt place the User into a game which is not yet started.
@@ -35,10 +33,8 @@ public interface GameService {
      * @param user User
      * @param tracking String
      * @return String Is the forwarding action to take
-     * @throws JoinGameException
      */
-    public JoinGameResult joinGame(GameModel gameModel, User user, String tracking)
-    throws JoinGameException;
+    public JoinGameResult joinGame(GameModel gameModel, User user, String tracking);
 
     /**
      * This method will attempt to allow the user to play/view a game which he is a part of

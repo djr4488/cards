@@ -35,25 +35,29 @@ public class GameServiceImpl implements GameService {
     private SelectorDAO selectorDao;
     @Inject
     private AuditService auditService;
+    @Inject
+    private Integer maxTries = 3;
 
     @Override
-    public CreateGameResult createGame(GameModel gameModel, User user, String tracking)
-    throws CreateGameException {
+    public CreateGameResult createGame(GameModel gameModel, User user, String tracking) {
         logger.debug("createGame() - tracking:{}, gameModel:{}, user:{}", tracking, gameModel, user);
+        CreateGameResult result = null;
         try {
             Game game = gameDao.createGame(gameModel, user, tracking);
             auditService.writeAudit(auditService.getAuditLog(tracking, "createGame()", gameModel.toString(),
                     Calendar.getInstance()));
             playerDao.createPlayer(game, user, tracking);
             gameDao.updateGameStatus(game, true, tracking);
-            CreateGameResult result = new CreateGameResult();
+            result = new CreateGameResult();
             result.game = game;
             result.actionLanding = selectorDao.findGameSelection(gameModel.getGameType()).gameAction;
-            return result;
         } catch (CreateGameException cgEx) {
             logger.error("createGame() - failed with exception ", cgEx);
+            result = new CreateGameResult();
+            result.game = null;
+            result.actionLanding = "inlineCreate";
         }
-        return null;
+        return result;
     }
 
     private boolean validatePassword(Game game, GameModel gameModel, String tracking) {
@@ -67,9 +71,10 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public JoinGameResult joinGame(GameModel gameModel, User user, String tracking) throws JoinGameException {
+    public JoinGameResult joinGame(GameModel gameModel, User user, String tracking) {
         logger.debug("joinGame() - tracking:{}, gameModel:{}, user:{}", tracking, gameModel, user);
         boolean retry = true;
+        int tries = 0;
         Game game = gameDao.findGame(gameModel, user, tracking);
         JoinGameResult joinGameResult = new JoinGameResult();
         if (!validatePassword(game, gameModel, tracking)) {
@@ -78,19 +83,27 @@ public class GameServiceImpl implements GameService {
             retry = false;
         }
         while (retry) {
-            if (game.isWaitingForPlayers) {
+            game = gameDao.findGame(gameModel, user, tracking);
+            if (game.isWaitingForPlayers && tries < maxTries) {
                 try {
                     playerDao.createPlayer(game, user, tracking);
                     joinGameResult.game = game;
                     joinGameResult.landingAction = selectorDao.findGameSelection(gameModel.getGameType()).gameAction;
                 } catch (OptimisticLockException olEx) {
                     logger.debug("joinGame() - failed to join stale game reference");
+                    tries++;
                     continue;
                 }
             } else {
-                logger.debug("joinGame() - game started before player joined");
-                joinGameResult.game = null;
-                joinGameResult.landingAction = "inlineStarted";
+                if (!game.isWaitingForPlayers) {
+                    logger.debug("joinGame() - game started before player joined");
+                    joinGameResult.game = null;
+                    joinGameResult.landingAction = "inlineStarted";
+                } else {
+                    logger.debug("joinGame() - exceeded maxTries for joining game");
+                    joinGameResult.game = null;
+                    joinGameResult.landingAction = "inlineTriesExceeded";
+                }
             }
             retry = false;
         }
