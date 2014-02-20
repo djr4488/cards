@@ -4,7 +4,7 @@
 <head>
     <title>${sessionScope.statsTitle}</title>
     <link rel="stylesheet" href="../css/cards.css" type="text/css">
-    <link href="../css/ui-darkness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
+    <link href="../css/eggplant/jquery-ui-1.10.4.custom.css" rel="stylesheet">
     <script src="../js/jquery-1.10.2.js"></script>
     <script src="../js/jquery-ui-1.10.4.custom.js"></script>
     <script>
@@ -28,7 +28,7 @@
         <li>
             <table width="420px" align="left">
                 <caption><s:text name="game.stats.top10"/> ${sessionScope.gameType}</caption>
-                <tr>
+                <tr style="background-image: linear-gradient(to bottom, #FFFFFF, #8866A3);">
                     <th width="25%" align="left"><s:text name="game.stats.rank"/></th>
                     <th width="25%" align="left"><s:text name="game.stats.alias"/></th>
                     <th width="25%" align="left"><s:text name="game.stats.wins"/></th>
@@ -42,7 +42,7 @@
                         <td><s:property value="#player.totalGames"/></td>
                     </tr>
                 </s:iterator>
-                <tr>
+                <tr style="background-image: linear-gradient(to bottom, #FFFFFF, #8866A3);">
                     <th colspan="4"><s:text name="game.stats.yours"/></th>
                 </tr>
                 <tr>

@@ -70,12 +70,9 @@ public class GameServiceImpl implements GameService {
         return true;
     }
 
-    @Override
-    public JoinGameResult joinGame(GameModel gameModel, User user, String tracking) {
-        logger.debug("joinGame() - tracking:{}, gameModel:{}, user:{}", tracking, gameModel, user);
-        boolean retry = true;
-        int tries = 0;
-        Game game = gameDao.findGame(gameModel, user, tracking);
+    private JoinGameResult joinGameValidation(Game game, GameModel gameModel, User user, String tracking) {
+        logger.debug("joinGameValidation() - game:{}, gameModel:{}, user:{}, tracking:{}", game, gameModel,
+                user.alias, tracking);
         JoinGameResult joinGameResult = new JoinGameResult();
         if (game == null) {
             joinGameResult.game = null;
@@ -92,6 +89,33 @@ public class GameServiceImpl implements GameService {
             joinGameResult.landingAction = "inlineAlreadyJoined";
             return joinGameResult;
         }
+        return joinGameResult;
+    }
+
+    private JoinGameResult joinRetryValidations(Game game) {
+        JoinGameResult joinGameResult = new JoinGameResult();
+        if (!game.isWaitingForPlayers) {
+            logger.debug("joinGame() - game started before player joined");
+            joinGameResult.game = null;
+            joinGameResult.landingAction = "inlineStarted";
+        } else {
+            logger.debug("joinGame() - exceeded maxTries for joining game");
+            joinGameResult.game = null;
+            joinGameResult.landingAction = "inlineTriesExceeded";
+        }
+        return joinGameResult;
+    }
+
+    @Override
+    public JoinGameResult joinGame(GameModel gameModel, User user, String tracking) {
+        logger.debug("joinGame() - tracking:{}, gameModel:{}, user:{}", tracking, gameModel, user);
+        boolean retry = true;
+        int tries = 0;
+        Game game = gameDao.findGame(gameModel, user, tracking);
+        JoinGameResult joinGameResult = joinGameValidation(game, gameModel, user, tracking);
+        if (joinGameResult.landingAction != null) {
+            return joinGameResult;
+        }
         while (retry) {
             game = gameDao.findGame(gameModel, user, tracking);
             if (game.isWaitingForPlayers && tries < maxTries) {
@@ -105,15 +129,7 @@ public class GameServiceImpl implements GameService {
                     continue;
                 }
             } else {
-                if (!game.isWaitingForPlayers) {
-                    logger.debug("joinGame() - game started before player joined");
-                    joinGameResult.game = null;
-                    joinGameResult.landingAction = "inlineStarted";
-                } else {
-                    logger.debug("joinGame() - exceeded maxTries for joining game");
-                    joinGameResult.game = null;
-                    joinGameResult.landingAction = "inlineTriesExceeded";
-                }
+                joinGameResult = joinRetryValidations(game);
             }
             retry = false;
         }
