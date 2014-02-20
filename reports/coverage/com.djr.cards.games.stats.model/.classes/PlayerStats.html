@@ -50,18 +50,18 @@
 </td>
 <td class="coverageStat">
   <span class="percent">
-    30%
+    27.3%
   </span>
   <span class="absValue">
-    (3/ 10)
+    (3/ 11)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    42.1%
+    40%
   </span>
   <span class="absValue">
-    (8/ 19)
+    (8/ 20)
   </span>
 </td>
 </tr>
@@ -127,13 +127,23 @@
 <i>53</i>&nbsp;    public void setAlias(String alias) {
 <b class="nc"><i>54</i>&nbsp;        this.alias = alias;</b>
 <b class="nc"><i>55</i>&nbsp;    }</b>
-<i>56</i>&nbsp;}
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;    @Override
+<i>58</i>&nbsp;    public String toString() {
+<b class="nc"><i>59</i>&nbsp;        return &quot;PlayerStats{&quot; +</b>
+<i>60</i>&nbsp;                &quot;wins=&quot; + wins +
+<i>61</i>&nbsp;                &quot;, totalGames=&quot; + totalGames +
+<i>62</i>&nbsp;                &quot;, rank=&quot; + rank +
+<i>63</i>&nbsp;                &quot;, alias=&#39;&quot; + alias + &#39;\&#39;&#39; +
+<i>64</i>&nbsp;                &#39;}&#39;;
+<i>65</i>&nbsp;    }
+<i>66</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2014-02-13 17:11</div>
+    <div style="float:right;">generated on 2014-02-19 18:06</div>
 </div>
 </body>
 </html>

@@ -106,32 +106,34 @@
 <i>32</i>&nbsp;    public String gameDescription;
 <i>33</i>&nbsp;    @Column(name=&quot;landing_action&quot;)
 <i>34</i>&nbsp;    public String landingAction;
-<i>35</i>&nbsp;
-<i>36</i>&nbsp;    public int getId() {
-<b class="nc"><i>37</i>&nbsp;        return id;</b>
-<i>38</i>&nbsp;    }
-<i>39</i>&nbsp;
-<i>40</i>&nbsp;    @Override
-<i>41</i>&nbsp;    public boolean equals(Object o) {
-<b class="nc"><i>42</i>&nbsp;        return EqualsBuilder.reflectionEquals(this, o, null);</b>
-<i>43</i>&nbsp;    }
-<i>44</i>&nbsp;
-<i>45</i>&nbsp;    @Override
-<i>46</i>&nbsp;    public int hashCode() {
-<b class="nc"><i>47</i>&nbsp;        return HashCodeBuilder.reflectionHashCode(this, null);</b>
-<i>48</i>&nbsp;    }
-<i>49</i>&nbsp;
-<i>50</i>&nbsp;    @Override
-<i>51</i>&nbsp;    public String toString() {
-<b class="nc"><i>52</i>&nbsp;        return ReflectionToStringBuilder.toString(this, ToStringStyle.DEFAULT_STYLE);</b>
-<i>53</i>&nbsp;    }
-<i>54</i>&nbsp;}
+<i>35</i>&nbsp;    @Column(name=&quot;game_landing&quot;)
+<i>36</i>&nbsp;    public String gameAction;
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;    public int getId() {
+<b class="nc"><i>39</i>&nbsp;        return id;</b>
+<i>40</i>&nbsp;    }
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    @Override
+<i>43</i>&nbsp;    public boolean equals(Object o) {
+<b class="nc"><i>44</i>&nbsp;        return EqualsBuilder.reflectionEquals(this, o, null);</b>
+<i>45</i>&nbsp;    }
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;    @Override
+<i>48</i>&nbsp;    public int hashCode() {
+<b class="nc"><i>49</i>&nbsp;        return HashCodeBuilder.reflectionHashCode(this, null);</b>
+<i>50</i>&nbsp;    }
+<i>51</i>&nbsp;
+<i>52</i>&nbsp;    @Override
+<i>53</i>&nbsp;    public String toString() {
+<b class="nc"><i>54</i>&nbsp;        return ReflectionToStringBuilder.toString(this, ToStringStyle.DEFAULT_STYLE);</b>
+<i>55</i>&nbsp;    }
+<i>56</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2014-02-13 17:11</div>
+    <div style="float:right;">generated on 2014-02-19 18:06</div>
 </div>
 </body>
 </html>

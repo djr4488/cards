@@ -61,7 +61,7 @@
     0%
   </span>
   <span class="absValue">
-    (0/ 8)
+    (0/ 11)
   </span>
 </td>
 </tr>
@@ -97,18 +97,22 @@
 <b class="nc"><i>23</i>&nbsp;        if (session != null) {</b>
 <b class="nc"><i>24</i>&nbsp;            User user = (User)session.getAttribute(&quot;user&quot;);</b>
 <b class="nc"><i>25</i>&nbsp;            if (user == null) {</b>
-<b class="nc"><i>26</i>&nbsp;                return &quot;error&quot;;</b>
+<b class="nc"><i>26</i>&nbsp;                return &quot;landing&quot;;</b>
 <i>27</i>&nbsp;            }
-<i>28</i>&nbsp;        }
-<b class="nc"><i>29</i>&nbsp;        return actionInvocation.invoke();</b>
-<i>30</i>&nbsp;    }
-<i>31</i>&nbsp;}
+<b class="nc"><i>28</i>&nbsp;            if (session.getAttribute(&quot;tracking&quot;) == null) {</b>
+<b class="nc"><i>29</i>&nbsp;                return &quot;landing&quot;;</b>
+<i>30</i>&nbsp;            }
+<b class="nc"><i>31</i>&nbsp;            logger.debug(&quot;intercept() - user:{}, tracking:{}&quot;, user, session.getAttribute(&quot;tracking&quot;));</b>
+<i>32</i>&nbsp;        }
+<b class="nc"><i>33</i>&nbsp;        return actionInvocation.invoke();</b>
+<i>34</i>&nbsp;    }
+<i>35</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2014-02-13 17:11</div>
+    <div style="float:right;">generated on 2014-02-19 18:06</div>
 </div>
 </body>
 </html>
