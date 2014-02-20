@@ -77,15 +77,20 @@ public class GameServiceImpl implements GameService {
         int tries = 0;
         Game game = gameDao.findGame(gameModel, user, tracking);
         JoinGameResult joinGameResult = new JoinGameResult();
+        if (game == null) {
+            joinGameResult.game = null;
+            joinGameResult.landingAction = "inlineNotFound";
+            return joinGameResult;
+        }
         if (!validatePassword(game, gameModel, tracking)) {
             joinGameResult.game = null;
             joinGameResult.landingAction = "inlinePassword";
-            retry = false;
+            return joinGameResult;
         }
         if (playerDao.isUserAPlayer(game, user, tracking)) {
             joinGameResult.game = null;
             joinGameResult.landingAction = "inlineAlreadyJoined";
-            retry = false;
+            return joinGameResult;
         }
         while (retry) {
             game = gameDao.findGame(gameModel, user, tracking);
