@@ -227,4 +227,50 @@ public class GameServiceImplTest extends TestCase {
             fail("did not expect exception here");
         }
     }
+
+    @Test
+    public void testJoinGameNotFound() {
+        User user = getUser();
+        Game game = getGame(user);
+        GameModel gm = getGameModel();
+        Player player = getPlayer(user, game);
+        GameSelection gs = getGameSelection();
+        String tracking = "testJoinGameStarted";
+        try {
+            when(gameDao.findGame(gm, user, tracking)).thenReturn(null);
+            JoinGameResult jgResult = svc.joinGame(gm, user, tracking);
+            verify(gameDao).findGame(gm, user, tracking);
+            assertNotNull(jgResult);
+            assertNull(jgResult.game);
+            assertEquals(jgResult.landingAction, "inlineNotFound");
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+            fail("did not expect exception here");
+        }
+    }
+
+    @Test
+    public void testJoinGameAlreadyJoined() {
+        User user = getUser();
+        Game game = getGame(user);
+        GameModel gm = getGameModel();
+        Player player = getPlayer(user, game);
+        GameSelection gs = getGameSelection();
+        String tracking = "testJoinGameStarted";
+        try {
+            when(gameDao.findGame(gm, user, tracking)).thenReturn(game);
+            when(playerDao.isUserAPlayer(game, user, tracking)).thenReturn(true);
+            JoinGameResult jgResult = svc.joinGame(gm, user, tracking);
+            verify(gameDao).findGame(gm, user, tracking);
+            verify(playerDao).isUserAPlayer(game, user, tracking);
+            assertNotNull(jgResult);
+            assertNull(jgResult.game);
+            assertEquals(jgResult.landingAction, "inlineAlreadyJoined");
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+            fail("did not expect exception here");
+        }
+    }
 }
