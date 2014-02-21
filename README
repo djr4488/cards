@@ -16,3 +16,5 @@ Goals -
 Layout -
 Generally speaking I package by feature.
 E.g. Authentication is in the auth package along with all of its required implementation details(except entities which are needed in other packages external to auth).
+
+See /cards/wiki/Licensing for the Apache licensing I am choosing to release this under.  
