@@ -57,7 +57,7 @@ public class PlayerStats {
         this.alias = alias;
     }
 
-    public List<String> activeGames() { return this.activeGames; }
+    public List<String> getActiveGames() { return this.activeGames; }
 
     public void setActiveGames(List<String> activeGames) { this.activeGames = activeGames; }
 

@@ -12,6 +12,8 @@
             $( "#accordion" ).accordion({ heightStyle: "context" });
             $( "#tabs" ).tabs({ heightStyle: "context" });
             $( "#selectable" ).selectable({ heightStyle: "context", overflow: "auto" });
+            $( "#button" ).button();
+            $( "#radioset" ).buttonset();
         })
 
     </script>
@@ -85,9 +87,11 @@
                 </div>
                 <div id="tabs-3">
                     <s:form id="yourGames" method="post" action="gamePlay">
-                        <s:hidden name="model.gameType" value="%{#session.gameType}"/>
-
-                        <s:submit cssClass="buttonauth"/>
+                            <s:hidden name="model.gameType" value="%{#session.gameType}"/>
+                            <div id="radioset">
+                                <s:radio list="model.userStats.activeGames" name="model.gameName"/>
+                            </div>
+                            <s:submit cssClass="buttonauth"/>
                     </s:form>
                 </div>
            </div>

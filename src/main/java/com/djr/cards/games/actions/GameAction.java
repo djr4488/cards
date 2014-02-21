@@ -91,7 +91,7 @@ public class GameAction extends BaseAction implements ModelDriven<GameModel> {
         }
         if (joinGameResult.landingAction.equals("inlineNotFound")) {
             removeAndSetSessionAttribute("inlineError", getText("error.game.not.found"));
-            return true;
+
         }
         return false;
     }
