@@ -82,7 +82,7 @@
     margin: 20px 0 20px -20px;
 }
 
-.box-options ul li {
+.box-options ul.box li.first {
     display: inline;
     float: left;
     width: 440px;
@@ -93,8 +93,15 @@
     background: #777777;
 }
 
-.box-options ul li.last {
+.box-options ul.box li.last {
+    display: inline;
     float: right;
+    width: 440px;
+    min-height: 350px;
+    padding: 5px;
+    border-right: 1px solid #691178;
+    border-bottom: 1px solid #691178;
+    background: #777777;
 }
 
 .label {

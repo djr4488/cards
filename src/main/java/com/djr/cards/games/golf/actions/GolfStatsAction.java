@@ -2,6 +2,7 @@ package com.djr.cards.games.golf.actions;
 
 import com.djr.cards.BaseAction;
 import com.djr.cards.data.entities.User;
+import com.djr.cards.games.models.GameModel;
 import com.djr.cards.games.stats.GameStatsService;
 import com.djr.cards.games.stats.model.GameStats;
 import com.opensymphony.xwork2.ModelDriven;
@@ -54,6 +55,10 @@ public class GolfStatsAction extends BaseAction implements ModelDriven<GameStats
             return "error";
         }
         gameStats.setGameAction("golfLanding");
+        GameModel gameModel = new GameModel();
+        gameModel.setGameType("Golf");
+        gameStats.getUserStats().setActiveGames(gameStatsSvc.loadGamesPlayerIsIn(getSessionAttribute("tracking"),
+                (User)getSession().getAttribute("user"), gameModel));
         logger.debug("loadPlayStats() - gameStats:{}", gameStats);
         removeAndSetSessionAttribute("statsTitle", getText("golf.stats.title"));
         removeAndSetSessionAttribute("gameType", "Golf");

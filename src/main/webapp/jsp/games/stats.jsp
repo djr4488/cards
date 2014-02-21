@@ -10,7 +10,10 @@
     <script>
         $(function() {
             $( "#accordion" ).accordion({ heightStyle: "context" });
+            $( "#tabs" ).tabs({ heightStyle: "context" });
+            $( "#selectable" ).selectable({ heightStyle: "context", overflow: "auto" });
         })
+
     </script>
 </head>
 <body class="mainbody">
@@ -24,8 +27,8 @@
 </div>
 </s:if>
 <div id="stats" class="box-options">
-    <ul>
-        <li>
+    <ul class="box">
+        <li class="first">
             <table width="420px" align="left">
                 <caption><s:text name="game.stats.top10"/> ${sessionScope.gameType}</caption>
                 <tr style="background-image: linear-gradient(to bottom, #FFFFFF, #8866A3);">
@@ -54,9 +57,13 @@
             </table>
         </li>
         <li class="last">
-            <div id="accordion">
-                <h3>Create A Game</h3>
-                <div>
+           <div id="tabs">
+                <ul>
+                    <li><a href="#tabs-1">Create Game</a></li>
+                    <li><a href="#tabs-2">Join Game</a></li>
+                    <li><a href="#tabs-3">Your games</a></li>
+                </ul>
+                <div id="tabs-1">
                     <s:form id="create" method="post" action="gameCreate">
                         <s:hidden name="model.gameType" value="%{#session.gameType}"/>
                         <s:label cssStyle="color: #ffffff; font-size: 75%" value="%{gameNameLabel}"/>
@@ -66,8 +73,7 @@
                         <s:submit cssClass="buttonauth"/>
                     </s:form>
                 </div>
-                <h3>Join A Game</h3>
-                <div>
+                <div id="tabs-2">
                     <s:form id="join" method="post" action="gameJoin">
                         <s:hidden name="model.gameType" value="%{#session.gameType}"/>
                         <s:label cssStyle="color: #ffffff; font-size: 75%" value="%{gameNameLabel}"/>
@@ -77,14 +83,14 @@
                         <s:submit cssClass="buttonauth"/>
                     </s:form>
                 </div>
-                <h3>Your Current Games</h3>
-                <div>
+                <div id="tabs-3">
                     <s:form id="yourGames" method="post" action="gamePlay">
                         <s:hidden name="model.gameType" value="%{#session.gameType}"/>
+
                         <s:submit cssClass="buttonauth"/>
                     </s:form>
                 </div>
-            </div>
+           </div>
         </li>
     </ul>
 </div>

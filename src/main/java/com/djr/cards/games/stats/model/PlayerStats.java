@@ -2,6 +2,8 @@ package com.djr.cards.games.stats.model;
 
 import com.djr.cards.data.entities.UserStats;
 
+import java.util.List;
+
 /**
  * User: djr4488
  * Date: 2/12/14
@@ -12,6 +14,7 @@ public class PlayerStats {
     private long totalGames;
     private long rank;
     private String alias;
+    private List<String> activeGames;
 
     public PlayerStats() { }
 
@@ -53,6 +56,10 @@ public class PlayerStats {
     public void setAlias(String alias) {
         this.alias = alias;
     }
+
+    public List<String> activeGames() { return this.activeGames; }
+
+    public void setActiveGames(List<String> activeGames) { this.activeGames = activeGames; }
 
     @Override
     public String toString() {

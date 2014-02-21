@@ -2,6 +2,10 @@ package com.djr.cards.games.stats.service;
 
 import com.djr.cards.data.entities.User;
 import com.djr.cards.data.entities.UserStats;
+import com.djr.cards.data.entities.game.Game;
+import com.djr.cards.games.daos.GameDAO;
+import com.djr.cards.games.daos.PlayerDAO;
+import com.djr.cards.games.models.GameModel;
 import com.djr.cards.games.stats.GameStatsService;
 import com.djr.cards.games.stats.UserStatsDAO;
 import com.djr.cards.games.stats.model.GameStats;
@@ -23,6 +27,8 @@ public class GameStatsServiceImpl implements GameStatsService {
     private Logger logger;
     @Inject
     private UserStatsDAO userStatsDao;
+    @Inject
+    private PlayerDAO playerDao;
 
     private boolean findOrCreateStats(String tracking, User user, String gameType) {
         logger.debug("findOrCreateStats() - tracking:{}, gameType{}", tracking, gameType);
@@ -79,4 +85,13 @@ public class GameStatsServiceImpl implements GameStatsService {
         logger.debug("loadGameStats() - tracking:{}, gameType:{} - failed to load stats");
         return null;
     }
+
+    @Override
+    public List<String> loadGamesPlayerIsIn(String tracking, User user, GameModel gameModel) {
+        logger.debug("loadGamesPlayerIsIn() - gameModel:{}, user:{}, tracking:{}", gameModel, user.alias, tracking);
+        List<String> gameList = playerDao.findGamesPlayerIsIn(gameModel.getGameType(), user, tracking);
+        logger.debug("loadGamesPlayerIsIn() - returning {}", gameList);
+        return gameList;
+    }
+
 }

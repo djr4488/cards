@@ -14,6 +14,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * User: djr4488
@@ -49,6 +50,19 @@ public class PlayerDAOImpl implements PlayerDAO {
             return query.getSingleResult() != null;
         } catch (NoResultException nrEx) {
             return false;
+        }
+    }
+
+    @Override
+    public List<String> findGamesPlayerIsIn(String gameType, User user, String tracking) {
+        logger.debug("findGamesPlayerIsIn() - gameType:{}, user:{}, tracking:{}", gameType, user.alias, tracking);
+        TypedQuery<String> query = em.createNamedQuery("findGamesPlayerIsIn", String.class);
+        query.setParameter("user", user);
+        query.setParameter("gameType", gameType);
+        try {
+            return query.getResultList();
+        } catch (NoResultException nrEx) {
+            return null;
         }
     }
 }
