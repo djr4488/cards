@@ -112,6 +112,21 @@
             <artifactId>mail</artifactId>
             <version>1.4</version>
         </dependency>
+        <dependency>
+            <artifactId>com.sun.jersey</artifactId>
+            <groupId>jersey-server</groupId>
+            <version>1.18</version>
+        </dependency>
+        <dependency>
+            <artifactId>com.sun.jersey</artifactId>
+            <groupId>jersey-servlet</groupId>
+            <version>1.18</version>
+        </dependency>
+        <dependency>
+            <artifactId>com.sun.jersey</artifactId>
+            <groupId>jersey-json</groupId>
+            <version>1.18</version>
+        </dependency>
 
         <dependency>
             <groupId>ch.qos.logback</groupId>
