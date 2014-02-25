@@ -11,7 +11,7 @@ import javax.ws.rs.core.MediaType;
  *         Date: 2/22/14
  *         Time: 8:21 AM
  */
-@Path("json/login")
+@Path("json/auth/login")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @ApplicationScoped

@@ -16,4 +16,6 @@ public class LoginResponse {
     public String errorBold;
     @XmlElement
     public String nextLanding;
+    @XmlElement
+    public String token;
 }
