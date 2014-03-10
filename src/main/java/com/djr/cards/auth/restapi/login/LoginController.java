@@ -15,7 +15,6 @@ import javax.ws.rs.core.MediaType;
 
 import com.djr.cards.auth.service.LoginResult;
 import com.djr.cards.auth.util.HashingUtil;
-import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 
 import java.util.UUID;
@@ -25,7 +24,7 @@ import java.util.UUID;
  *         Date: 2/22/14
  *         Time: 7:57 AM
  */
-public abstract class RestLoginFormController {
+public abstract class LoginController {
     @Inject
     private Logger logger;
     @Inject
@@ -58,7 +57,7 @@ public abstract class RestLoginFormController {
     @POST
     @Path("/submit")
     @Produces(MediaType.APPLICATION_JSON)
-    public LoginResponse submit(RestLoginForm restLoginForm, @Context HttpServletRequest request) {
+    public LoginResponse submit(LoginForm restLoginForm, @Context HttpServletRequest request) {
         String tracking = generateTrackingId(request);
         HttpSession session = getSession(request);
         logger.debug("submit() - restLoginForm:{}, tracking:{}", restLoginForm, tracking);

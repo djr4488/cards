@@ -11,10 +11,10 @@ import javax.ws.rs.core.MediaType;
  *         Date: 2/22/14
  *         Time: 8:21 AM
  */
-@Path("json/auth/login")
+@Path("login/")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @ApplicationScoped
-public class JSONEndpoint extends RestLoginFormController {
+public class LoginEndpoint extends LoginController {
 
 }

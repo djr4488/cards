@@ -1,4 +1,6 @@
-package com.djr.cards.auth.restapi.login;
+package com.djr.cards;
+
+import com.djr.cards.auth.restapi.login.LoginEndpoint;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -12,9 +14,9 @@ import java.util.Set;
  *         Time: 8:24 AM
  */
 @ApplicationPath("/cards")
-public class LoginApplication extends Application {
+public class CardsApplication extends Application {
     @Override
     public Set<Class<?>> getClasses() {
-        return new HashSet<Class<?>>(Arrays.asList(JSONEndpoint.class));
+        return new HashSet<Class<?>>(Arrays.asList(LoginEndpoint.class));
     }
 }

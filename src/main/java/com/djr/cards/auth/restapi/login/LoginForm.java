@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
-public class RestLoginForm extends AuthForm {
+public class LoginForm extends AuthForm {
     private static final long serialVersionUID = 1L;
     @XmlElement
     @NotNull
