@@ -9,9 +9,10 @@ So part of this is to better organize and utilize Java technologies.
 Thanks for reading.
 
 Goals - 
-1. Complete the conversion of my golf game to Java making it web based.
+1. Complete the conversion(at this point is not even a conversion, I'm just rewriting it all) of my golf game to Java making it web based.
 2. Add additional games, like pitch and spades.
 3. Always allow others to contribute in anyway they would like.
+4. Teach myself AngularJS and expose myself even more so to things like Java Jersey, REST APIs, data structures, JPA.
 
 Layout -
 Generally speaking I package by feature.
