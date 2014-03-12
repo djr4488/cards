@@ -5,8 +5,9 @@ var authControllers = angular.module('authControllers', []);
 
 authControllers.controller('LoginCtrl', ['$scope', '$http',
     function ($scope, $http) {
+        $scope.baseURL = 'http://localhost:8080/cards';
         $scope.method='POST';
-        $scope.url = 'http://localhost:8080/cards/cards/login/submit';
+        $scope.url = $scope.baseURL + '/cards/login/submit';
         $scope.authForm = {
             loginForm: {
                 emailAddress: "",
@@ -14,7 +15,7 @@ authControllers.controller('LoginCtrl', ['$scope', '$http',
             }
         };
         $scope.loginResponse = {
-            loginResponse: {
+            authResponse: {
                 nextLanding: "",
                 errorMsg: "",
                 errorBold: "",
@@ -32,15 +33,16 @@ authControllers.controller('LoginCtrl', ['$scope', '$http',
                     console.log(data);
                     $scope.status = status;
                     $scope.loginResponse = data;
-                    if ($scope.loginResponse.loginResponse.errorMsg != null) {
+                    if ($scope.loginResponse.authResponse.errorMsg != null &&
+                            $scope.loginResponse.authResponse.errorMsg.length > 0) {
                         console.log("In error page");
-                        $scope.errorMsg = $scope.loginResponse.loginResponse.errorMsg;
-                        $scope.errorBold = $scope.loginResponse.loginResponse.errorBold;
+                        $scope.errorMsg = $scope.loginResponse.authResponse.errorMsg;
+                        $scope.errorBold = $scope.loginResponse.authResponse.errorBold;
                     } else {
                         console.log("In redirect page");
-                        console.log($scope.loginResponse.loginResponse.nextLanding);
-                        if($scope.loginResponse.loginResponse.nextLanding == 'selectGame') {
-                            window.location.replace('http://localhost:8080/cards/cards/displayGames.do');
+                        console.log($scope.loginResponse.authResponse.nextLanding);
+                        if($scope.loginResponse.authResponse.nextLanding == 'selectGame') {
+                            window.location.replace($scope.baseURL + '/cards/displayGames.do');
                         }
                     }
                 }
@@ -59,5 +61,11 @@ authControllers.controller('LoginCtrl', ['$scope', '$http',
             $scope.method = method;
             $scope.url = url;
         }
+    }
+]).controller('CreateAcctCtrl', ['$scope', '$http',
+    function($scope, $http) {
+        $scope.baseURL = 'http://localhost:8080/cards';
+        $scope.method = 'POST';
+        $scope.url = $scope.baseURL + '/cards/createAccount/submit';
     }
 ]);

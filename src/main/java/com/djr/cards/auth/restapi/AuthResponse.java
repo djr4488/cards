@@ -1,4 +1,4 @@
-package com.djr.cards.auth.restapi.login;
+package com.djr.cards.auth.restapi;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  *         Time: 8:13 AM
  */
 @XmlRootElement
-public class LoginResponse {
+public class AuthResponse {
     @XmlElement
     public String errorMsg;
     @XmlElement
