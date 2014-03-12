@@ -11,7 +11,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-route.js"></script>
     <script src="../js/app.js"></script>
     <script src="../js/AuthControllers.js"></script>
-    <link rel="stylesheet" src="../../../css/ui-darkness/jquery-ui-1.10.4.custom.css"/>
+    <script src="../bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
+    <script src="../js/jquery-1.10.2.js"></script>
+    <link rel="stylesheet" href="../bootstrap-3.1.1-dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../bootstrap-3.1.1-dist/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="../css/cards.css" type="text/css">
     <title>Cards</title>
 </head>

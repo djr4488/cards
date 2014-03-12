@@ -1,11 +1,12 @@
 <br/>
-<div class="container-fluid">
-    <div class="row-fluid">
-        <pre>{{errorMsg}}</pre>
-        <strong>Email Address</strong><br/>
-        <input type="text" ng-model="authForm.loginForm.emailAddress" style="margin-left:5em"/><br/>
-        <strong>Password</strong><br/>
-        <input type="password" ng-model="authForm.loginForm.password" style="margin-left:5em"/><br/>
-        <button id="login" ng-click="login()">Login</button>
-    </div>
+<div class="alert alert-warning" ng-show="errorMsg">
+    <strong>{{errorBold}}  </strong>{{errorMsg}}
+</div>
+<div class="container">
+    <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input type="email" ng-model="authForm.loginForm.emailAddress" placeholder="Email address" class="form-control"/>
+        <input type="password" ng-model="authForm.loginForm.password" placeholder="password" class="form-control"/><br/>
+        <button id="login" ng-click="login()" class="btn btn-lg btn-primary btn-block">Login</button>
+    </form>
 </div>

@@ -77,7 +77,8 @@ public abstract class LoginController {
             return loginResponse;
         } else {
             loginResponse = new LoginResponse();
-            loginResponse.errorMsg = "Slow down, Sparky!  Check user/pass combination.";
+			loginResponse.errorBold = "Slow down, Sparky!";
+            loginResponse.errorMsg = "Check your email/password combination.";
             return loginResponse;
         }
     }
