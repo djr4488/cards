@@ -17,6 +17,10 @@ cardsApp.config(['$routeProvider',
                 templateUrl: 'auth/login/login.html',
                 controller: 'LoginCtrl'
             }).
+            when('/createAccount', {
+                templateUrl: 'auth/create/createAccount.html',
+                controller: 'CreateAcctCtrl'
+            }).
             otherwise({
                 redirectTo: '/login'
             });
