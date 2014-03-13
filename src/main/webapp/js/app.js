@@ -10,8 +10,10 @@ cardsApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
             when('/home', {
-                templateUrl: 'jsp/welcome.html',
-                controller: 'WelcomeCtrl'
+                templateUrl: 'home.html'
+            }).
+            when('/about', {
+                templateUrl: 'about.html'
             }).
             when('/login', {
                 templateUrl: 'auth/login/login.html',
@@ -22,7 +24,7 @@ cardsApp.config(['$routeProvider',
                 controller: 'CreateAcctCtrl'
             }).
             otherwise({
-                redirectTo: '/login'
+                redirectTo: '/home'
             });
     }
 ]);
