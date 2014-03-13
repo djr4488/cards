@@ -15,6 +15,9 @@ cardsApp.config(['$routeProvider',
             when('/about', {
                 templateUrl: 'about.html'
             }).
+            when('/about-me', {
+                templateUrl: 'aboutMe.html'
+            }).
             when('/login', {
                 templateUrl: 'auth/login/login.html',
                 controller: 'LoginCtrl'
