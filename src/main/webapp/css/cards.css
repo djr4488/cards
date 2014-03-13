@@ -188,7 +188,7 @@ body {
     border-bottom-left-radius: 0;
 }
 
-.form-create input[type="password"] {
+.form-create input[id="password"] {
     margin-bottom: -1px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
