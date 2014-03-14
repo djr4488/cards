@@ -27,6 +27,10 @@ public class AuthResponse implements Serializable {
     public String nextLanding;
     @XmlElement
     public String token;
+	@XmlElement
+	public String msg;
+	@XmlElement
+	public String msgBold;
 
     @Override
     public String toString() {

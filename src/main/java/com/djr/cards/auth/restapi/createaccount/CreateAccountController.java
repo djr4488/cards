@@ -49,6 +49,8 @@ public abstract class CreateAccountController extends BaseAuthController {
 			if (result == AuthService.CreateResult.CREATED) {
 				authResponse = new AuthResponse();
 				authResponse.nextLanding = "login";
+				authResponse.msg = "You now have an account in Cards!";
+				authResponse.msgBold = "Hot damn!  ";
 			} else {
 				authResponse = new AuthResponse();
 				authResponse.errorMsg = "Something went wrong creating your account.  Likely the email address already exists.";
