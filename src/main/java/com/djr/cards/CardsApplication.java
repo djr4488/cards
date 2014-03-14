@@ -3,6 +3,7 @@ package com.djr.cards;
 import com.djr.cards.auth.restapi.createaccount.CreateAccountEndpoint;
 import com.djr.cards.auth.restapi.forgotpassword.ForgotPasswordEndpoint;
 import com.djr.cards.auth.restapi.login.LoginEndpoint;
+import com.djr.cards.auth.restapi.resetpassword.ResetPasswordEndpoint;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -20,6 +21,6 @@ public class CardsApplication extends Application {
     @Override
     public Set<Class<?>> getClasses() {
         return new HashSet<Class<?>>(Arrays.asList(LoginEndpoint.class, CreateAccountEndpoint.class,
-                ForgotPasswordEndpoint.class));
+                ForgotPasswordEndpoint.class, ResetPasswordEndpoint.class));
     }
 }

@@ -30,7 +30,10 @@ cardsApp.config(['$routeProvider',
                 templateUrl: 'auth/forgot/forgotPassword.html',
                 controller: 'ForgotPasswordCtrl'
             }).
-            otherwise({
+            when('/resetPassword', {
+                templateUrl: 'auth/reset/resetPassword.html',
+                controller: 'ResetPasswordCtrl'
+            }).otherwise({
                 redirectTo: '/home'
             });
     }
