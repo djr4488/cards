@@ -181,7 +181,7 @@ authControllers.controller('LoginCtrl', ['$scope', '$http',
                 $scope.url = url;
             }
         }
-]).controller('ForgotPasswordCtrl', ['$scope', '$http', '$route',
+]).controller('ResetPasswordCtrl', ['$scope', '$http', '$route',
         function($scope, $http) {
             $scope.baseURL = 'http://djr2.dyndns.org:9074';
             $scope.method = 'POST';
