@@ -45,7 +45,7 @@ public abstract class ResetPasswordController extends BaseAuthController {
 		//TODO - validate the information here for password/confirmPassword matching, etc.
 		AuthService.ChangePasswordResult result = authSvc.changePassword(authModel, tracking);
 		if (result == AuthService.ChangePasswordResult.SUCCESS) {
-			authResponse.nextLanding = "resetPassword";
+			authResponse.nextLanding = "login";
 			authResponse.msgBold = "Bazinga!  ";
 			authResponse.msg  = "You reset your password!  You may now login.";
 		} else {
