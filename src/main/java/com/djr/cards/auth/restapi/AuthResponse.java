@@ -1,7 +1,13 @@
 package com.djr.cards.auth.restapi;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 /**
  * @author dannyrucker
@@ -9,7 +15,10 @@ import javax.xml.bind.annotation.XmlRootElement;
  *         Time: 8:13 AM
  */
 @XmlRootElement
-public class AuthResponse {
+@XmlAccessorType(XmlAccessType.NONE)
+public class AuthResponse implements Serializable {
+    private static final long serialVersionUID = 1L;
+    public AuthResponse() { }
     @XmlElement
     public String errorMsg;
     @XmlElement
@@ -18,4 +27,9 @@ public class AuthResponse {
     public String nextLanding;
     @XmlElement
     public String token;
+
+    @Override
+    public String toString() {
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
 }

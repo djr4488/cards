@@ -9,18 +9,16 @@ import com.djr.cards.auth.service.AuthService;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-
 import com.djr.cards.auth.service.LoginResult;
 import com.djr.cards.auth.util.HashingUtil;
 import org.slf4j.Logger;
-
 import java.util.Calendar;
-import java.util.UUID;
 
 /**
  * @author dannyrucker
@@ -39,6 +37,7 @@ public abstract class LoginController extends BaseAuthController {
 
     @POST
     @Path("/submit")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public AuthResponse submit(LoginForm restLoginForm, @Context HttpServletRequest request) {
         String tracking = generateTrackingId(request);
@@ -59,6 +58,7 @@ public abstract class LoginController extends BaseAuthController {
             loginResponse.nextLanding = "selectGame";
             loginResponse.token = hashingUtil.generateHmacHash(("<userName>"+authModel.getUserName()+
                     "</userName><tracking>"+tracking+"</tracking>"));
+            logger.debug("submit() - loginResponse:{}", loginResponse);
             return loginResponse;
         } else {
             loginResponse = new AuthResponse();

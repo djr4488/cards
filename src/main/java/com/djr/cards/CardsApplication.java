@@ -1,6 +1,7 @@
 package com.djr.cards;
 
 import com.djr.cards.auth.restapi.createaccount.CreateAccountEndpoint;
+import com.djr.cards.auth.restapi.forgotpassword.ForgotPasswordEndpoint;
 import com.djr.cards.auth.restapi.login.LoginEndpoint;
 
 import javax.ws.rs.ApplicationPath;
@@ -14,10 +15,11 @@ import java.util.Set;
  *         Date: 2/22/14
  *         Time: 8:24 AM
  */
-@ApplicationPath("/cards")
+@ApplicationPath("/cardsapi")
 public class CardsApplication extends Application {
     @Override
     public Set<Class<?>> getClasses() {
-        return new HashSet<Class<?>>(Arrays.asList(LoginEndpoint.class, CreateAccountEndpoint.class));
+        return new HashSet<Class<?>>(Arrays.asList(LoginEndpoint.class, CreateAccountEndpoint.class,
+                ForgotPasswordEndpoint.class));
     }
 }

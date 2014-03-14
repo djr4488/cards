@@ -26,6 +26,10 @@ cardsApp.config(['$routeProvider',
                 templateUrl: 'auth/create/createAccount.html',
                 controller: 'CreateAcctCtrl'
             }).
+            when('/forgotPassword', {
+                templateUrl: 'auth/forgot/forgotPassword.html',
+                controller: 'ForgotPasswordCtrl'
+            }).
             otherwise({
                 redirectTo: '/home'
             });
