@@ -45,7 +45,7 @@ public abstract class ResetPasswordController extends BaseAuthController {
 		//TODO - validate the information here for password/confirmPassword matching, etc.
 		AuthService.ChangePasswordResult result = authSvc.changePassword(authModel, tracking);
 		if (result == AuthService.ChangePasswordResult.SUCCESS) {
-			authResponse.nextLanding = "login";
+			authResponse.nextLanding = "resetPassword";
 		} else {
 			authResponse.errorMsg = "I'd check that the email address and/or security code is correct.  And that the " +
 					"password and confirm passwords did infact match.";

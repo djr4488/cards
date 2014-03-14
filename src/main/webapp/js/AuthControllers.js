@@ -221,8 +221,8 @@ authControllers.controller('LoginCtrl', ['$scope', '$http',
                         } else {
                             console.log("In redirect page");
                             console.log($scope.loginResponse.authResponse.nextLanding);
-                            if($scope.loginResponse.authResponse.nextLanding == 'login') {
-                                window.location.replace('#login');
+                            if($scope.loginResponse.authResponse.nextLanding == 'resetPassword') {
+                                window.location.replace('#resetPassword');
                             }
                         }
                     }
