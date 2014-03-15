@@ -45,19 +45,25 @@ public abstract class LoginController extends BaseAuthController {
         logger.debug("submit() - restLoginForm:{}, tracking:{}", restLoginForm, tracking);
 		auditSvc.writeAudit(auditSvc.getAuditLog(tracking, "CreateAccountController.submit()",
 				request.getRemoteAddr(), Calendar.getInstance()));
+        session.removeAttribute("tracking");
         session.setAttribute("tracking", tracking);
         //TODO: validation logic goes here
         AuthModel authModel = restLoginForm.getAuthModel();
         authModel.setPassword(hashingUtil.generateHmacHash(authModel.getPassword()));
         LoginResult result = authSvc.login(authModel, request.getRemoteAddr());
+        return getAuthResponse(tracking, authModel, result, session);
+    }
+
+    private AuthResponse getAuthResponse(String tracking, AuthModel authModel, LoginResult result,
+                                         HttpSession session) {
         AuthResponse loginResponse;
         if (result.result == LoginResult.ResultOptions.SUCCESS) {
             session.removeAttribute("user");
             session.setAttribute("user", result.user);
             loginResponse = new AuthResponse();
             loginResponse.nextLanding = "selectGame";
-            loginResponse.token = hashingUtil.generateHmacHash(("<userName>"+authModel.getUserName()+
-                    "</userName><tracking>"+tracking+"</tracking>"));
+            loginResponse.token = hashingUtil.generateHmacHash("<userName>"+authModel.getUserName()+
+                    "</userName><tracking>"+tracking+"</tracking>");
             logger.debug("submit() - loginResponse:{}", loginResponse);
             return loginResponse;
         } else {

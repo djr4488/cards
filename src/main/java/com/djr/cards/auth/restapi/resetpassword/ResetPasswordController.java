@@ -42,6 +42,8 @@ public abstract class ResetPasswordController extends BaseAuthController {
 		auditSvc.writeAudit(auditSvc.getAuditLog(tracking, "ResetPasswordController.sumbit()",
 				request.getRemoteAddr(), Calendar.getInstance()));
 		AuthModel authModel = resetPasswordForm.getAuthModel();
+        authModel.setPassword(hashingUtil.generateHmacHash(authModel.getPassword()));
+        authModel.setConfirmPassword(hashingUtil.generateHmacHash(authModel.getConfirmPassword()));
 		//TODO - validate the information here for password/confirmPassword matching, etc.
 		AuthService.ChangePasswordResult result = authSvc.changePassword(authModel, tracking);
 		if (result == AuthService.ChangePasswordResult.SUCCESS) {

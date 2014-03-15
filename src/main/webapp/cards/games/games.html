@@ -1,0 +1,29 @@
+<html lang="en" ng-app="gamesApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-route.js"></script>
+    <script src="../../js/games/app.js"></script>
+    <script src="../../js/games/GameControllers.js"></script>
+    <script src="../../bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
+    <script src="../../js/jquery-1.10.2.js"></script>
+    <link rel="stylesheet" href="../../bootstrap-3.1.1-dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../bootstrap-3.1.1-dist/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="../../css/cards.css" type="text/css">
+    <title>Cards</title>
+</head>
+<body>
+<div id="titlebox" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#home">Cards</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#gamesSelection">Games Selection</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div ng-view></div>
+</body>
+</html>
