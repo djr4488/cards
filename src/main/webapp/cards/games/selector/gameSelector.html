@@ -4,7 +4,8 @@
 </div>
 <div class="container">
     <form class="form-horizontal">
-        <select ng-model="gameOptions" ng-options="gameOpts.name in gameOpts" class="form-control"></select>
+        <select data-ng-model="gameOpts" data-ng-options="gameName for gameName in gameOpts"
+                class="form-control"></select>
     </form>
 </div>
 <hr />

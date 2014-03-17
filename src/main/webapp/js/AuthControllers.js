@@ -42,7 +42,7 @@ authControllers.controller('LoginCtrl', ['$scope', '$http',
                         console.log("In redirect page");
                         console.log($scope.loginResponse.authResponse.nextLanding);
                         if($scope.loginResponse.authResponse.nextLanding == 'selectGame') {
-                            window.location.replace($scope.baseURL + '/cards/games.html');
+                            window.location.replace($scope.baseURL + '/cards/games/games.html');
                         }
                     }
                 }

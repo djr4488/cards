@@ -35,6 +35,7 @@ public abstract class GameSelectionController extends BaseGameController {
             response.errorMsg = "Couldn't load the game options.  I've logged the error.";
             response.errorBold = "Son of a monkey's uncle!  ";
         }
+        logger.debug("getGameOptions() - response:{}", response);
         return response;
     }
 
