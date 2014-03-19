@@ -11,9 +11,15 @@ cardsApp.config(['$routeProvider',
         $routeProvider.
             when('/selectGame', {
                 templateUrl: 'selector/gameSelector.html',
-                controller: 'SelectGameCtrl'
+                controller: 'gameSelectCtrl'
             }).otherwise({
                 redirectTo: '/selectGame'
             });
     }
 ]);
+
+cardsApp.service('gameSelectSvc', function ($http) {
+    this.getGameOptions = function () {
+        return $http.get('http://djr2.dyndns.org:9074/cardsapi/gameSelection/get');
+    };
+});
