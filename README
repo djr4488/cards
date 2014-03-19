@@ -1,21 +1,15 @@
-The purpose of this card game is to write a simple application for some popular card games using TomEE, Java, and a few other Java technologies.
+The purpose of this project to have an implemention of some popular card games(Pitch, Spades, Hearts) and one of my own little invention Golf.
 
-Golf is a conversion of a game I originally had written using C# and Windows Desktop client and Windows Server applications.  
-
-During the conversion, I've been stating to myself did I really write that?  Sadly, yes I did.
-
-So part of this is to better organize and utilize Java technologies.  
-
-Thanks for reading.
+Originally, I started out with the idea I would convert from my original C# Windows Desktop/Server implementation and just convert it to Java.  However, it was obvious this was not a good idea.  A couple reason, I have not done much with the code since 2007 and two it was pretty crappy code.
 
 Goals - 
-1. Complete the conversion(at this point is not even a conversion, I'm just rewriting it all) of my golf game to Java making it web based.
-2. Add additional games, like pitch and spades.
-3. Always allow others to contribute in anyway they would like.
-4. Teach myself AngularJS and expose myself even more so to things like Java Jersey, REST APIs, data structures, JPA.
-
-Layout -
-Generally speaking I package by feature.
-E.g. Authentication is in the auth package along with all of its required implementation details(except entities which are needed in other packages external to auth).
+1. Use AngularJS to implement my front end and TomEE and JavaEE to implement the backend using restful services.
+1a. Originally, I started out using Struts2, but then I thought there might be a better way to use REST APIs and separate the front and back end components.
+1b. That is why I chose AngularJS and Bootstrap for the front end.
+2. Implement my card game first.  While probably it will never be "popular" or anything like that, well my family likes to play it and they are in all parts of the U.S. and world for that matter.
+3. Implement other card games that are more well known.
+4. I'd like to convert the database side to use Cassandra in the future, but for the time being MySQL and EclipseLink are what it will be.
+5. Making it open source so anybody can contribute to it, just doing this under the Apache licensing.
+6. Making it available for folks to have something to see in regard to my coding style.
 
 See /cards/wiki/Licensing for the Apache licensing I am choosing to release this under.  
