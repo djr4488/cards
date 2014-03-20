@@ -219,6 +219,13 @@ body {
     margin-left: 10px;
 }
 
+#footer {
+    background-color: #F5F5F5;
+}
+#push, #footer {
+    height: 30px;
+}
+
 
 
 
