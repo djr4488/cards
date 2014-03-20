@@ -12,6 +12,8 @@ cardsApp.config(['$routeProvider',
             when('/selectGame', {
                 templateUrl: 'selector/gameSelector.html',
                 controller: 'gameSelectCtrl'
+            }).when('/selectedGame', {
+                templateUrl: 'selector/placeHolder.html'
             }).otherwise({
                 redirectTo: '/selectGame'
             });

@@ -13,15 +13,15 @@ gameControllers.controller('gameSelectCtrl', function ($scope, gameSelectSvc, $f
             errorBold: ""
         }
     }
+    $scope.selectGame = function() {
+        window.location.replace('#selectedGame');
+    }
     init();
     function init() {
         gameSelectSvc.getGameOptions().then(
             function(data){
                 console.log(data.data);
                 $scope.resp = data.data;
-                console.log($scope.resp);
-                console.log($scope.gameSelectionResponse);
-                console.log($scope.resp.gameSelectionResponse.gameOpts);
                 $scope.gameOpts = $scope.resp.gameSelectionResponse.gameOpts;
             }
         );

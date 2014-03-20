@@ -3,9 +3,11 @@
     <strong>{{errorBold}}  </strong>{{errorMsg}}
 </div>
 <div class="container">
-    <form class="form-horizontal">
-        <select data-ng-model="gameName" data-ng-options="gameName for gameName in gameOpts"
+    <form class="form-signin">
+        <select data-ng-model="gameOptSelected" data-ng-options="gameName for gameName in gameOpts"
                 class="form-control"></select>
+        <input type="hidden" ng-model="gameOpt" value="{{gameOptSelected}}"/>
+        <button id="gameSelect" ng-click="selectGame()" class="btn btn-lg btn-primary btn-block">Select Game</button>
     </form>
 </div>
 <hr />
