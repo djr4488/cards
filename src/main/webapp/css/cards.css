@@ -204,17 +204,17 @@ body {
 }
 
 .featurette-divider {
-    margin: 80px 0; /* Space out the Bootstrap <hr> more */
+    margin: 15px 0; /* Space out the Bootstrap <hr> more */
 }
 
-.marketing .col-lg-4 {
+.marketing .col-lg-6 {
     margin-bottom: 20px;
     text-align: center;
 }
 .marketing h2 {
     font-weight: normal;
 }
-.marketing .col-lg-4 p {
+.marketing .col-lg-6 p {
     margin-right: 10px;
     margin-left: 10px;
 }
