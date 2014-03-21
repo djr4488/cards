@@ -1,5 +1,7 @@
 package com.djr.cards.games.stats.model;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 /**
@@ -7,10 +9,15 @@ import java.util.List;
  * Date: 2/12/14
  * Time: 7:33 PM
  */
+@XmlRootElement
 public class GameStats {
     private List<PlayerStats> top10;
     private PlayerStats userStats;
     private String gameAction;
+    @XmlElement
+    private String errorMsg;
+    @XmlElement
+    private String errorBold;
 
     public GameStats() { }
 
@@ -19,6 +26,7 @@ public class GameStats {
         this.userStats = userStats;
     }
 
+    @XmlElement
     public List<PlayerStats> getTop10() {
         return top10;
     }
@@ -27,6 +35,7 @@ public class GameStats {
         this.top10 = top10;
     }
 
+    @XmlElement
     public PlayerStats getUserStats() {
         return userStats;
     }
@@ -35,6 +44,7 @@ public class GameStats {
         this.userStats = userStats;
     }
 
+    @XmlElement
     public String getGameAction() { return gameAction; }
 
     public void setGameAction(String gameAction) { this.gameAction = gameAction; }

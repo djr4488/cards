@@ -4,6 +4,7 @@ import com.djr.cards.auth.restapi.createaccount.CreateAccountEndpoint;
 import com.djr.cards.auth.restapi.forgotpassword.ForgotPasswordEndpoint;
 import com.djr.cards.auth.restapi.login.LoginEndpoint;
 import com.djr.cards.auth.restapi.resetpassword.ResetPasswordEndpoint;
+import com.djr.cards.games.golf.restapi.GolfStatsEndpoint;
 import com.djr.cards.games.selector.restapi.GameSelectionEndpoint;
 
 import javax.ws.rs.ApplicationPath;
@@ -22,6 +23,7 @@ public class CardsApplication extends Application {
     @Override
     public Set<Class<?>> getClasses() {
         return new HashSet<Class<?>>(Arrays.asList(LoginEndpoint.class, CreateAccountEndpoint.class,
-                ForgotPasswordEndpoint.class, ResetPasswordEndpoint.class, GameSelectionEndpoint.class));
+                ForgotPasswordEndpoint.class, ResetPasswordEndpoint.class, GameSelectionEndpoint.class,
+                GolfStatsEndpoint.class));
     }
 }

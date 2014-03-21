@@ -3,7 +3,8 @@
  */
 var cardsApp = angular.module('gamesApp', [
     'ngRoute',
-    'gameControllers'
+    'gameControllers',
+    'golfStatsControllers'
 ]);
 
 cardsApp.config(['$routeProvider',
@@ -12,8 +13,11 @@ cardsApp.config(['$routeProvider',
             when('/selectGame', {
                 templateUrl: 'selector/gameSelector.html',
                 controller: 'gameSelectCtrl'
-            }).when('/selectedGame', {
+            }).when('/placeHolder', {
                 templateUrl: 'selector/placeHolder.html'
+            }).when('/golfStats', {
+                templateUrl: 'stats/golfStats.html',
+                controller: 'golfStatsCtrl'
             }).otherwise({
                 redirectTo: '/selectGame'
             });
@@ -23,5 +27,11 @@ cardsApp.config(['$routeProvider',
 cardsApp.service('gameSelectSvc', function ($http) {
     this.getGameOptions = function () {
         return $http.get('http://djr2.dyndns.org:9074/cardsapi/gameSelection/get');
+    };
+});
+
+cardsApp.service('golfStatsSvc', function ($http) {
+    this.getGolfStats = function () {
+        return $http.get('http://djr2.dyndns.org:9074/cardsapi/golfStats/get');
     };
 });

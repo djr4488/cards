@@ -12,10 +12,16 @@ gameControllers.controller('gameSelectCtrl', function ($scope, gameSelectSvc, $f
             errorMsg: "",
             errorBold: ""
         }
-    }
+    };
+    $scope.gameOptSelected = "";
     $scope.selectGame = function() {
-        window.location.replace('#selectedGame');
-    }
+        console.log("gameOptSelected: " + $scope.gameOptSelected);
+        if ($scope.gameOptSelected == "Golf") {
+            window.location.replace('#golfStats');
+        } else {
+            window.location.replace('#placeHolder');
+        }
+    };
     init();
     function init() {
         gameSelectSvc.getGameOptions().then(

@@ -2,6 +2,8 @@ package com.djr.cards.games.stats.model;
 
 import com.djr.cards.data.entities.UserStats;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 /**
@@ -9,6 +11,7 @@ import java.util.List;
  * Date: 2/12/14
  * Time: 7:42 PM
  */
+@XmlRootElement
 public class PlayerStats {
     private long wins;
     private long totalGames;
@@ -25,6 +28,7 @@ public class PlayerStats {
         alias = userStats.user.alias;
     }
 
+    @XmlElement
     public long getWins() {
         return wins;
     }
@@ -33,6 +37,7 @@ public class PlayerStats {
         this.wins = wins;
     }
 
+    @XmlElement
     public long getTotalGames() {
         return totalGames;
     }
@@ -41,6 +46,7 @@ public class PlayerStats {
         this.totalGames = totalGames;
     }
 
+    @XmlElement
     public long getRank() {
         return rank;
     }
@@ -49,6 +55,7 @@ public class PlayerStats {
         this.rank = rank;
     }
 
+    @XmlElement
     public String getAlias() {
         return alias;
     }
@@ -57,6 +64,7 @@ public class PlayerStats {
         this.alias = alias;
     }
 
+    @XmlElement
     public List<String> getActiveGames() { return this.activeGames; }
 
     public void setActiveGames(List<String> activeGames) { this.activeGames = activeGames; }

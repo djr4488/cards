@@ -54,11 +54,11 @@ public class GolfStatsAction extends BaseAction implements ModelDriven<GameStats
             getSession().setAttribute("msgtext", "error.golf.stats.text");
             return "error";
         }
-        gameStats.setGameAction("golfLanding");
+        //gameStats.setGameAction("golfLanding");
         GameModel gameModel = new GameModel();
         gameModel.setGameType("Golf");
-        gameStats.getUserStats().setActiveGames(gameStatsSvc.loadGamesPlayerIsIn(getSessionAttribute("tracking"),
-                (User)getSession().getAttribute("user"), gameModel));
+//        gameStats.getUserStats().setActiveGames(gameStatsSvc.loadGamesPlayerIsIn(getSessionAttribute("tracking"),
+//                (User)getSession().getAttribute("user"), gameModel));
         logger.debug("loadPlayStats() - gameStats:{}", gameStats);
         removeAndSetSessionAttribute("statsTitle", getText("golf.stats.title"));
         removeAndSetSessionAttribute("gameType", "Golf");
