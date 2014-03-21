@@ -1,21 +1,40 @@
-<div class="panel panel-default">
-    <div class="panel-heading"><strong>Top 10 Players</strong></div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Rank</th>
-                <th>Alias</th>
-                <th>Wins</th>
-                <th>Total Games</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="topPlayer in top10">
-                <td>{{topPlayer.rank}}</td>
-                <td>{{topPlayer.alias}}</td>
-                <td>{{topPlayer.wins}}</td>
-                <td>{{topPlayer.totalGames}}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading"><strong>Top 10 Players</strong></div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Alias</th>
+                    <th>Wins</th>
+                    <th>Total Games</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="topPlayer in top10">
+                    <td>{{topPlayer.rank}}</td>
+                    <td>{{topPlayer.alias}}</td>
+                    <td>{{topPlayer.wins}}</td>
+                    <td>{{topPlayer.totalGames}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<hr class="featurette-divider"/>
+<div class="container marketing">
+    <div class="row">
+        <div class="col-lg-4">
+            <h2>Create a new game</h2>
+            <p>Start a new game!  <a href="#placeHolder">Go ahead, it'll be fun!</a></p>
+        </div>
+        <div class="col-lg-4">
+            <h2>Join a game</h2>
+            <p>Meet some new friends!  <a href="#placeHolder">Join a game waiting for players!</a></p>
+        </div>
+        <div class="col-lg-4">
+            <h2>Your games in progress</h2>
+            <p>Check on your games or play a turn!  <a href="#placeHolder">It's ok, I won't tell!</a></p>
+        </div>
+    </div>
 </div>

@@ -218,6 +218,10 @@ body {
     margin-right: 10px;
     margin-left: 10px;
 }
+.marketing .col-lg-4 p {
+    margin-right: 10px;
+    margin-left: 10px;
+}
 
 #footer {
     background-color: #F5F5F5;
