@@ -8,6 +8,8 @@ import java.util.List;
  * User: djr4488
  * Date: 2/12/14
  * Time: 7:33 PM
+ *
+ * TODO: once struts2 removed and test cases corrected clean this class up
  */
 @XmlRootElement
 public class GameStats {
