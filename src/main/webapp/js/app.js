@@ -33,6 +33,8 @@ cardsApp.config(['$routeProvider',
             when('/resetPassword', {
                 templateUrl: 'auth/reset/resetPassword.html',
                 controller: 'ResetPasswordCtrl'
+            }).when('/error', {
+                templateUrl: 'error.html'
             }).otherwise({
                 redirectTo: '/home'
             });

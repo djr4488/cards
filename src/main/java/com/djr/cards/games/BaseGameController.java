@@ -27,9 +27,9 @@ public class BaseGameController {
         return session;
     }
 
-    public boolean validateToken(String token, HttpServletRequest request) {
-        return authTokenSvc.isValidToken(token, (String)getSession(request).getAttribute("tracking"),
-                ((User)getSession(request).getAttribute("user")).emailAddress);
+    public boolean validateToken(String token, HttpSession session) {
+        return authTokenSvc.isValidToken(token, (String)session.getAttribute("tracking"),
+                ((User)session.getAttribute("user")).emailAddress);
     }
 
     public void removeAndSetSessionAttribute(String attributeName, Object attributeValue, HttpServletRequest request) {

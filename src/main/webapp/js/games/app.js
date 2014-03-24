@@ -32,6 +32,14 @@ cardsApp.service('gameSelectSvc', function ($http) {
 
 cardsApp.service('golfStatsSvc', function ($http) {
     this.getGolfStats = function () {
-        return $http.get('http://djr2.dyndns.org:9074/cardsapi/golfStats/get');
+        return $http.get('http://djr2.dyndns.org:9074/cardsapi/golfStats/get').success(
+            function(data, status) {
+                return data;
+            }
+        ).error(
+            function(data, status) {
+                window.location.replace('/cards/index.html#/error');
+            }
+        );
     };
 });
