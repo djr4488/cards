@@ -19,8 +19,8 @@ import java.io.IOException;
  *
  * Extremely simple auth verification, easily defeated without SSL not as though I am protecting much here though
  */
-@WebFilter(filterName="authFilter",
-    urlPatterns={"/cardsapi/golfStats/get", "/cardsapi/gameSelection/submit", "/cardsapi/gamesvc/create/submit"})
+//@WebFilter(filterName="authFilter",
+//    urlPatterns={"/cardsapi/golfStats/get", "/cardsapi/gameSelection/submit", "/cardsapi/gamesvc/create/submit"})
 public class AuthFilter implements Filter {
     @Inject
     private Logger log;
@@ -51,9 +51,6 @@ public class AuthFilter implements Filter {
             HttpServletResponse resp = (HttpServletResponse)servletResponse;
             String url = req.getRequestURL().toString();
             log.debug("doFilter() - url:{}", url);
-//            url = url.substring(0, url.indexOf("cardsapi"));
-//            log.debug("doFilter() - url after substring:{}", url);
-            //resp.sendRedirect(url + "cards/index.html");
             resp.setStatus(500);
             log.debug("doFilter() - resp:{}", resp);
         }
