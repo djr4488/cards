@@ -3,7 +3,9 @@
  */
 var cardsApp = angular.module('cardsApp', [
     'ngRoute',
-    'authControllers'
+    'authControllers',
+    'gameControllers',
+    'golfStatsControllers'
 ]);
 
 cardsApp.config(['$routeProvider',
@@ -35,9 +37,37 @@ cardsApp.config(['$routeProvider',
                 controller: 'ResetPasswordCtrl'
             }).when('/error', {
                 templateUrl: 'error.html'
+            }).when('/selectGame', {
+                templateUrl: 'games/selector/gameSelector.html',
+                controller: 'gameSelectCtrl'
+            }).when('/placeHolder', {
+                templateUrl: 'games/selector/placeHolder.html'
+            }).when('/golfStats', {
+                templateUrl: 'games/stats/golfStats.html',
+                controller: 'golfStatsCtrl'
             }).otherwise({
                 redirectTo: '/home'
             });
     }
 ]);
+
+cardsApp.service('gameSelectSvc', function ($http) {
+    this.getGameOptions = function () {
+        return $http.get('http://djr2.dyndns.org:9074/cardsapi/gameSelection/get');
+    };
+});
+
+cardsApp.service('golfStatsSvc', function ($http) {
+    this.getGolfStats = function () {
+        return $http.get('http://djr2.dyndns.org:9074/cardsapi/golfStats/get').success(
+            function(data, status) {
+                return data;
+            }
+        ).error(
+            function(data, status) {
+                window.location.replace('/cards/index.html#/error');
+            }
+        );
+    };
+});
 
