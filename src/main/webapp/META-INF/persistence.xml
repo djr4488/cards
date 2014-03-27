@@ -10,6 +10,7 @@
         <class>com.djr.cards.data.entities.game.Game</class>
         <class>com.djr.cards.data.entities.game.Player</class>
         <class>com.djr.cards.data.entities.golf.GolfPlayer</class>
+        <class>com.djr.cards.data.entities.BooleanToIntegerConverter</class>
         <properties>
             <property
                 name = "eclipselink.logging.level.sql"

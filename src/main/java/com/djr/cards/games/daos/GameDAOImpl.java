@@ -63,6 +63,7 @@ public class GameDAOImpl implements GameDAO {
             game.gameType = gameModel.getGameType();
             game.user = user;
             game.lastUpdated = Calendar.getInstance();
+            game.isWaitingForPlayers = new Boolean(false);
             try {
                 em.persist(game);
                 return game;
@@ -77,8 +78,9 @@ public class GameDAOImpl implements GameDAO {
 
     @Override
     public void updateGameStatus(Game game, boolean isWaiting, String tracking) {
-        logger.debug("updateGameStatus() - game:{}, isWaiting:{}, tracking:{}");
-        game.isWaitingForPlayers = isWaiting;
-        em.merge(game);
+        logger.debug("updateGameStatus() - game:{}, isWaiting:{}, tracking:{}", game, isWaiting, tracking);
+        Game managed = em.getReference(Game.class, game.getId());
+        managed.isWaitingForPlayers = true;
+        em.merge(managed);
     }
 }

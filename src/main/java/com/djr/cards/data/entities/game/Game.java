@@ -1,7 +1,7 @@
 package com.djr.cards.data.entities.game;
 
+import com.djr.cards.data.entities.BooleanToIntegerConverter;
 import com.djr.cards.data.entities.User;
-import com.djr.cards.games.models.GameModel;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;

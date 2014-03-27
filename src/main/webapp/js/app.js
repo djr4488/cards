@@ -5,7 +5,8 @@ var cardsApp = angular.module('cardsApp', [
     'ngRoute',
     'authControllers',
     'gameControllers',
-    'golfStatsControllers'
+    'golfStatsControllers',
+    'createGolfController'
 ]);
 
 cardsApp.config(['$routeProvider',
@@ -45,6 +46,11 @@ cardsApp.config(['$routeProvider',
             }).when('/golfStats', {
                 templateUrl: 'games/stats/golfStats.html',
                 controller: 'golfStatsCtrl'
+            }).when('/createGolf', {
+                templateUrl: 'games/golf/createGolfGame.html',
+                controller: 'CreateGolfCtrl'
+            }).when('/placeHolder', {
+                templateUrl: '/games/selector/placeHolder.html'
             }).otherwise({
                 redirectTo: '/home'
             });
