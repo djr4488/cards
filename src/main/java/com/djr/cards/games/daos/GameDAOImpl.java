@@ -79,8 +79,9 @@ public class GameDAOImpl implements GameDAO {
     @Override
     public void updateGameStatus(Game game, boolean isWaiting, String tracking) {
         logger.debug("updateGameStatus() - game:{}, isWaiting:{}, tracking:{}", game, isWaiting, tracking);
-        Game managed = em.getReference(Game.class, game.getId());
-        managed.isWaitingForPlayers = true;
-        em.merge(managed);
+        Game managed = em.find(Game.class, game.getId());
+        game.lastUpdated = Calendar.getInstance();
+        game.isWaitingForPlayers = true;
+        em.merge(game);
     }
 }
