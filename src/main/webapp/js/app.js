@@ -49,8 +49,8 @@ cardsApp.config(['$routeProvider',
             }).when('/createGolf', {
                 templateUrl: 'games/golf/createGolfGame.html',
                 controller: 'CreateGolfCtrl'
-            }).when('/placeHolder', {
-                templateUrl: '/games/selector/placeHolder.html'
+            }).when('/golfGame', {
+                templateUrl: 'games/selector/placeHolder.html'
             }).otherwise({
                 redirectTo: '/home'
             });

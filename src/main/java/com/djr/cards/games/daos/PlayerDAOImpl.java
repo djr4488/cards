@@ -36,9 +36,7 @@ public class PlayerDAOImpl implements PlayerDAO {
         player.gameId = game;
         player.user = user;
         em.persist(player);
-        game.lastUpdated = Calendar.getInstance();
-        em.merge(game);
-        return null;
+        return player;
     }
 
     public boolean isUserAPlayer(Game game, User user, String tracking) {
