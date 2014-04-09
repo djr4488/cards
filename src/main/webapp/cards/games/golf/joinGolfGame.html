@@ -12,10 +12,10 @@
 </div>
 <div class="container">
     <form class="form-signin">
-        <h2 class="form-signin-heading">Create a game</h2>
-        <input type="text" ng-model="createGameRequest.gameModel.gameName" placeholder="Game Name" class="form-control"/>
-        <input type="text" ng-model="createGameRequest.gameModel.gamePassword" placeholder="Game Password(optional)" class="form-control"/><br/>
-        <button id="gameCreate" ng-click="createGame()" class="btn btn-lg btn-primary btn-block">Create Game</button>
+        <h2 class="form-signin-heading">Join a game</h2>
+        <input type="text" ng-model="joinGameRequest.gameModel.gameName" placeholder="Game Name" class="form-control"/>
+        <input type="text" ng-model="joinGameRequest.gameModel.gamePassword" placeholder="Game Password(optional)" class="form-control"/><br/>
+        <button id="gameJoin" ng-click="joinGame()" class="btn btn-lg btn-primary btn-block">Join Game</button>
     </form>
 </div>
 <hr class="featurette-divider"/>
@@ -26,8 +26,8 @@
             <p>Bored of Golf?  <a href="#selectGame">Try something else!</a></p>
         </div>
         <div class="col-lg-4">
-            <h2>Join a game</h2>
-            <p>Meet some new friends!  <a href="#joinGolf">Join a game waiting for players!</a></p>
+            <h2>Create a game</h2>
+            <p>Be in control  <a href="#createGolf">Create a new Golf game instead!</a></p>
         </div>
         <div class="col-lg-4">
             <h2>Your games in progress</h2>

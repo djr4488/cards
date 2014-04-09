@@ -6,7 +6,8 @@ var cardsApp = angular.module('cardsApp', [
     'authControllers',
     'gameControllers',
     'golfStatsControllers',
-    'createGolfController'
+    'createGolfController',
+    'joinGolfController'
 ]);
 
 cardsApp.config(['$routeProvider',
@@ -49,6 +50,9 @@ cardsApp.config(['$routeProvider',
             }).when('/createGolf', {
                 templateUrl: 'games/golf/createGolfGame.html',
                 controller: 'CreateGolfCtrl'
+            }).when('/joinGolf', {
+                templateUrl: 'games/golf/joinGolfGame.html',
+                controller: 'JoinGolfCtrl'
             }).when('/golfGame', {
                 templateUrl: 'games/selector/placeHolder.html'
             }).otherwise({
