@@ -12,6 +12,7 @@ import com.djr.cards.games.exceptions.JoinGameException;
 import com.djr.cards.games.exceptions.PlayGameException;
 import com.djr.cards.games.models.GameModel;
 import com.djr.cards.games.models.JoinGameResult;
+import com.djr.cards.games.models.PlayGameResult;
 import com.djr.cards.games.selector.SelectorDAO;
 import org.slf4j.Logger;
 
@@ -137,8 +138,20 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public String playGame(GameModel gameModel, User user, String tracking) throws PlayGameException {
+    public PlayGameResult playGame(GameModel gameModel, User user, String tracking) throws PlayGameException {
         logger.debug("playGame() - tracking:{}, gameModel:{}, user:{}", tracking, gameModel, user);
-        return null;
+        Game game = gameDao.findGame(gameModel, user, tracking);
+        PlayGameResult playGameResult = new PlayGameResult();
+        if (game == null) {
+            playGameResult.landingAction = "inlineGameNotFoundError";
+            return playGameResult;
+        }
+        if (!playerDao.isUserAPlayer(game, user, tracking)) {
+            playGameResult.landingAction = "inlineNotInGameError";
+            return playGameResult;
+        }
+        playGameResult.landingAction = selectorDao.findGameSelection(gameModel.getGameType()).gameAction;
+        playGameResult.game = game;
+        return playGameResult;
     }
 }

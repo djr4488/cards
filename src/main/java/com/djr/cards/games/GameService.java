@@ -7,6 +7,7 @@ import com.djr.cards.games.exceptions.JoinGameException;
 import com.djr.cards.games.exceptions.PlayGameException;
 import com.djr.cards.games.models.GameModel;
 import com.djr.cards.games.models.JoinGameResult;
+import com.djr.cards.games.models.PlayGameResult;
 
 /**
  * User: djr4488
@@ -42,9 +43,9 @@ public interface GameService {
      * @param gameModel GameModel
      * @param user User
      * @param tracking String
-     * @return String Is the forwarding action to take
+     * @return PlayGameResult Is the forwarding action to take
      * @throws PlayGameException
      */
-    public String playGame(GameModel gameModel, User user, String tracking)
+    public PlayGameResult playGame(GameModel gameModel, User user, String tracking)
     throws PlayGameException;
 }

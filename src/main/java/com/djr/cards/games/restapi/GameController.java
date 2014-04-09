@@ -3,10 +3,8 @@ package com.djr.cards.games.restapi;
 import com.djr.cards.data.entities.User;
 import com.djr.cards.games.BaseGameController;
 import com.djr.cards.games.GameService;
-import com.djr.cards.games.models.CreateGameResult;
-import com.djr.cards.games.models.GameModel;
-import com.djr.cards.games.models.GameResponse;
-import com.djr.cards.games.models.JoinGameResult;
+import com.djr.cards.games.exceptions.PlayGameException;
+import com.djr.cards.games.models.*;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
@@ -57,7 +55,7 @@ public abstract class GameController extends BaseGameController {
             return gameResponse;
         }
         removeAndSetSessionAttribute("gameid", createGameResult.game.getId(), request);
-        gameResponse.nextLanding = "golfGame";
+        gameResponse.nextLanding = createGameResult.actionLanding;
         return gameResponse;
     }
 
@@ -96,7 +94,35 @@ public abstract class GameController extends BaseGameController {
             gameResponse.errorMsg = inlineError;
             return gameResponse;
         }
-        gameResponse.nextLanding = "golfGame";
+        gameResponse.nextLanding = joinGameResult.landingAction;
+        return gameResponse;
+    }
+
+    @POST
+    @Path("/play/submit")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public GameResponse playGame(GameModel gameModel, @Context HttpServletRequest request) {
+        String tracking = (String)getSession(request).getAttribute("tracking");
+        log.info("playGame() = gameModel:{}, tracking:{}", gameModel, tracking);
+        GameResponse gameResponse = new GameResponse();
+        User user = (User)getSession(request).getAttribute("user");
+        try {
+            PlayGameResult playGameResult = gameService.playGame(gameModel, user, tracking);
+            if (playGameResult.landingAction.equals("inlineGameNotFoundError")) {
+                gameResponse.errorBold = "Most interesting result!";
+                gameResponse.errorMsg = "It would appear that the game you are seeking to play cannot be found.";
+            } else if (playGameResult.landingAction.equals("inlineNotInGameError")) {
+                gameResponse.errorBold = "Sneaky!";
+                gameResponse.errorMsg = "It would seem that you are not actually in this game?  Perhaps you could join it.";
+            } else {
+                gameResponse.nextLanding = playGameResult.landingAction;
+            }
+        } catch (PlayGameException pgEx) {
+            log.error("playGame() - error occurred while attempting to play game", pgEx);
+            gameResponse.errorBold = "WHOA!";
+            gameResponse.errorMsg = "I think someone tried science and failed.";
+        }
         return gameResponse;
     }
 }
