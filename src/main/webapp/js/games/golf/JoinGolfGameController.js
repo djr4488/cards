@@ -22,7 +22,7 @@ joinGolfController.controller('JoinGolfCtrl', ['$scope', '$http',
                 gameId: 0
             }
         }
-        $scope.createGame = function() {
+        $scope.joinGame = function() {
             $scope.code = null;
             $scope.response = null;
             console.log("sending...");
