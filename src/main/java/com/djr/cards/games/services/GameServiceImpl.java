@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import javax.inject.Inject;
 import javax.persistence.OptimisticLockException;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * User: djr4488
@@ -153,5 +154,12 @@ public class GameServiceImpl implements GameService {
         playGameResult.landingAction = selectorDao.findGameSelection(gameModel.getGameType()).gameAction;
         playGameResult.game = game;
         return playGameResult;
+    }
+
+    @Override
+    public List<Game> getGamesPlayerIsIn(String gameType, User user, String tracking) {
+        logger.debug("getGamesPlayerIsIn() - tracking:{}, gameType:{}, user:{}", tracking, gameType, user.emailAddress);
+        List<Game> games = playerDao.findGamesPlayerIsIn(gameType, user, tracking);
+        return games;
     }
 }

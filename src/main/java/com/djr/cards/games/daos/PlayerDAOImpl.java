@@ -52,9 +52,9 @@ public class PlayerDAOImpl implements PlayerDAO {
     }
 
     @Override
-    public List<String> findGamesPlayerIsIn(String gameType, User user, String tracking) {
+    public List<Game> findGamesPlayerIsIn(String gameType, User user, String tracking) {
         logger.debug("findGamesPlayerIsIn() - gameType:{}, user:{}, tracking:{}", gameType, user.alias, tracking);
-        TypedQuery<String> query = em.createNamedQuery("findGamesPlayerIsIn", String.class);
+        TypedQuery<Game> query = em.createNamedQuery("findGamesPlayerIsIn", Game.class);
         query.setParameter("user", user);
         query.setParameter("gameType", gameType);
         try {

@@ -17,7 +17,7 @@ import javax.persistence.*;
         @NamedQuery(name="findUserAsPlayer",
                     query="select player from Player player where player.user = :user and player.gameId = :game"),
         @NamedQuery(name="findGamesPlayerIsIn",
-                    query="select player.gameId.gameName from Player player where player.user = :user and " +
+                    query="select player.gameId from Player player where player.user = :user and " +
                             "player.gameId.gameType = :gameType")
 })
 public class Player {

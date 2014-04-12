@@ -1,6 +1,7 @@
 package com.djr.cards.games;
 
 import com.djr.cards.data.entities.User;
+import com.djr.cards.data.entities.game.Game;
 import com.djr.cards.games.models.CreateGameResult;
 import com.djr.cards.games.exceptions.CreateGameException;
 import com.djr.cards.games.exceptions.JoinGameException;
@@ -8,6 +9,8 @@ import com.djr.cards.games.exceptions.PlayGameException;
 import com.djr.cards.games.models.GameModel;
 import com.djr.cards.games.models.JoinGameResult;
 import com.djr.cards.games.models.PlayGameResult;
+
+import java.util.List;
 
 /**
  * User: djr4488
@@ -48,4 +51,14 @@ public interface GameService {
      */
     public PlayGameResult playGame(GameModel gameModel, User user, String tracking)
     throws PlayGameException;
+
+    /**
+     * This methods looks up the games the player is in for the specified game type
+     *
+     * @param gameType
+     * @param user
+     * @param tracking
+     * @return
+     */
+    public List<Game> getGamesPlayerIsIn(String gameType, User user, String tracking);
 }

@@ -14,5 +14,5 @@ import java.util.List;
 public interface PlayerDAO {
     public Player createPlayer(Game game, User user, String tracking);
     public boolean isUserAPlayer(Game game, User user, String tracking);
-    public List<String> findGamesPlayerIsIn(String gameType, User user, String tracking);
+    public List<Game> findGamesPlayerIsIn(String gameType, User user, String tracking);
 }
