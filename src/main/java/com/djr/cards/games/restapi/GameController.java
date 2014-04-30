@@ -1,6 +1,7 @@
 package com.djr.cards.games.restapi;
 
 import com.djr.cards.data.entities.User;
+import com.djr.cards.data.entities.game.Game;
 import com.djr.cards.games.BaseGameController;
 import com.djr.cards.games.GameService;
 import com.djr.cards.games.exceptions.PlayGameException;
@@ -9,12 +10,10 @@ import org.slf4j.Logger;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 /**
  * User: djr4488
@@ -95,6 +94,32 @@ public abstract class GameController extends BaseGameController {
             return gameResponse;
         }
         gameResponse.nextLanding = joinGameResult.landingAction;
+        return gameResponse;
+    }
+
+    @GET
+    @Path("/playlist/get")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public GameResponse getPlayGameList(GameModel gameModel, @Context HttpServletRequest request) {
+        String tracking = (String)getSession(request).getAttribute("tracking");
+        log.info("getPlayGameList() - gameModel:{}, tracking:{}", gameModel, tracking);
+        GameResponse gameResponse = new GameResponse();
+        User user = (User)getSession(request).getAttribute("user");
+        try {
+            List<PlayerGame> gamesPlayerIsIn = gameService.getGamesPlayerIsIn(gameModel.getGameType(), user, tracking);
+            if (gamesPlayerIsIn == null || gamesPlayerIsIn.size() == 0) {
+                //not in games
+                gameResponse.errorBold = "No games you are in!";
+                gameResponse.errorMsg = "Join games you must.";
+            } else {
+                gameResponse.gamesPlayerIsIn = gamesPlayerIsIn;
+            }
+        } catch (Exception ex) {
+            //error finding games
+            gameResponse.errorBold = "Slow down, Sparky!";
+            gameResponse.errorMsg = "It would seem I couldn't load any games.  Can you try again?";
+        }
         return gameResponse;
     }
 

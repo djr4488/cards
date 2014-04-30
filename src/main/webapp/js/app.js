@@ -63,13 +63,13 @@ cardsApp.config(['$routeProvider',
 
 cardsApp.service('gameSelectSvc', function ($http) {
     this.getGameOptions = function () {
-        return $http.get('http://djr2.dyndns.org:9074/cardsapi/gameSelection/get');
+        return $http.get('http://djr2.asuscomm.com:9074/cardsapi/gameSelection/get');
     };
 });
 
 cardsApp.service('golfStatsSvc', function ($http) {
     this.getGolfStats = function () {
-        return $http.get('http://djr2.dyndns.org:9074/cardsapi/golfStats/get').success(
+        return $http.get('http://djr2.asuscomm.com:9074/cardsapi/golfStats/get').success(
             function(data, status) {
                 return data;
             }
@@ -79,5 +79,19 @@ cardsApp.service('golfStatsSvc', function ($http) {
             }
         );
     };
+});
+
+cardsApp.service('getGolfGamesSvc', function($http) {
+    this.getGolfGames = function() {
+        return $http.get('http://djr2.asuscomm.com:9074/cardsapi/gamesvc/playlist/get').success(
+            function(data, status) {
+                return data;
+            }
+        ).error(
+            function(data, status) {
+                window.location.replace('/cards/index.html#/error');
+            }
+        );
+    }
 });
 

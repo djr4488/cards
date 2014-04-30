@@ -2,6 +2,7 @@ package com.djr.cards.games.models;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
 
 /**
  * User: djr4488
@@ -16,4 +17,6 @@ public class GameResponse {
     public String errorMsg;
     @XmlElement
     public String errorBold;
+    @XmlElement
+    public List<PlayerGame> gamesPlayerIsIn;
 }

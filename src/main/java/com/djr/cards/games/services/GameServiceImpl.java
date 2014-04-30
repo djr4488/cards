@@ -4,20 +4,18 @@ import com.djr.cards.audit.AuditService;
 import com.djr.cards.data.entities.User;
 import com.djr.cards.data.entities.game.Game;
 import com.djr.cards.games.GameService;
-import com.djr.cards.games.models.CreateGameResult;
+import com.djr.cards.games.models.*;
 import com.djr.cards.games.daos.GameDAO;
 import com.djr.cards.games.daos.PlayerDAO;
 import com.djr.cards.games.exceptions.CreateGameException;
 import com.djr.cards.games.exceptions.JoinGameException;
 import com.djr.cards.games.exceptions.PlayGameException;
-import com.djr.cards.games.models.GameModel;
-import com.djr.cards.games.models.JoinGameResult;
-import com.djr.cards.games.models.PlayGameResult;
 import com.djr.cards.games.selector.SelectorDAO;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
 import javax.persistence.OptimisticLockException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -157,9 +155,18 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public List<Game> getGamesPlayerIsIn(String gameType, User user, String tracking) {
+    public List<PlayerGame> getGamesPlayerIsIn(String gameType, User user, String tracking) {
         logger.debug("getGamesPlayerIsIn() - tracking:{}, gameType:{}, user:{}", tracking, gameType, user.emailAddress);
         List<Game> games = playerDao.findGamesPlayerIsIn(gameType, user, tracking);
-        return games;
+        List<PlayerGame> playerGames = new ArrayList<PlayerGame>();
+        if (games != null && games.size() >0) {
+            for (Game game : games) {
+                PlayerGame pg = new PlayerGame();
+                pg.gameName = game.gameName;
+                pg.gameType = game.gameType;
+                playerGames.add(pg);
+            }
+        }
+        return playerGames;
     }
 }

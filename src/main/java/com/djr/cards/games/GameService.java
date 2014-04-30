@@ -2,13 +2,10 @@ package com.djr.cards.games;
 
 import com.djr.cards.data.entities.User;
 import com.djr.cards.data.entities.game.Game;
-import com.djr.cards.games.models.CreateGameResult;
+import com.djr.cards.games.models.*;
 import com.djr.cards.games.exceptions.CreateGameException;
 import com.djr.cards.games.exceptions.JoinGameException;
 import com.djr.cards.games.exceptions.PlayGameException;
-import com.djr.cards.games.models.GameModel;
-import com.djr.cards.games.models.JoinGameResult;
-import com.djr.cards.games.models.PlayGameResult;
 
 import java.util.List;
 
@@ -60,5 +57,5 @@ public interface GameService {
      * @param tracking
      * @return
      */
-    public List<Game> getGamesPlayerIsIn(String gameType, User user, String tracking);
+    public List<PlayerGame> getGamesPlayerIsIn(String gameType, User user, String tracking);
 }

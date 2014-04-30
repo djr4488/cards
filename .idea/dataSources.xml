@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="3458883752">
-    <data-source source="LOCAL" name="Data Source" product="MySQL" version="5.6.15" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.26 ( Revision: ${bzr.revision-id} )" uuid="f26042e2-ecb7-467b-9ec7-9c9476c12219">
-      <extra-name-characters>#@</extra-name-characters>
-      <identifier-quote-string>`</identifier-quote-string>
+  <component name="DataSourceManagerImpl" format="xml" hash="282527538">
+    <data-source source="LOCAL" name="Data Source" uuid="f26042e2-ecb7-467b-9ec7-9c9476c12219">
+      <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost/cards</jdbc-url>
       <user-name>root</user-name>
       <user-password>dffedfd8dfcfdfcfdfd9df8adfc2dfcbdfdcdfcfdf8adfc6dfcfdfcbdfdcdfcfdfd9df84</user-password>
-      <libraries>
-        <library>
-          <url>file://$PROJECT_DIR$/data-connectors/mysql-connector-license_2.txt</url>
-        </library>
-        <library>
-          <url>jar://$PROJECT_DIR$/data-connectors/mysql-connector-java-5.1.26-bin.jar!/</url>
-        </library>
-      </libraries>
+      <libraries />
     </data-source>
   </component>
 </project>
