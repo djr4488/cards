@@ -87,9 +87,9 @@ public class GameStatsServiceImpl implements GameStatsService {
     }
 
     @Override
-    public List<String> loadGamesPlayerIsIn(String tracking, User user, GameModel gameModel) {
+    public List<Game> loadGamesPlayerIsIn(String tracking, User user, GameModel gameModel) {
         logger.debug("loadGamesPlayerIsIn() - gameModel:{}, user:{}, tracking:{}", gameModel, user.alias, tracking);
-        List<String> gameList = playerDao.findGamesPlayerIsIn(gameModel.getGameType(), user, tracking);
+        List<Game> gameList = playerDao.findGamesPlayerIsIn(gameModel.getGameType(), user, tracking);
         logger.debug("loadGamesPlayerIsIn() - returning {}", gameList);
         return gameList;
     }
