@@ -1,6 +1,7 @@
 package com.djr.cards.games.stats;
 
 import com.djr.cards.data.entities.User;
+import com.djr.cards.data.entities.game.Game;
 import com.djr.cards.games.models.GameModel;
 import com.djr.cards.games.stats.model.GameStats;
 
@@ -13,5 +14,5 @@ import java.util.List;
  */
 public interface GameStatsService {
     public GameStats loadGameStats(String tracking, User user, String gameType);
-    public List<String> loadGamesPlayerIsIn(String tracking, User user, GameModel gameModel);
+    public List<Game> loadGamesPlayerIsIn(String tracking, User user, GameModel gameModel);
 }
