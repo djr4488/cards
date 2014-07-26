@@ -16,34 +16,34 @@ import javax.ws.rs.core.MediaType;
  * Time: 11:01 PM
  */
 public abstract class GameSelectionController extends BaseGameController {
-    @Inject
-    private Logger logger;
-    @Inject
-    private SelectorService selectorSvc;
+	@Inject
+	private Logger logger;
+	@Inject
+	private SelectorService selectorSvc;
 
-    @GET
-    @Path("get")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public GameSelectionResponse getGameOptions(@Context HttpServletRequest request) {
-        String tracking = (String)getSession(request).getAttribute("tracking");
-        logger.info("getGameOptions() - tracking:{}", tracking);
-        GameSelectionResponse response = new GameSelectionResponse();
-        response.gameOpts = selectorSvc.getGameList(tracking);
-        if (response.gameOpts == null || response.gameOpts.size() == 0) {
-            response.gameOpts = null;
-            response.errorMsg = "Couldn't load the game options.  I've logged the error.";
-            response.errorBold = "Son of a monkey's uncle!  ";
-        }
-        logger.debug("getGameOptions() - response:{}", response);
-        return response;
-    }
+	@GET
+	@Path("get")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public GameSelectionResponse getGameOptions(@Context HttpServletRequest request) {
+		String tracking = (String) getSession(request).getAttribute("tracking");
+		logger.info("getGameOptions() - tracking:{}", tracking);
+		GameSelectionResponse response = new GameSelectionResponse();
+		response.gameOpts = selectorSvc.getGameList(tracking);
+		if (response.gameOpts == null || response.gameOpts.size() == 0) {
+			response.gameOpts = null;
+			response.errorMsg = "Couldn't load the game options.  I've logged the error.";
+			response.errorBold = "Son of a monkey's uncle!  ";
+		}
+		logger.debug("getGameOptions() - response:{}", response);
+		return response;
+	}
 
-    @POST
-    @Path("/submit")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public GameSelectionResponse submit(SelectedGameRequest selectedGameRequest, @Context HttpServletRequest request) {
-        return null;
-    }
+	@POST
+	@Path("/submit")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public GameSelectionResponse submit(SelectedGameRequest selectedGameRequest, @Context HttpServletRequest request) {
+		return null;
+	}
 }

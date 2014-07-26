@@ -17,57 +17,58 @@ import java.util.Calendar;
  * Time: 4:39 PM
  */
 @Entity
-@Table(name="cards_users")
+@Table(name = "cards_users")
 @NamedQueries({
-        @NamedQuery(name="findUser",
-                    query="select user from User user where user.emailAddress = :emailAddress")
+		@NamedQuery(name = "findUser",
+				query = "select user from User user where user.emailAddress = :emailAddress")
 })
 public class User implements Serializable {
 
-    @Id
-    @Column(name="id", nullable=false)
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
-    @Column(name="email_address")
-    public String emailAddress;
-    @Column(name="hashed_password")
-    public String hashedPassword;
-    @Column(name="user_alias")
-    public String alias;
-    @Column(name="created_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    public Calendar createdDate;
-    @Column(name="last_login_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    public Calendar lastLoginDate;
-    @Column(name="change_password_proof")
-    public String changePasswordProof;
+	@Id
+	@Column(name = "id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@Column(name = "email_address")
+	public String emailAddress;
+	@Column(name = "hashed_password")
+	public String hashedPassword;
+	@Column(name = "user_alias")
+	public String alias;
+	@Column(name = "created_date")
+	@Temporal(TemporalType.TIMESTAMP)
+	public Calendar createdDate;
+	@Column(name = "last_login_date")
+	@Temporal(TemporalType.TIMESTAMP)
+	public Calendar lastLoginDate;
+	@Column(name = "change_password_proof")
+	public String changePasswordProof;
 
 
-    public User() { }
+	public User() {
+	}
 
-    public User(AuthModel authModel) {
-        emailAddress = authModel.getUserName();
-        hashedPassword = authModel.getPassword();
-        alias = authModel.getAlias();
-    }
+	public User(AuthModel authModel) {
+		emailAddress = authModel.getUserName();
+		hashedPassword = authModel.getPassword();
+		alias = authModel.getAlias();
+	}
 
-    public long getId() {
-        return id;
-    }
+	public long getId() {
+		return id;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        return EqualsBuilder.reflectionEquals(this, o, null);
-    }
+	@Override
+	public boolean equals(Object o) {
+		return EqualsBuilder.reflectionEquals(this, o);
+	}
 
-    @Override
-    public int hashCode() {
-        return HashCodeBuilder.reflectionHashCode(this, null);
-    }
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
-    @Override
-    public String toString() {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.DEFAULT_STYLE);
-    }
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.DEFAULT_STYLE);
+	}
 }

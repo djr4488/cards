@@ -1,4 +1,5 @@
 package com.djr.cards.data.entities;
+
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
@@ -9,13 +10,13 @@ import javax.persistence.Converter;
  */
 @Converter
 public class BooleanToIntegerConverter implements AttributeConverter<Boolean, Integer> {
-    @Override
-    public Integer convertToDatabaseColumn(Boolean aBoolean) {
-        return aBoolean ? 1 : 0;
-    }
+	@Override
+	public Integer convertToDatabaseColumn(Boolean aBoolean) {
+		return aBoolean ? 1 : 0;
+	}
 
-    @Override
-    public Boolean convertToEntityAttribute(Integer integer) {
-        return integer == 1;
-    }
+	@Override
+	public Boolean convertToEntityAttribute(Integer integer) {
+		return integer == 1;
+	}
 }

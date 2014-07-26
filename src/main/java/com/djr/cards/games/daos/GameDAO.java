@@ -13,8 +13,11 @@ import java.util.List;
  * Time: 7:02 PM
  */
 public interface GameDAO {
-    public Game findGame(GameModel gameModel, User user, String tracking);
-    public List<Game> findGamesPlaying(GameModel gameModel, User user, String tracking);
-    public Game createGame(GameModel gameModel, User user, String tracking) throws CreateGameException;
-    public void updateGameStatus(Game game, boolean isWaiting, String tracking);
+	public Game findGame(GameModel gameModel, User user, String tracking);
+
+	public List<Game> findGamesPlaying(GameModel gameModel, User user, String tracking);
+
+	public Game createGame(GameModel gameModel, User user, String tracking) throws CreateGameException;
+
+	public void updateGameStatus(Game game, boolean isWaiting, String tracking);
 }

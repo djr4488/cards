@@ -17,23 +17,26 @@ import java.io.Serializable;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
 public class AuthResponse implements Serializable {
-    private static final long serialVersionUID = 1L;
-    public AuthResponse() { }
-    @XmlElement
-    public String errorMsg;
-    @XmlElement
-    public String errorBold;
-    @XmlElement
-    public String nextLanding;
-    @XmlElement
-    public String token;
+	private static final long serialVersionUID = 1L;
+
+	public AuthResponse() {
+	}
+
+	@XmlElement
+	public String errorMsg;
+	@XmlElement
+	public String errorBold;
+	@XmlElement
+	public String nextLanding;
+	@XmlElement
+	public String token;
 	@XmlElement
 	public String msg;
 	@XmlElement
 	public String msgBold;
 
-    @Override
-    public String toString() {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
+	}
 }

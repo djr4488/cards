@@ -7,7 +7,7 @@ var createGolfController = angular.module('createGolfController', []);
 createGolfController.controller('CreateGolfCtrl', ['$scope', '$http',
     function ($scope, $http) {
         $scope.baseURL = 'http://djr2.dyndns.org:9074';
-        $scope.method='POST';
+        $scope.method = 'POST';
         $scope.url = $scope.baseURL + '/cardsapi/gamesvc/create/submit';
         $scope.createGameRequest = {
             gameModel: {
@@ -24,13 +24,13 @@ createGolfController.controller('CreateGolfCtrl', ['$scope', '$http',
                 gameId: 0
             }
         }
-        $scope.createGame = function() {
+        $scope.createGame = function () {
             $scope.code = null;
             $scope.response = null;
             console.log("sending...");
             console.log($scope.createGameRequest);
             $http.post($scope.url, $scope.createGameRequest).success(
-                function(data, status) {
+                function (data, status) {
                     console.log("posted - success");
                     console.log(data);
                     $scope.status = status;
@@ -43,13 +43,13 @@ createGolfController.controller('CreateGolfCtrl', ['$scope', '$http',
                     } else {
                         console.log("In redirect page");
                         console.log($scope.resp.gameResponse.nextLanding);
-                        if($scope.resp.gameResponse.nextLanding == 'golflanding') {
+                        if ($scope.resp.gameResponse.nextLanding == 'golflanding') {
                             window.location.replace('#placeHolder');
                         }
                     }
                 }
             ).error(
-                function(data, status) {
+                function (data, status) {
                     console.log("Failed request");
                     console.log(data);
                     console.log(status);
@@ -59,7 +59,7 @@ createGolfController.controller('CreateGolfCtrl', ['$scope', '$http',
             )
         };
 
-        $scope.updateModel = function(method, url) {
+        $scope.updateModel = function (method, url) {
             $scope.method = method;
             $scope.url = url;
         }

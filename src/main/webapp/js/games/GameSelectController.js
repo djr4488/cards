@@ -14,7 +14,7 @@ gameControllers.controller('gameSelectCtrl', function ($scope, gameSelectSvc, $f
         }
     };
     $scope.gameOptSelected = "";
-    $scope.selectGame = function() {
+    $scope.selectGame = function () {
         console.log("gameOptSelected: " + $scope.gameOptSelected);
         if ($scope.gameOptSelected == "Golf") {
             window.location.replace('#golfStats');
@@ -25,7 +25,7 @@ gameControllers.controller('gameSelectCtrl', function ($scope, gameSelectSvc, $f
     init();
     function init() {
         gameSelectSvc.getGameOptions().then(
-            function(data){
+            function (data) {
                 console.log(data.data);
                 $scope.resp = data.data;
                 $scope.gameOpts = $scope.resp.gameSelectionResponse.gameOpts;

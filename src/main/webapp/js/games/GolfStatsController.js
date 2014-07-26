@@ -7,7 +7,9 @@ golfStatsControllers.controller('golfStatsCtrl', function ($scope, golfStatsSvc,
 // Constructor for this controller
     $scope.resp = {
         gameStats: {
-            top10: [{}],
+            top10: [
+                {}
+            ],
             userStats: {
                 alias: "",
                 rank: 0,
@@ -19,7 +21,7 @@ golfStatsControllers.controller('golfStatsCtrl', function ($scope, golfStatsSvc,
     init();
     function init() {
         golfStatsSvc.getGolfStats().then(
-            function(data){
+            function (data) {
                 console.log(data.data);
                 $scope.resp = data.data;
                 $scope.top10 = $scope.resp.gameStats.top10;

@@ -15,15 +15,16 @@
     </div>
 </div>
 <div class="alert alert-warning" ng-show="errorMsg">
-    <strong>{{errorBold}}  </strong>{{errorMsg}}
+    <strong>{{errorBold}} </strong>{{errorMsg}}
 </div>
 <div class="alert alert-success" ng-show="msg">
-    <strong>{{msgBold}}  </strong>{{msg}}
+    <strong>{{msgBold}} </strong>{{msg}}
 </div>
 <div class="container">
     <form class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="email" ng-model="authForm.loginForm.emailAddress" placeholder="Email address" class="form-control"/>
+        <input type="email" ng-model="authForm.loginForm.emailAddress" placeholder="Email address"
+               class="form-control"/>
         <input type="password" ng-model="authForm.loginForm.password" placeholder="password" class="form-control"/><br/>
         <button id="login" ng-click="login()" class="btn btn-lg btn-primary btn-block">Login</button>
     </form>
@@ -33,11 +34,13 @@
     <div class="row">
         <div class="col-lg-6">
             <h2>Create an account</h2>
-            <p>Do not have an account?  <a href="#createAccount">Create one!</a></p>
+
+            <p>Do not have an account? <a href="#createAccount">Create one!</a></p>
         </div>
         <div class="col-lg-6">
             <h2>Reset your password</h2>
-            <p>Forgot your password?  <a href="#forgotPassword">Reset it!</a></p>
+
+            <p>Forgot your password? <a href="#forgotPassword">Reset it!</a></p>
         </div>
     </div>
 </div>

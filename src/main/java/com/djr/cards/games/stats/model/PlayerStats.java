@@ -13,69 +13,74 @@ import java.util.List;
  */
 @XmlRootElement
 public class PlayerStats {
-    private long wins;
-    private long totalGames;
-    private long rank;
-    private String alias;
-    private List<String> activeGames;
+	private long wins;
+	private long totalGames;
+	private long rank;
+	private String alias;
+	private List<String> activeGames;
 
-    public PlayerStats() { }
+	public PlayerStats() {
+	}
 
-    public PlayerStats(UserStats userStats, int rank) {
-        wins = userStats.wins;
-        totalGames = userStats.totalPlayed;
-        this.rank = rank;
-        alias = userStats.user.alias;
-    }
+	public PlayerStats(UserStats userStats, int rank) {
+		wins = userStats.wins;
+		totalGames = userStats.totalPlayed;
+		this.rank = rank;
+		alias = userStats.user.alias;
+	}
 
-    @XmlElement
-    public long getWins() {
-        return wins;
-    }
+	@XmlElement
+	public long getWins() {
+		return wins;
+	}
 
-    public void setWins(long wins) {
-        this.wins = wins;
-    }
+	public void setWins(long wins) {
+		this.wins = wins;
+	}
 
-    @XmlElement
-    public long getTotalGames() {
-        return totalGames;
-    }
+	@XmlElement
+	public long getTotalGames() {
+		return totalGames;
+	}
 
-    public void setTotalGames(long totalGames) {
-        this.totalGames = totalGames;
-    }
+	public void setTotalGames(long totalGames) {
+		this.totalGames = totalGames;
+	}
 
-    @XmlElement
-    public long getRank() {
-        return rank;
-    }
+	@XmlElement
+	public long getRank() {
+		return rank;
+	}
 
-    public void setRank(long rank) {
-        this.rank = rank;
-    }
+	public void setRank(long rank) {
+		this.rank = rank;
+	}
 
-    @XmlElement
-    public String getAlias() {
-        return alias;
-    }
+	@XmlElement
+	public String getAlias() {
+		return alias;
+	}
 
-    public void setAlias(String alias) {
-        this.alias = alias;
-    }
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
 
-    @XmlElement
-    public List<String> getActiveGames() { return this.activeGames; }
+	@XmlElement
+	public List<String> getActiveGames() {
+		return this.activeGames;
+	}
 
-    public void setActiveGames(List<String> activeGames) { this.activeGames = activeGames; }
+	public void setActiveGames(List<String> activeGames) {
+		this.activeGames = activeGames;
+	}
 
-    @Override
-    public String toString() {
-        return "PlayerStats{" +
-                "wins=" + wins +
-                ", totalGames=" + totalGames +
-                ", rank=" + rank +
-                ", alias='" + alias + '\'' +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "PlayerStats{" +
+				"wins=" + wins +
+				", totalGames=" + totalGames +
+				", rank=" + rank +
+				", alias='" + alias + '\'' +
+				'}';
+	}
 }

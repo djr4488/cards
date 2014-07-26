@@ -2,8 +2,8 @@ package com.djr.cards.games.selector.dao;
 
 import com.djr.cards.data.entities.GameSelection;
 import com.djr.cards.games.selector.SelectorDAO;
-import com.opensymphony.xwork2.interceptor.annotations.Before;
 import junit.framework.TestCase;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -25,50 +25,50 @@ import java.util.List;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class SelectorDAOTest extends TestCase {
-    @Mock
-    private Logger logger;
-    @Mock
-    private EntityManager em;
-    @Mock
-    private TypedQuery<GameSelection> query;
+	@Mock
+	private Logger logger;
+	@Mock
+	private EntityManager em;
+	@Mock
+	private TypedQuery<GameSelection> query;
 
-    @InjectMocks
-    private SelectorDAO selectorDao = new SelectorDAOImpl();
+	@InjectMocks
+	private SelectorDAO selectorDao = new SelectorDAOImpl();
 
-    @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-    }
+	@Before
+	public void setup() {
+		MockitoAnnotations.initMocks(this);
+	}
 
-    @Test
-     public void testFindSelectionOptionsSuccess() {
-        List<GameSelection> gameSelectionList = new ArrayList<GameSelection>();
-        when(em.createNamedQuery("findAllGameOptions", GameSelection.class)).thenReturn(query);
-        when(query.getResultList()).thenReturn(gameSelectionList);
-        assertNotNull(selectorDao.findGameSelectionOptions());
-    }
+	@Test
+	public void testFindSelectionOptionsSuccess() {
+		List<GameSelection> gameSelectionList = new ArrayList<GameSelection>();
+		when(em.createNamedQuery("findAllGameOptions", GameSelection.class)).thenReturn(query);
+		when(query.getResultList()).thenReturn(gameSelectionList);
+		assertNotNull(selectorDao.findGameSelectionOptions());
+	}
 
-    @Test
-    public void testFindSelectionOptionsFails() {
-        List<GameSelection> gameSelectionList = new ArrayList<GameSelection>();
-        when(em.createNamedQuery("findAllGameOptions", GameSelection.class)).thenReturn(query);
-        when(query.getResultList()).thenThrow(new NoResultException("No games to choose from"));
-        assertNull(selectorDao.findGameSelectionOptions());
-    }
+	@Test
+	public void testFindSelectionOptionsFails() {
+		List<GameSelection> gameSelectionList = new ArrayList<GameSelection>();
+		when(em.createNamedQuery("findAllGameOptions", GameSelection.class)).thenReturn(query);
+		when(query.getResultList()).thenThrow(new NoResultException("No games to choose from"));
+		assertNull(selectorDao.findGameSelectionOptions());
+	}
 
-    @Test
-    public void testFindGameSelectionSuccess() {
-        GameSelection gameSelection = new GameSelection();
-        when(em.createNamedQuery("findGameSelectionByGameType", GameSelection.class)).thenReturn(query);
-        when(query.getSingleResult()).thenReturn(gameSelection);
-        assertNotNull(selectorDao.findGameSelection("golf"));
-    }
+	@Test
+	public void testFindGameSelectionSuccess() {
+		GameSelection gameSelection = new GameSelection();
+		when(em.createNamedQuery("findGameSelectionByGameType", GameSelection.class)).thenReturn(query);
+		when(query.getSingleResult()).thenReturn(gameSelection);
+		assertNotNull(selectorDao.findGameSelection("golf"));
+	}
 
-    @Test
-    public void testFindGameSelectionFails() {
-        GameSelection gameSelection = new GameSelection();
-        when(em.createNamedQuery("findGameSelectionByGameType", GameSelection.class)).thenReturn(query);
-        when(query.getSingleResult()).thenThrow(new NoResultException("No game type found"));
-        assertNull(selectorDao.findGameSelection("golf"));
-    }
+	@Test
+	public void testFindGameSelectionFails() {
+		GameSelection gameSelection = new GameSelection();
+		when(em.createNamedQuery("findGameSelectionByGameType", GameSelection.class)).thenReturn(query);
+		when(query.getSingleResult()).thenThrow(new NoResultException("No game type found"));
+		assertNull(selectorDao.findGameSelection("golf"));
+	}
 }

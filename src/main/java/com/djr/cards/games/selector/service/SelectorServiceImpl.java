@@ -25,10 +25,10 @@ public class SelectorServiceImpl implements SelectorService {
 		logger.debug("getGameList() - tracking:{}", tracking);
 		List<GameSelection> gameSelectionList = null;
 		gameSelectionList = selectorDao.findGameSelectionOptions();
-        List<String> gameTypes = new ArrayList<String>();
-        for (GameSelection gs : gameSelectionList) {
-            gameTypes.add(gs.gameType);
-        }
+		List<String> gameTypes = new ArrayList<String>();
+		for (GameSelection gs : gameSelectionList) {
+			gameTypes.add(gs.gameType);
+		}
 		return gameTypes;
 	}
 

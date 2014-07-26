@@ -1,68 +1,75 @@
 .errors {
-    background-color:#FFCCCC;
-    border:1px solid #CC0000;
-    width:400px;
-    margin-bottom:8px;
+    background-color: #FFCCCC;
+    border: 1px solid #CC0000;
+    width: 400px;
+    margin-bottom: 8px;
 }
-.errors li{
+
+.errors li {
     list-style: none;
 }
+
 .titlediv {
     padding: 10px 40px;
-    border:2px solid #525252;
-    border-radius:25px;
-    background:#dddddd;
-    width:300px;
+    border: 2px solid #525252;
+    border-radius: 25px;
+    background: #dddddd;
+    width: 300px;
     box-shadow: 10px 10px 5px #888888;
 }
+
 .mainbody {
-    background:#dddddd;
+    background: #dddddd;
 }
+
 .buttonauth {
-    -moz-box-shadow:inset 0px 1px 0px 0px #e184f3;
-    -webkit-box-shadow:inset 0px 1px 0px 0px #e184f3;
-    box-shadow:inset 0px 1px 0px 0px #e184f3;
-    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #c123de), color-stop(1, #a20dbd) );
-    background:-moz-linear-gradient( center top, #c123de 5%, #a20dbd 100% );
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c123de', endColorstr='#a20dbd');
-    background-color:#c123de;
-    -webkit-border-top-left-radius:0px;
-    -moz-border-radius-topleft:0px;
-    border-top-left-radius:0px;
-    -webkit-border-top-right-radius:6px;
-    -moz-border-radius-topright:6px;
-    border-top-right-radius:6px;
-    -webkit-border-bottom-right-radius:0px;
-    -moz-border-radius-bottomright:0px;
-    border-bottom-right-radius:0px;
-    -webkit-border-bottom-left-radius:6px;
-    -moz-border-radius-bottomleft:6px;
-    border-bottom-left-radius:6px;
-    text-indent:0;
-    border:1px solid #a511c0;
-    display:inline-block;
-    color:#ffffff;
-    font-family:Arial;
-    font-size:15px;
-    font-weight:bold;
-    font-style:normal;
-    height:30px;
-    line-height:30px;
-    width:131px;
-    text-decoration:none;
-    text-align:center;
-    text-shadow:1px 1px 0px #9b14b3;
+    -moz-box-shadow: inset 0px 1px 0px 0px #e184f3;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #e184f3;
+    box-shadow: inset 0px 1px 0px 0px #e184f3;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c123de), color-stop(1, #a20dbd));
+    background: -moz-linear-gradient(center top, #c123de 5%, #a20dbd 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c123de', endColorstr='#a20dbd');
+    background-color: #c123de;
+    -webkit-border-top-left-radius: 0px;
+    -moz-border-radius-topleft: 0px;
+    border-top-left-radius: 0px;
+    -webkit-border-top-right-radius: 6px;
+    -moz-border-radius-topright: 6px;
+    border-top-right-radius: 6px;
+    -webkit-border-bottom-right-radius: 0px;
+    -moz-border-radius-bottomright: 0px;
+    border-bottom-right-radius: 0px;
+    -webkit-border-bottom-left-radius: 6px;
+    -moz-border-radius-bottomleft: 6px;
+    border-bottom-left-radius: 6px;
+    text-indent: 0;
+    border: 1px solid #a511c0;
+    display: inline-block;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: normal;
+    height: 30px;
+    line-height: 30px;
+    width: 131px;
+    text-decoration: none;
+    text-align: center;
+    text-shadow: 1px 1px 0px #9b14b3;
 }
+
 .buttonauth:hover {
-    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #a20dbd), color-stop(1, #c123de) );
-    background:-moz-linear-gradient( center top, #a20dbd 5%, #c123de 100% );
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a20dbd', endColorstr='#c123de');
-    background-color:#a20dbd;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #a20dbd), color-stop(1, #c123de));
+    background: -moz-linear-gradient(center top, #a20dbd 5%, #c123de 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a20dbd', endColorstr='#c123de');
+    background-color: #a20dbd;
 }
+
 .buttonauth:active {
-     position:relative;
-     top:1px;
+    position: relative;
+    top: 1px;
 }
+
 .msgbold {
     margin: 0 0 20px 0;
     font-size: 22px;
@@ -121,13 +128,16 @@ body {
     padding: 15px;
     margin: 0 auto;
 }
+
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
     margin-bottom: 10px;
 }
+
 .form-signin .checkbox {
     font-weight: normal;
 }
+
 .form-signin .form-control {
     position: relative;
     height: auto;
@@ -137,14 +147,17 @@ body {
     padding: 10px;
     font-size: 16px;
 }
+
 .form-signin .form-control:focus {
     z-index: 2;
 }
+
 .form-signin input[type="email"] {
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 }
+
 .form-signin input[type="password"] {
     margin-bottom: 10px;
     border-top-left-radius: 0;
@@ -156,13 +169,16 @@ body {
     padding: 15px;
     margin: 0 auto;
 }
+
 .form-create .form-create-heading,
 .form-create .checkbox {
     margin-bottom: 10px;
 }
+
 .form-create .checkbox {
     font-weight: normal;
 }
+
 .form-create .form-control {
     position: relative;
     height: auto;
@@ -172,9 +188,11 @@ body {
     padding: 10px;
     font-size: 16px;
 }
+
 .form-create .form-control:focus {
     z-index: 2;
 }
+
 .form-create input[type="email"] {
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
@@ -211,13 +229,16 @@ body {
     margin-bottom: 20px;
     text-align: center;
 }
+
 .marketing h2 {
     font-weight: normal;
 }
+
 .marketing .col-lg-6 p {
     margin-right: 10px;
     margin-left: 10px;
 }
+
 .marketing .col-lg-4 p {
     margin-right: 10px;
     margin-left: 10px;
@@ -227,13 +248,16 @@ body {
     margin-bottom: 10px;
     text-align: center;
 }
+
 .stats h2 {
     font-weight: normal;
 }
+
 .stats .col-lg-8 p {
     margin-right: 10px;
     margin-left: 10px;
 }
+
 .stats .col-lg-4 p {
     margin-right: 10px;
     margin-left: 10px;
@@ -242,6 +266,7 @@ body {
 #footer {
     background-color: #F5F5F5;
 }
+
 #push, #footer {
     height: 30px;
 }

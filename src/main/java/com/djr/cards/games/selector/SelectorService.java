@@ -11,6 +11,7 @@ import java.util.List;
  * Time: 9:47 PM
  */
 public interface SelectorService {
-    public List<String> getGameList(String tracking);
+	public List<String> getGameList(String tracking);
+
 	public String getSelectedLandingAction(String tracking, SelectorModel selectorModel);
 }

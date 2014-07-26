@@ -6,5 +6,5 @@ package com.djr.cards.games.selector.restapi;
  * Time: 11:15 PM
  */
 public class SelectedGameRequest {
-    public String selectedGameType;
+	public String selectedGameType;
 }

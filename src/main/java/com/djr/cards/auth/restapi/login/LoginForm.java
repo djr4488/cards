@@ -19,20 +19,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
 public class LoginForm extends AuthForm {
-    private static final long serialVersionUID = 1L;
-    @XmlElement
-    @NotNull
-    public String password;
+	private static final long serialVersionUID = 1L;
+	@XmlElement
+	@NotNull
+	public String password;
 
-    public AuthModel getAuthModel() {
-        AuthModel authModel = new AuthModel();
-        authModel.setUserName(this.emailAddress);
-        authModel.setPassword(this.password);
-        return authModel;
-    }
+	public AuthModel getAuthModel() {
+		AuthModel authModel = new AuthModel();
+		authModel.setUserName(this.emailAddress);
+		authModel.setPassword(this.password);
+		return authModel;
+	}
 
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+	}
 }

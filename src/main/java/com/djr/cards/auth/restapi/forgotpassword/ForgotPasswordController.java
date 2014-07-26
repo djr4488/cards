@@ -22,34 +22,35 @@ import java.util.Calendar;
  * Date: 3/13/14
  * Time: 9:46 PM
  */
+@Path("forgotpassword")
 public class ForgotPasswordController extends BaseAuthController {
-    @Inject
-    private Logger logger;
-    @Inject
-    private AuthService authSvc;
-    @Inject
-    private AuditService auditSvc;
+	@Inject
+	private Logger logger;
+	@Inject
+	private AuthService authSvc;
+	@Inject
+	private AuditService auditSvc;
 
-    @POST
-    @Path("/submit")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public AuthResponse submit(ForgotPasswordForm forgotPasswordForm, @Context HttpServletRequest request) {
-        String tracking = generateTrackingId(request);
-        getSession(request).setAttribute("tracking", tracking);
-        logger.info("submit() - forgotPasswordForm:{}", forgotPasswordForm);
-        auditSvc.writeAudit(auditSvc.getAuditLog(tracking,
-                "ForgotPasswordController.submit()", request.getRemoteAddr(), Calendar.getInstance()));
-        AuthModel am = forgotPasswordForm.getAuthModel();
-        AuthService.ForgotPasswordResult result = authSvc.forgotPassword(am, tracking);
-        AuthResponse authResponse = null;
-        authResponse = new AuthResponse();
-        if (AuthService.ForgotPasswordResult.SUCCESS == result) {
-            authResponse.nextLanding ="resetPassword";
-        } else {
-            authResponse.errorMsg = "I didn't right recognize you.  Is your email address correct?";
-            authResponse.errorBold = "Howdy Partner!";
-        }
-        return authResponse;
-    }
+	@POST
+	@Path("/submit")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public AuthResponse submit(ForgotPasswordForm forgotPasswordForm, @Context HttpServletRequest request) {
+		String tracking = generateTrackingId(request);
+		getSession(request).setAttribute("tracking", tracking);
+		logger.info("submit() - forgotPasswordForm:{}", forgotPasswordForm);
+		auditSvc.writeAudit(auditSvc.getAuditLog(tracking,
+				"ForgotPasswordController.submit()", request.getRemoteAddr(), Calendar.getInstance()));
+		AuthModel am = forgotPasswordForm.getAuthModel();
+		AuthService.ForgotPasswordResult result = authSvc.forgotPassword(am, tracking);
+		AuthResponse authResponse = null;
+		authResponse = new AuthResponse();
+		if (AuthService.ForgotPasswordResult.SUCCESS == result) {
+			authResponse.nextLanding = "resetPassword";
+		} else {
+			authResponse.errorMsg = "I didn't right recognize you.  Is your email address correct?";
+			authResponse.errorBold = "Howdy Partner!";
+		}
+		return authResponse;
+	}
 }

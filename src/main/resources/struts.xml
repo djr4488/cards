@@ -5,9 +5,9 @@
         "http://struts.apache.org/dtds/struts-2.1.7.dtd">
 
 <struts>
-    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
-    <constant name="struts.custom.i18n.resources" value="MessageResources" />
-    <constant name="struts.objectFactory.cdi.jndiKey" value="java:comp/BeanManager" />
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    <constant name="struts.custom.i18n.resources" value="MessageResources"/>
+    <constant name="struts.objectFactory.cdi.jndiKey" value="java:comp/BeanManager"/>
     <package name="cards" namespace="/cardsStruts2" extends="struts-default">
         <interceptors>
             <interceptor name="loginInterceptor"
@@ -51,40 +51,40 @@
         </interceptors>
 
         <!-- auth actions -->
-        <action name = "landing"
-                class = "com.djr.cards.auth.actions.LoginAction"
+        <action name="landing"
+                class="com.djr.cards.auth.actions.LoginAction"
                 method="loginLoad">
             <interceptor-ref name="loginStack"/>
             <result name="success">/jsp/auth/login/login.jsp</result>
         </action>
-        <action name = "login"
-                class = "com.djr.cards.auth.actions.LoginAction"
+        <action name="login"
+                class="com.djr.cards.auth.actions.LoginAction"
                 method="loginExecute">
             <result name="input">/jsp/auth/login/login.jsp</result>
             <result name="error" type="redirect">error.do</result>
             <result name="success" type="redirect">displayGames.do</result>
         </action>
-        <action name = "createAccountLanding"
-                class = "com.djr.cards.auth.actions.CreateAccountAction"
+        <action name="createAccountLanding"
+                class="com.djr.cards.auth.actions.CreateAccountAction"
                 method="createAccountLanding">
             <result name="input">/jsp/auth/create/createAccount.jsp</result>
             <result name="createAcct">/jsp/auth/create/createAccount.jsp</result>
         </action>
-        <action name = "createAccount"
-                class = "com.djr.cards.auth.actions.CreateAccountAction"
+        <action name="createAccount"
+                class="com.djr.cards.auth.actions.CreateAccountAction"
                 method="createAccountExecute">
             <result name="input">/jsp/auth/create/createAccount.jsp</result>
             <result name="success" type="redirect">landing.do</result>
             <result name="error">/jsp/auth/create/createAccount.jsp</result>
         </action>
-        <action name = "forgotPasswordLanding"
-                class = "com.djr.cards.auth.actions.ForgotPasswordAction"
+        <action name="forgotPasswordLanding"
+                class="com.djr.cards.auth.actions.ForgotPasswordAction"
                 method="forgotPassword">
             <result name="input">/jsp/auth/forgotpassword/forgotPassword.jsp</result>
             <result name="success">/jsp/auth/forgotpassword/forgotPassword.jsp</result>
         </action>
         <action name="forgotPassword"
-                class = "com.djr.cards.auth.actions.ForgotPasswordAction"
+                class="com.djr.cards.auth.actions.ForgotPasswordAction"
                 method="forgotPasswordExecute">
             <result name="input">/jsp/auth/forgotpassword/forgotPassword.jsp</result>
             <result name="success" type="redirect">changePasswordLanding.do</result>

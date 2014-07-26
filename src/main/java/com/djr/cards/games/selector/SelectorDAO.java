@@ -11,5 +11,6 @@ import java.util.List;
  */
 public interface SelectorDAO {
 	public List<GameSelection> findGameSelectionOptions();
+
 	public GameSelection findGameSelection(String gameType);
 }

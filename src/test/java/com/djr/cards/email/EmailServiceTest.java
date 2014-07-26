@@ -2,10 +2,10 @@ package com.djr.cards.email;
 
 import com.djr.cards.cdiproducers.LoggerProducer;
 import com.djr.cards.cdiproducers.PropertyProducer;
-import com.opensymphony.xwork2.interceptor.annotations.Before;
 import junit.framework.TestCase;
 import org.jglue.cdiunit.AdditionalClasses;
 import org.jglue.cdiunit.CdiRunner;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
@@ -24,10 +24,10 @@ public class EmailServiceTest extends TestCase {
 	@Inject
 	private EmailService emailSvc;
 
-    @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-    }
+	@Before
+	public void setup() {
+		MockitoAnnotations.initMocks(this);
+	}
 
 	@Test
 	public void testSendEmailSuccess() {

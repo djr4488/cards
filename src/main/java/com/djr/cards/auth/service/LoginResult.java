@@ -9,7 +9,9 @@ import com.djr.cards.data.entities.User;
  * Time: 8:46 AM
  */
 public class LoginResult {
-    public enum ResultOptions { SUCCESS, FAILED_USER_OR_PASS, OTHER_FAILURE, NOT_IMPLEMENTED };
-    public ResultOptions result;
-    public User user;
+	public enum ResultOptions {SUCCESS, FAILED_USER_OR_PASS, OTHER_FAILURE, NOT_IMPLEMENTED}
+
+	;
+	public ResultOptions result;
+	public User user;
 }

@@ -13,17 +13,17 @@
         <class>com.djr.cards.data.entities.BooleanToIntegerConverter</class>
         <properties>
             <property
-                name = "eclipselink.logging.level.sql"
-                value = "FINE"/>
+                    name="eclipselink.logging.level.sql"
+                    value="FINE"/>
             <property
-                name="eclipselink.logging.parameters"
-                value="true"/>
+                    name="eclipselink.logging.parameters"
+                    value="true"/>
             <property
-                name="eclipselink.ddl-generation.output-mode"
-                value="database"/>
+                    name="eclipselink.ddl-generation.output-mode"
+                    value="database"/>
             <property
-                name="eclipselink.ddl-generation"
-                value="create-or-extend-tables"/>
+                    name="eclipselink.ddl-generation"
+                    value="create-or-extend-tables"/>
         </properties>
     </persistence-unit>
 </persistence>

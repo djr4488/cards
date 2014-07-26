@@ -3,8 +3,8 @@ package com.djr.cards.games.stats.dao;
 import com.djr.cards.data.entities.User;
 import com.djr.cards.data.entities.UserStats;
 import com.djr.cards.games.stats.UserStatsDAO;
-import com.opensymphony.xwork2.interceptor.annotations.Before;
 import junit.framework.TestCase;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -24,7 +24,7 @@ import java.util.List;
  *         Date: 2/5/14
  *         Time: 12:34 PM
  */
-@RunWith (MockitoJUnitRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 public class UserStatsDAOTest extends TestCase {
 	@Mock
 	private EntityManager em;

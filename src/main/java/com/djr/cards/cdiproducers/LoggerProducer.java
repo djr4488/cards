@@ -21,28 +21,30 @@ import org.slf4j.LoggerFactory;
  */
 @ApplicationScoped
 public class LoggerProducer {
-    private static final Logger log = LoggerFactory.getLogger(LoggerProducer.class);
-    public LoggerProducer() {}
+	private static final Logger log = LoggerFactory.getLogger(LoggerProducer.class);
 
-    @PostConstruct
-    private void loadConfiguration() {
-        LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();
-        try {
-            JoranConfigurator configurator = new JoranConfigurator();
-            configurator.setContext(context);
-            context.reset();
-            configurator.doConfigure("/app/cards/conf/logback.xml");
-        } catch (JoranException je) {
-            // StatusPrinter will handle this
-        }
-        StatusPrinter.printInCaseOfErrorsOrWarnings(context);
-    }
+	public LoggerProducer() {
+	}
+
+	@PostConstruct
+	private void loadConfiguration() {
+		LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();
+		try {
+			JoranConfigurator configurator = new JoranConfigurator();
+			configurator.setContext(context);
+			context.reset();
+			configurator.doConfigure("/app/cards/conf/logback.xml");
+		} catch (JoranException je) {
+			// StatusPrinter will handle this
+		}
+		StatusPrinter.printInCaseOfErrorsOrWarnings(context);
+	}
 
 
-    @Produces
-    public Logger getLogger(InjectionPoint ip) {
-        Class<?> injectingClass = ip.getMember().getDeclaringClass();
-        log.debug("getLogger() injectingClass:{}", injectingClass.getName());
-        return LoggerFactory.getLogger(injectingClass);
-    }
+	@Produces
+	public Logger getLogger(InjectionPoint ip) {
+		Class<?> injectingClass = ip.getMember().getDeclaringClass();
+		log.debug("getLogger() injectingClass:{}", injectingClass.getName());
+		return LoggerFactory.getLogger(injectingClass);
+	}
 }

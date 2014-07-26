@@ -9,6 +9,7 @@ import com.djr.cards.auth.util.HashingUtil;
 import org.slf4j.Logger;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -21,7 +22,8 @@ import java.util.Calendar;
  *         Date: 3/12/14
  *         Time: 5:04 PM
  */
-public abstract class CreateAccountController extends BaseAuthController {
+@Path("createaccount")
+public class CreateAccountController extends BaseAuthController {
 	@Inject
 	private Logger log;
 	@Inject
@@ -33,6 +35,7 @@ public abstract class CreateAccountController extends BaseAuthController {
 
 	@POST
 	@Path("/submit")
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public AuthResponse submit(CreateAccountForm createAccountForm, @Context HttpServletRequest request) {
 		AuthResponse authResponse = null;

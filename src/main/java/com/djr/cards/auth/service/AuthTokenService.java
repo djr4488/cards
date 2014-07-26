@@ -6,5 +6,5 @@ package com.djr.cards.auth.service;
  * Time: 8:00 PM
  */
 public interface AuthTokenService {
-    boolean isValidToken(String token, String trackingId, String userName);
+	boolean isValidToken(String token, String trackingId, String userName);
 }

@@ -11,6 +11,7 @@ import java.util.Calendar;
  * Time: 9:28 PM
  */
 public interface AuditService {
-    public void writeAudit(AuditLog auditLog);
-    public AuditLog getAuditLog(String who, String what, String info, Calendar timestamp);
+	public void writeAudit(AuditLog auditLog);
+
+	public AuditLog getAuditLog(String who, String what, String info, Calendar timestamp);
 }

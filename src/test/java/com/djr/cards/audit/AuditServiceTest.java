@@ -1,12 +1,8 @@
 package com.djr.cards.audit;
 
-import com.djr.cards.cdiproducers.LoggerProducer;
 import com.djr.cards.data.entities.AuditLog;
-import com.opensymphony.xwork2.interceptor.annotations.Before;
 import junit.framework.TestCase;
-import org.jglue.cdiunit.AdditionalClasses;
-import org.jglue.cdiunit.CdiRunner;
-import org.jglue.cdiunit.ProducesAlternative;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -24,7 +20,7 @@ import static org.mockito.Mockito.*;
  *         Date: 2/3/14
  *         Time: 10:16 AM
  */
-@RunWith (MockitoJUnitRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 public class AuditServiceTest extends TestCase {
 	@Mock
 	private EntityManager em;
@@ -43,7 +39,7 @@ public class AuditServiceTest extends TestCase {
 	public void testGetAudit() {
 		AuditLog auditLog = auditService.getAuditLog("AuditServiceTest", "testGetAudit()", "Ensuring not null",
 				Calendar.getInstance());
-		verify(logger).debug(any(String.class),any(String.class), any(String.class), any(String.class),
+		verify(logger).debug(any(String.class), any(String.class), any(String.class), any(String.class),
 				any(Calendar.class));
 		assertNotNull(auditLog);
 		assertEquals("AuditServiceTest", auditLog.who);

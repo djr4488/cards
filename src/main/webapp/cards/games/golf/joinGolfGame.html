@@ -11,13 +11,14 @@
     </div>
 </div>
 <div class="alert alert-warning" ng-show="errorMsg">
-    <strong>{{errorBold}}  </strong>{{errorMsg}}
+    <strong>{{errorBold}} </strong>{{errorMsg}}
 </div>
 <div class="container">
     <form class="form-signin">
         <h2 class="form-signin-heading">Join a game</h2>
         <input type="text" ng-model="joinGameRequest.gameModel.gameName" placeholder="Game Name" class="form-control"/>
-        <input type="text" ng-model="joinGameRequest.gameModel.gamePassword" placeholder="Game Password(optional)" class="form-control"/><br/>
+        <input type="text" ng-model="joinGameRequest.gameModel.gamePassword" placeholder="Game Password(optional)"
+               class="form-control"/><br/>
         <button id="gameJoin" ng-click="joinGame()" class="btn btn-lg btn-primary btn-block">Join Game</button>
     </form>
 </div>
@@ -26,15 +27,18 @@
     <div class="row">
         <div class="col-lg-4">
             <h2>Choose a different game</h2>
-            <p>Bored of Golf?  <a href="#selectGame">Try something else!</a></p>
+
+            <p>Bored of Golf? <a href="#selectGame">Try something else!</a></p>
         </div>
         <div class="col-lg-4">
             <h2>Create a game</h2>
-            <p>Be in control  <a href="#createGolf">Create a new Golf game instead!</a></p>
+
+            <p>Be in control <a href="#createGolf">Create a new Golf game instead!</a></p>
         </div>
         <div class="col-lg-4">
             <h2>Your games in progress</h2>
-            <p>Check on your games or play a turn!  <a href="#placeHolder">It's ok, I won't tell!</a></p>
+
+            <p>Check on your games or play a turn! <a href="#placeHolder">It's ok, I won't tell!</a></p>
         </div>
     </div>
 </div>

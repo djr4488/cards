@@ -15,8 +15,8 @@ import java.io.Serializable;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
 public class AuthForm implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @XmlElement
-    @NotNull
-    public String emailAddress;
+	private static final long serialVersionUID = 1L;
+	@XmlElement
+	@NotNull
+	public String emailAddress;
 }

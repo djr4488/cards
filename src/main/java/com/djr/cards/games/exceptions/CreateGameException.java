@@ -6,11 +6,12 @@ package com.djr.cards.games.exceptions;
  * Time: 8:36 AM
  */
 public class CreateGameException extends Exception {
-    private String message;
+	private String message;
 
-    public CreateGameException() { }
+	public CreateGameException() {
+	}
 
-    public CreateGameException(String message) {
-        this.message = message;
-    }
+	public CreateGameException(String message) {
+		this.message = message;
+	}
 }

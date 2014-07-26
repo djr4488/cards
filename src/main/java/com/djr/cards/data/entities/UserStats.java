@@ -13,55 +13,55 @@ import javax.persistence.*;
  * Time: 4:39 PM
  */
 @Entity
-@Table(name="user_stats")
+@Table(name = "user_stats")
 @NamedQueries({
-        @NamedQuery(name="findUserStatsByUser",
-                query="select userStats from UserStats userStats where userStats.user = :user and " +
-                        "userStats.gameType = :gameType"),
-        @NamedQuery(name="findUserStats",
-                query="select userStats from UserStats userStats")
+		@NamedQuery(name = "findUserStatsByUser",
+				query = "select userStats from UserStats userStats where userStats.user = :user and " +
+						"userStats.gameType = :gameType"),
+		@NamedQuery(name = "findUserStats",
+				query = "select userStats from UserStats userStats")
 })
 public class UserStats implements Comparable<UserStats> {
-    @Id
-    @Column(name="id", nullable=false)
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
-    @OneToOne
-    @JoinColumn(name="user_id")
-    public User user;
-    @Column(name="game_type")
-    public String gameType;
-    @Column(name="wins")
-    public Long wins;
-    @Column(name="total_played")
-    public Long totalPlayed;
+	@Id
+	@Column(name = "id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@OneToOne
+	@JoinColumn(name = "user_id")
+	public User user;
+	@Column(name = "game_type")
+	public String gameType;
+	@Column(name = "wins")
+	public Long wins;
+	@Column(name = "total_played")
+	public Long totalPlayed;
 
-    public long getId() {
-        return id;
-    }
+	public long getId() {
+		return id;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        return EqualsBuilder.reflectionEquals(this, o, null);
-    }
+	@Override
+	public boolean equals(Object o) {
+		return EqualsBuilder.reflectionEquals(this, o);
+	}
 
-    @Override
-    public int hashCode() {
-        return HashCodeBuilder.reflectionHashCode(this, null);
-    }
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
-    @Override
-    public String toString() {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.DEFAULT_STYLE);
-    }
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.DEFAULT_STYLE);
+	}
 
-    @Override
-    public int compareTo(UserStats userStats) {
-        if (this.wins > userStats.wins) {
-            return -1;
-        } else if (this.wins < userStats.wins) {
-            return 1;
-        }
-        return this.user.alias.compareToIgnoreCase(userStats.user.alias);
-    }
+	@Override
+	public int compareTo(UserStats userStats) {
+		if (this.wins > userStats.wins) {
+			return -1;
+		} else if (this.wins < userStats.wins) {
+			return 1;
+		}
+		return this.user.alias.compareToIgnoreCase(userStats.user.alias);
+	}
 }

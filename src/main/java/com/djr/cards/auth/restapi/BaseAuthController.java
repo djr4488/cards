@@ -22,7 +22,7 @@ public class BaseAuthController {
 	public String generateTrackingId(HttpServletRequest request) {
 		String tracking = null;
 		if (request.getSession(false) != null) {
-			tracking = (String)request.getSession().getAttribute("tracking");
+			tracking = (String) request.getSession().getAttribute("tracking");
 		}
 		if (tracking == null) {
 			tracking = UUID.randomUUID().toString();

@@ -10,7 +10,9 @@ import com.djr.cards.data.entities.User;
  * Time: 11:22 PM
  */
 public interface UserDAO {
-    public FindUserResult findOrCreateUser(AuthModel authModel, String trackingId);
-    public User findUser(AuthModel authModel, String trackingId);
-    public User updateUser(User user, String trackingId);
+	public FindUserResult findOrCreateUser(AuthModel authModel, String trackingId);
+
+	public User findUser(AuthModel authModel, String trackingId);
+
+	public User updateUser(User user, String trackingId);
 }

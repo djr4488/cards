@@ -16,16 +16,16 @@ import javax.persistence.Table;
  * Time: 4:40 PM
  */
 @Entity
-@Table(name="golf")
+@Table(name = "golf")
 public class Golf {
-    @Id
-    private Long id;
-    public String gameName;
+	@Id
+	private Long id;
+	public String gameName;
 	public String password;
 	public GolfPhase golfPhase;
 	public Long outPlayerId;
 	public Long playerTurnId;
 	@ManyToOne
-	@JoinColumn (name="game_type_id")
+	@JoinColumn(name = "game_type_id")
 	public GameSelection gameTypeId;
 }

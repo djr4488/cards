@@ -15,38 +15,38 @@ import java.util.Calendar;
  * Time: 4:55 PM
  */
 @Entity
-@Table(name="audit_log")
+@Table(name = "audit_log")
 public class AuditLog {
-    @Id
-    @Column(name="id", nullable=false)
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
-    @Column(name="who")
-    public String who;
-    @Column(name = "what")
-    public String what;
-    @Column(name="data_info")
-    public String info;
-    @Column(name="date_time")
-    @Temporal(TemporalType.TIMESTAMP)
-    public Calendar time;
+	@Id
+	@Column(name = "id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@Column(name = "who")
+	public String who;
+	@Column(name = "what")
+	public String what;
+	@Column(name = "data_info")
+	public String info;
+	@Column(name = "date_time")
+	@Temporal(TemporalType.TIMESTAMP)
+	public Calendar time;
 
-    public long getId() {
-        return id;
-    }
+	public long getId() {
+		return id;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        return EqualsBuilder.reflectionEquals(this, o, null);
-    }
+	@Override
+	public boolean equals(Object o) {
+		return EqualsBuilder.reflectionEquals(this, o);
+	}
 
-    @Override
-    public int hashCode() {
-        return HashCodeBuilder.reflectionHashCode(this, null);
-    }
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
-    @Override
-    public String toString() {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.DEFAULT_STYLE);
-    }
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.DEFAULT_STYLE);
+	}
 }

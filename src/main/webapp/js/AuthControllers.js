@@ -6,7 +6,7 @@ var authControllers = angular.module('authControllers', []);
 authControllers.controller('LoginCtrl', ['$scope', '$http',
     function ($scope, $http) {
         $scope.baseURL = 'http://djr2.dyndns.org:9074';
-        $scope.method='POST';
+        $scope.method = 'POST';
         $scope.url = $scope.baseURL + '/cardsapi/login/submit';
         $scope.authForm = {
             loginForm: {
@@ -22,32 +22,32 @@ authControllers.controller('LoginCtrl', ['$scope', '$http',
                 token: ""
             }
         }
-        $scope.login = function() {
+        $scope.login = function () {
             $scope.code = null;
             $scope.response = null;
             console.log("sending...");
             console.log($scope.authForm);
             $http.post($scope.url, $scope.authForm).success(
-                function(data, status) {
+                function (data, status) {
                     console.log("posted - success");
                     console.log(data);
                     $scope.status = status;
                     $scope.loginResponse = data;
                     if ($scope.loginResponse.authResponse.errorMsg != null &&
-                            $scope.loginResponse.authResponse.errorMsg.length > 0) {
+                        $scope.loginResponse.authResponse.errorMsg.length > 0) {
                         console.log("In error page");
                         $scope.errorMsg = $scope.loginResponse.authResponse.errorMsg;
                         $scope.errorBold = $scope.loginResponse.authResponse.errorBold;
                     } else {
                         console.log("In redirect page");
                         console.log($scope.loginResponse.authResponse.nextLanding);
-                        if($scope.loginResponse.authResponse.nextLanding == 'selectGame') {
+                        if ($scope.loginResponse.authResponse.nextLanding == 'selectGame') {
                             window.location.replace('#selectGame');
                         }
                     }
                 }
             ).error(
-                function(data, status) {
+                function (data, status) {
                     console.log("Failed request");
                     console.log(data);
                     console.log(status);
@@ -57,13 +57,13 @@ authControllers.controller('LoginCtrl', ['$scope', '$http',
             )
         };
 
-        $scope.updateModel = function(method, url) {
+        $scope.updateModel = function (method, url) {
             $scope.method = method;
             $scope.url = url;
         }
     }
 ]).controller('CreateAcctCtrl', ['$scope', '$http', '$route',
-    function($scope, $http) {
+    function ($scope, $http) {
         $scope.baseURL = 'http://djr2.dyndns.org:9074';
         $scope.method = 'POST';
         $scope.url = $scope.baseURL + '/cardsapi/createAccount/submit';
@@ -85,13 +85,13 @@ authControllers.controller('LoginCtrl', ['$scope', '$http',
                 msgBold: ""
             }
         }
-        $scope.createAccount = function() {
+        $scope.createAccount = function () {
             $scope.code = null;
             $scope.response = null;
             console.log("sending...");
             console.log($scope.authForm);
             $http.post($scope.url, $scope.authForm).success(
-                function(data, status) {
+                function (data, status) {
                     console.log("posted - success");
                     console.log(data);
                     $scope.status = status;
@@ -104,7 +104,7 @@ authControllers.controller('LoginCtrl', ['$scope', '$http',
                     } else {
                         console.log("In redirect page");
                         console.log($scope.loginResponse.authResponse.nextLanding);
-                        if($scope.loginResponse.authResponse.nextLanding == 'login') {
+                        if ($scope.loginResponse.authResponse.nextLanding == 'login') {
                             $scope.msg = $scope.loginResponse.authResponse.msg;
                             $scope.msgBold = $scope.loginResponse.authResponse.msgBold;
                             window.location.replace('#login');
@@ -112,7 +112,7 @@ authControllers.controller('LoginCtrl', ['$scope', '$http',
                     }
                 }
             ).error(
-                function(data, status) {
+                function (data, status) {
                     console.log("Failed request");
                     console.log(data);
                     console.log(status);
@@ -122,13 +122,13 @@ authControllers.controller('LoginCtrl', ['$scope', '$http',
             )
         };
 
-        $scope.updateModel = function(method, url) {
+        $scope.updateModel = function (method, url) {
             $scope.method = method;
             $scope.url = url;
         }
     }
 ]).controller('ForgotPasswordCtrl', ['$scope', '$http', '$route',
-    function($scope, $http) {
+    function ($scope, $http) {
         $scope.baseURL = 'http://djr2.dyndns.org:9074';
         $scope.method = 'POST';
         $scope.url = $scope.baseURL + '/cardsapi/forgotpassword/submit';
@@ -145,13 +145,13 @@ authControllers.controller('LoginCtrl', ['$scope', '$http',
                 token: ""
             }
         }
-        $scope.forgotPassword = function() {
+        $scope.forgotPassword = function () {
             $scope.code = null;
             $scope.response = null;
             console.log("sending...");
             console.log($scope.authForm);
             $http.post($scope.url, $scope.authForm).success(
-                function(data, status) {
+                function (data, status) {
                     console.log("posted - success");
                     console.log(data);
                     $scope.status = status;
@@ -164,13 +164,13 @@ authControllers.controller('LoginCtrl', ['$scope', '$http',
                     } else {
                         console.log("In redirect page");
                         console.log($scope.loginResponse.authResponse.nextLanding);
-                        if($scope.loginResponse.authResponse.nextLanding == 'resetPassword') {
+                        if ($scope.loginResponse.authResponse.nextLanding == 'resetPassword') {
                             window.location.replace('#resetPassword');
                         }
                     }
                 }
             ).error(
-                function(data, status) {
+                function (data, status) {
                     console.log("Failed request");
                     console.log(data);
                     console.log(status);
@@ -180,13 +180,13 @@ authControllers.controller('LoginCtrl', ['$scope', '$http',
             )
         };
 
-        $scope.updateModel = function(method, url) {
+        $scope.updateModel = function (method, url) {
             $scope.method = method;
             $scope.url = url;
         }
     }
 ]).controller('ResetPasswordCtrl', ['$scope', '$http', '$route',
-    function($scope, $http) {
+    function ($scope, $http) {
         $scope.baseURL = 'http://djr2.dyndns.org:9074';
         $scope.method = 'POST';
         $scope.url = $scope.baseURL + '/cardsapi/resetpassword/submit';
@@ -208,13 +208,13 @@ authControllers.controller('LoginCtrl', ['$scope', '$http',
                 msgBold: ""
             }
         }
-        $scope.resetPassword = function() {
+        $scope.resetPassword = function () {
             $scope.code = null;
             $scope.response = null;
             console.log("sending...");
             console.log($scope.authForm);
             $http.post($scope.url, $scope.authForm).success(
-                function(data, status) {
+                function (data, status) {
                     console.log("posted - success");
                     console.log(data);
                     $scope.status = status;
@@ -227,7 +227,7 @@ authControllers.controller('LoginCtrl', ['$scope', '$http',
                     } else {
                         console.log("In redirect page");
                         console.log($scope.loginResponse.authResponse.nextLanding);
-                        if($scope.loginResponse.authResponse.nextLanding == 'login') {
+                        if ($scope.loginResponse.authResponse.nextLanding == 'login') {
                             $scope.msg = $scope.loginResponse.authResponse.msg;
                             $scope.msgBold = $scope.loginResponse.authResponse.msgBold;
                             window.location.replace('#login');
@@ -235,7 +235,7 @@ authControllers.controller('LoginCtrl', ['$scope', '$http',
                     }
                 }
             ).error(
-                function(data, status) {
+                function (data, status) {
                     console.log("Failed request");
                     console.log(data);
                     console.log(status);
@@ -245,7 +245,7 @@ authControllers.controller('LoginCtrl', ['$scope', '$http',
             )
         };
 
-        $scope.updateModel = function(method, url) {
+        $scope.updateModel = function (method, url) {
             $scope.method = method;
             $scope.url = url;
         }

@@ -15,9 +15,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
 public class ForgotPasswordForm extends AuthForm {
-    public AuthModel getAuthModel() {
-        AuthModel am = new AuthModel();
-        am.setUserName(emailAddress);
-        return am;
-    }
+	public AuthModel getAuthModel() {
+		AuthModel am = new AuthModel();
+		am.setUserName(emailAddress);
+		return am;
+	}
 }

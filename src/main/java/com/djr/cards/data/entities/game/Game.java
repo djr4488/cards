@@ -1,6 +1,5 @@
 package com.djr.cards.data.entities.game;
 
-import com.djr.cards.data.entities.BooleanToIntegerConverter;
 import com.djr.cards.data.entities.User;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -16,52 +15,52 @@ import java.util.Calendar;
  * Time: 6:05 PM
  */
 @Entity
-@Table(name="games")
+@Table(name = "games")
 @NamedQueries({
-        @NamedQuery(name="findGameByNameAndType",
-                    query="select game from Game game where game.gameName = :gameName and game.gameType = :gameType"),
-        @NamedQuery(name="findGamesUserPlaying",
-                    query="select game from Game game where game.gameName = :gameName and game.gameType = :gameType and" +
-                            " game.user = :user")
+		@NamedQuery(name = "findGameByNameAndType",
+				query = "select game from Game game where game.gameName = :gameName and game.gameType = :gameType"),
+		@NamedQuery(name = "findGamesUserPlaying",
+				query = "select game from Game game where game.gameName = :gameName and game.gameType = :gameType and" +
+						" game.user = :user")
 })
 public class Game {
-    @Id
-    @Column(name="id", nullable=false)
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
-    @ManyToOne
-    @JoinColumn(name="user_id")
-    public User user;
-    @Column(name="game_name")
-    public String gameName;
-    @Column(name="game_password")
-    public String gamePassword;
-    @Column(name="game_type")
-    public String gameType;
-    @Column(name="is_waiting")
-    public Boolean isWaitingForPlayers;
-    @Column(name="last_updated")
-    @Temporal(TemporalType.TIMESTAMP)
-    public Calendar lastUpdated;
-    @Version
-    private Long version;
+	@Id
+	@Column(name = "id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	public User user;
+	@Column(name = "game_name")
+	public String gameName;
+	@Column(name = "game_password")
+	public String gamePassword;
+	@Column(name = "game_type")
+	public String gameType;
+	@Column(name = "is_waiting")
+	public Boolean isWaitingForPlayers;
+	@Column(name = "last_updated")
+	@Temporal(TemporalType.TIMESTAMP)
+	public Calendar lastUpdated;
+	@Version
+	private Long version;
 
-    public long getId() {
-        return id;
-    }
+	public long getId() {
+		return id;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        return EqualsBuilder.reflectionEquals(this, o, null);
-    }
+	@Override
+	public boolean equals(Object o) {
+		return EqualsBuilder.reflectionEquals(this, o);
+	}
 
-    @Override
-    public int hashCode() {
-        return HashCodeBuilder.reflectionHashCode(this, null);
-    }
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
-    @Override
-    public String toString() {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
+	}
 }

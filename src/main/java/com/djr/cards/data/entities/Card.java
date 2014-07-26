@@ -11,30 +11,30 @@ import javax.persistence.Table;
  * Time: 4:41 PM
  */
 @Entity
-@Table(name="cards")
+@Table(name = "cards")
 public class Card {
-    @Id
-    public Long id;
-    public String fileName;
-    public Boolean isBacking;
+	@Id
+	public Long id;
+	public String fileName;
+	public Boolean isBacking;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getFileName() {
-        return fileName;
-    }
+	public String getFileName() {
+		return fileName;
+	}
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 
-    public Boolean getBacking() {
-        return isBacking;
-    }
+	public Boolean getBacking() {
+		return isBacking;
+	}
 
-    public void setBacking(Boolean backing) {
-        isBacking = backing;
-    }
+	public void setBacking(Boolean backing) {
+		isBacking = backing;
+	}
 }

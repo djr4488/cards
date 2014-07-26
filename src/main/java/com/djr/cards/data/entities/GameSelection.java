@@ -13,44 +13,44 @@ import javax.persistence.*;
  * Time: 10:39 PM
  */
 @Entity
-@Table(name="game_selections")
+@Table(name = "game_selections")
 @NamedQueries({
-        @NamedQuery(name="findAllGameOptions",
-                    query="select gameSelections from GameSelection gameSelections"),
-        @NamedQuery(name="findGameSelectionByGameType",
-                    query="select gameSelection from GameSelection gameSelection where" +
-                            " gameSelection.gameType = :gameType")
+		@NamedQuery(name = "findAllGameOptions",
+				query = "select gameSelections from GameSelection gameSelections"),
+		@NamedQuery(name = "findGameSelectionByGameType",
+				query = "select gameSelection from GameSelection gameSelection where" +
+						" gameSelection.gameType = :gameType")
 })
 public class GameSelection {
-    @Id
-    @Column(name="id", nullable=false)
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
-    @Column(name="game_type")
-    public String gameType;
-    @Column(name="game_description")
-    public String gameDescription;
-    @Column(name="landing_action")
-    public String landingAction;
-    @Column(name="game_landing")
-    public String gameAction;
+	@Id
+	@Column(name = "id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	@Column(name = "game_type")
+	public String gameType;
+	@Column(name = "game_description")
+	public String gameDescription;
+	@Column(name = "landing_action")
+	public String landingAction;
+	@Column(name = "game_landing")
+	public String gameAction;
 
-    public int getId() {
-        return id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        return EqualsBuilder.reflectionEquals(this, o, null);
-    }
+	@Override
+	public boolean equals(Object o) {
+		return EqualsBuilder.reflectionEquals(this, o);
+	}
 
-    @Override
-    public int hashCode() {
-        return HashCodeBuilder.reflectionHashCode(this, null);
-    }
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 
-    @Override
-    public String toString() {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.DEFAULT_STYLE);
-    }
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.DEFAULT_STYLE);
+	}
 }

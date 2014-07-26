@@ -10,6 +10,7 @@ import java.util.List;
  * Time: 10:09 PM
  */
 public interface UserStatsDAO {
-    public UserStats findStatsByUser(User user, String gameType, String tracking);
+	public UserStats findStatsByUser(User user, String gameType, String tracking);
+
 	public List<UserStats> loadStatistics(String gameType, String tracking);
 }

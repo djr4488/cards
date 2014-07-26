@@ -17,17 +17,17 @@ import java.util.List;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
 public class GameSelectionResponse {
-    @XmlElement
-    public List<String> gameOpts;
-    @XmlElement
-    public String nextLanding;
-    @XmlElement
-    public String errorMsg;
-    @XmlElement
-    public String errorBold;
+	@XmlElement
+	public List<String> gameOpts;
+	@XmlElement
+	public String nextLanding;
+	@XmlElement
+	public String errorMsg;
+	@XmlElement
+	public String errorBold;
 
-    @Override
-    public String toString() {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
+	}
 }

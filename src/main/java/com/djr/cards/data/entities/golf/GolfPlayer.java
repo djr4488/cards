@@ -11,13 +11,13 @@ import javax.persistence.*;
  * Time: 4:40 PM
  */
 @Entity
-@Table(name="golf_players")
+@Table(name = "golf_players")
 public class GolfPlayer {
-    @Id
-    @Column(name="id", nullable=false)
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
-    @OneToOne
-    @JoinColumn(name="player_id")
-    public Player playerId;
+	@Id
+	@Column(name = "id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@OneToOne
+	@JoinColumn(name = "player_id")
+	public Player playerId;
 }

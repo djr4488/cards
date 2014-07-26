@@ -8,31 +8,31 @@ import java.util.List;
  * Time: 6:46 PM
  */
 public class SelectorModel {
-    private List<String> gameTypes;
-    private String selectedGameType;
-    private Integer selectedOption;
+	private List<String> gameTypes;
+	private String selectedGameType;
+	private Integer selectedOption;
 
-    public List<String> getGameTypes() {
-        return gameTypes;
-    }
+	public List<String> getGameTypes() {
+		return gameTypes;
+	}
 
-    public void setGameTypes(List<String> gameTypes) {
-        this.gameTypes = gameTypes;
-    }
+	public void setGameTypes(List<String> gameTypes) {
+		this.gameTypes = gameTypes;
+	}
 
-    public String getSelectedGameType() {
-        return selectedGameType;
-    }
+	public String getSelectedGameType() {
+		return selectedGameType;
+	}
 
-    public void setSelectedGameType(String selectedGameType) {
-        this.selectedGameType = selectedGameType;
-    }
+	public void setSelectedGameType(String selectedGameType) {
+		this.selectedGameType = selectedGameType;
+	}
 
-    public Integer getSelectedOption() {
-        return selectedOption;
-    }
+	public Integer getSelectedOption() {
+		return selectedOption;
+	}
 
-    public void setSelectedOption(Integer selectedOption) {
-        this.selectedOption = selectedOption;
-    }
+	public void setSelectedOption(Integer selectedOption) {
+		this.selectedOption = selectedOption;
+	}
 }

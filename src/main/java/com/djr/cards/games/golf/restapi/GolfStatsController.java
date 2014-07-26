@@ -21,21 +21,21 @@ import javax.ws.rs.core.MediaType;
  * Time: 7:12 PM
  */
 public abstract class GolfStatsController extends BaseGameController {
-    @Inject
-    private Logger log;
-    @Inject
-    private GameStatsService gameStatsSvc;
+	@Inject
+	private Logger log;
+	@Inject
+	private GameStatsService gameStatsSvc;
 
-    @GET
-    @Path("get")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public GameStats getPlayStats(@Context HttpServletRequest request) {
-        String tracking = (String)getSession(request).getAttribute("tracking");
-        User user = (User)getSession(request).getAttribute("user");
-        log.info("getPlayStats() - tracking:{}", tracking);
-        GameStats response = gameStatsSvc.loadGameStats(tracking, user, "Golf");
-        log.debug("getPlayStats() - response:{}", response);
-        return response;
-    }
+	@GET
+	@Path("get")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public GameStats getPlayStats(@Context HttpServletRequest request) {
+		String tracking = (String) getSession(request).getAttribute("tracking");
+		User user = (User) getSession(request).getAttribute("user");
+		log.info("getPlayStats() - tracking:{}", tracking);
+		GameStats response = gameStatsSvc.loadGameStats(tracking, user, "Golf");
+		log.debug("getPlayStats() - response:{}", response);
+		return response;
+	}
 }

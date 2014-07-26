@@ -12,7 +12,9 @@ import java.util.List;
  * Time: 7:03 PM
  */
 public interface PlayerDAO {
-    public Player createPlayer(Game game, User user, String tracking);
-    public boolean isUserAPlayer(Game game, User user, String tracking);
-    public List<Game> findGamesPlayerIsIn(String gameType, User user, String tracking);
+	public Player createPlayer(Game game, User user, String tracking);
+
+	public boolean isUserAPlayer(Game game, User user, String tracking);
+
+	public List<Game> findGamesPlayerIsIn(String gameType, User user, String tracking);
 }

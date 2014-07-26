@@ -22,51 +22,52 @@ import java.util.Calendar;
  */
 @Stateless
 public class UserDAOImpl implements UserDAO {
-    @Inject
-    private Logger logger;
-    @PersistenceContext
-    private EntityManager em;
+	@Inject
+	private Logger logger;
+	@PersistenceContext
+	private EntityManager em;
 
-    public UserDAOImpl() { }
+	public UserDAOImpl() {
+	}
 
-    private FindUserResult createFindUserResult(User user, boolean created) {
-        FindUserResult findUserResult = new FindUserResult();
-        findUserResult.user = user;
-        findUserResult.created = created;
-        return findUserResult;
-    }
-
-	@TransactionAttribute (TransactionAttributeType.REQUIRED)
-    public FindUserResult findOrCreateUser(AuthModel authModel, String trackingId) {
-        logger.debug("findOrCreateUser() - authModel:{}, trackingId:{}", authModel, trackingId);
-        try {
-            TypedQuery<User> query = em.createNamedQuery("findUser", User.class);
-            query.setParameter("emailAddress", authModel.getUserName());
-            return createFindUserResult(query.getSingleResult(), false);
-        } catch (NoResultException nrEx) {
-            User user = new User(authModel);
-            user.createdDate = Calendar.getInstance();
-            em.persist(user);
-            return createFindUserResult(user, true);
-        }
-    }
-
-    public User findUser(AuthModel authModel, String trackingId) {
-        logger.debug("findUser() - authModel:{}, trackingId:{}", authModel, trackingId);
-        try {
-            TypedQuery<User> query = em.createNamedQuery("findUser", User.class);
-            query.setParameter("emailAddress", authModel.getUserName());
-            return query.getSingleResult();
-        } catch (NoResultException nrEx) {
-            logger.debug("findUser() - No user found.");
-            return null;
-        }
-    }
+	private FindUserResult createFindUserResult(User user, boolean created) {
+		FindUserResult findUserResult = new FindUserResult();
+		findUserResult.user = user;
+		findUserResult.created = created;
+		return findUserResult;
+	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public User updateUser(User user, String trackingId) {
-        logger.debug("updateUser() - user:{}, trackingId:{}", user, trackingId);
-        em.merge(user);
-        return user;
-    }
+	public FindUserResult findOrCreateUser(AuthModel authModel, String trackingId) {
+		logger.debug("findOrCreateUser() - authModel:{}, trackingId:{}", authModel, trackingId);
+		try {
+			TypedQuery<User> query = em.createNamedQuery("findUser", User.class);
+			query.setParameter("emailAddress", authModel.getUserName());
+			return createFindUserResult(query.getSingleResult(), false);
+		} catch (NoResultException nrEx) {
+			User user = new User(authModel);
+			user.createdDate = Calendar.getInstance();
+			em.persist(user);
+			return createFindUserResult(user, true);
+		}
+	}
+
+	public User findUser(AuthModel authModel, String trackingId) {
+		logger.debug("findUser() - authModel:{}, trackingId:{}", authModel, trackingId);
+		try {
+			TypedQuery<User> query = em.createNamedQuery("findUser", User.class);
+			query.setParameter("emailAddress", authModel.getUserName());
+			return query.getSingleResult();
+		} catch (NoResultException nrEx) {
+			logger.debug("findUser() - No user found.");
+			return null;
+		}
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public User updateUser(User user, String trackingId) {
+		logger.debug("updateUser() - user:{}, trackingId:{}", user, trackingId);
+		em.merge(user);
+		return user;
+	}
 }

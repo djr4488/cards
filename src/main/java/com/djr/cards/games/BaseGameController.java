@@ -14,26 +14,26 @@ import javax.servlet.http.HttpSession;
  * Time: 11:00 PM
  */
 public class BaseGameController {
-    @Inject
-    private Logger log;
-    @Inject
-    private AuthTokenService authTokenSvc;
+	@Inject
+	private Logger log;
+	@Inject
+	private AuthTokenService authTokenSvc;
 
-    public HttpSession getSession(HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
-        if (session == null) {
-            session = request.getSession();
-        }
-        return session;
-    }
+	public HttpSession getSession(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session == null) {
+			session = request.getSession();
+		}
+		return session;
+	}
 
-    public boolean validateToken(String token, HttpSession session) {
-        return authTokenSvc.isValidToken(token, (String)session.getAttribute("tracking"),
-                ((User)session.getAttribute("user")).emailAddress);
-    }
+	public boolean validateToken(String token, HttpSession session) {
+		return authTokenSvc.isValidToken(token, (String) session.getAttribute("tracking"),
+				((User) session.getAttribute("user")).emailAddress);
+	}
 
-    public void removeAndSetSessionAttribute(String attributeName, Object attributeValue, HttpServletRequest request) {
-        getSession(request).removeAttribute(attributeName);
-        getSession(request).setAttribute(attributeName, attributeValue);
-    }
+	public void removeAndSetSessionAttribute(String attributeName, Object attributeValue, HttpServletRequest request) {
+		getSession(request).removeAttribute(attributeName);
+		getSession(request).setAttribute(attributeName, attributeValue);
+	}
 }

@@ -8,6 +8,6 @@ import com.djr.cards.data.entities.game.Game;
  * Time: 7:50 PM
  */
 public class PlayGameResult {
-    public String landingAction;
-    public Game game;
+	public String landingAction;
+	public Game game;
 }

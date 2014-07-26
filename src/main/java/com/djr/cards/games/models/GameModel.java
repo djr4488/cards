@@ -10,43 +10,43 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class GameModel {
-    private String gameName;
-    private String gamePassword;
-    private String gameType;
+	private String gameName;
+	private String gamePassword;
+	private String gameType;
 
-    @XmlElement
-    public String getGameName() {
-        return gameName;
-    }
+	@XmlElement
+	public String getGameName() {
+		return gameName;
+	}
 
-    public void setGameName(String gameName) {
-        this.gameName = gameName;
-    }
+	public void setGameName(String gameName) {
+		this.gameName = gameName;
+	}
 
-    @XmlElement
-    public String getGamePassword() {
-        return gamePassword;
-    }
+	@XmlElement
+	public String getGamePassword() {
+		return gamePassword;
+	}
 
-    public void setGamePassword(String gamePassword) {
-        this.gamePassword = gamePassword;
-    }
+	public void setGamePassword(String gamePassword) {
+		this.gamePassword = gamePassword;
+	}
 
-    @XmlElement
-    public String getGameType() {
-        return gameType;
-    }
+	@XmlElement
+	public String getGameType() {
+		return gameType;
+	}
 
-    public void setGameType(String gameType) {
-        this.gameType = gameType;
-    }
+	public void setGameType(String gameType) {
+		this.gameType = gameType;
+	}
 
-    @Override
-    public String toString() {
-        return "GameModel{" +
-                "gameName='" + gameName + '\'' +
-                ", gamePassword='" + gamePassword + '\'' +
-                ", gameType='" + gameType + '\'' +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "GameModel{" +
+				"gameName='" + gameName + '\'' +
+				", gamePassword='" + gamePassword + '\'' +
+				", gameType='" + gameType + '\'' +
+				'}';
+	}
 }

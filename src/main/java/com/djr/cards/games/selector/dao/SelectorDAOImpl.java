@@ -19,35 +19,35 @@ import java.util.List;
  */
 @Stateless
 public class SelectorDAOImpl implements SelectorDAO {
-    @Inject
-    private Logger logger;
-    @PersistenceContext
-    private EntityManager em;
+	@Inject
+	private Logger logger;
+	@PersistenceContext
+	private EntityManager em;
 
 	@Override
 	public List<GameSelection> findGameSelectionOptions() {
-        logger.debug("findGameSelectionOptions()");
-        try {
-            TypedQuery<GameSelection> query = em.createNamedQuery("findAllGameOptions", GameSelection.class);
-            return query.getResultList();
-        } catch (NoResultException nrEx) {
-            //what to do here?  probably nothing, means I haven't enabled any games
-            logger.error("findGameSelectionOptions() - exception:", nrEx);
-        }
+		logger.debug("findGameSelectionOptions()");
+		try {
+			TypedQuery<GameSelection> query = em.createNamedQuery("findAllGameOptions", GameSelection.class);
+			return query.getResultList();
+		} catch (NoResultException nrEx) {
+			//what to do here?  probably nothing, means I haven't enabled any games
+			logger.error("findGameSelectionOptions() - exception:", nrEx);
+		}
 		return null;
 	}
 
 	@Override
 	public GameSelection findGameSelection(String gameType) {
 		logger.debug("findGameSelection() - gameType:{}", gameType);
-        try {
-            TypedQuery<GameSelection> query = em.createNamedQuery("findGameSelectionByGameType", GameSelection.class);
-            query.setParameter("gameType", gameType);
-            return query.getSingleResult();
-        } catch (NoResultException nrEx) {
-            //i haven't enabled the game yet but I'll log the error anyway
-            logger.error("findGameSelection() - exception:", nrEx);
-        }
-        return null;
+		try {
+			TypedQuery<GameSelection> query = em.createNamedQuery("findGameSelectionByGameType", GameSelection.class);
+			query.setParameter("gameType", gameType);
+			return query.getSingleResult();
+		} catch (NoResultException nrEx) {
+			//i haven't enabled the game yet but I'll log the error anyway
+			logger.error("findGameSelection() - exception:", nrEx);
+		}
+		return null;
 	}
 }

@@ -25,52 +25,53 @@ import java.util.Calendar;
  *         Date: 2/22/14
  *         Time: 7:57 AM
  */
-public abstract class LoginController extends BaseAuthController {
-    @Inject
-    private Logger logger;
-    @Inject
-    private AuditService auditSvc;
-    @Inject
-    private AuthService authSvc;
-    @Inject
-    private HashingUtil hashingUtil;
+@Path("login")
+public class LoginController extends BaseAuthController {
+	@Inject
+	private Logger logger;
+	@Inject
+	private AuditService auditSvc;
+	@Inject
+	private AuthService authSvc;
+	@Inject
+	private HashingUtil hashingUtil;
 
-    @POST
-    @Path("/submit")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public AuthResponse submit(LoginForm restLoginForm, @Context HttpServletRequest request) {
-        String tracking = generateTrackingId(request);
-        HttpSession session = getSession(request);
-        logger.debug("submit() - restLoginForm:{}, tracking:{}", restLoginForm, tracking);
+	@POST
+	@Path("/submit")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public AuthResponse submit(LoginForm restLoginForm, @Context HttpServletRequest request) {
+		String tracking = generateTrackingId(request);
+		HttpSession session = getSession(request);
+		logger.debug("submit() - restLoginForm:{}, tracking:{}", restLoginForm, tracking);
 		auditSvc.writeAudit(auditSvc.getAuditLog(tracking, "CreateAccountController.submit()",
 				request.getRemoteAddr(), Calendar.getInstance()));
-        session.removeAttribute("tracking");
-        session.setAttribute("tracking", tracking);
-        //TODO: validation logic goes here
-        AuthModel authModel = restLoginForm.getAuthModel();
-        authModel.setPassword(hashingUtil.generateHmacHash(authModel.getPassword()));
-        LoginResult result = authSvc.login(authModel, request.getRemoteAddr());
-        return getAuthResponse(tracking, authModel, result, session);
-    }
+		session.removeAttribute("tracking");
+		session.setAttribute("tracking", tracking);
+		//TODO: validation logic goes here
+		AuthModel authModel = restLoginForm.getAuthModel();
+		authModel.setPassword(hashingUtil.generateHmacHash(authModel.getPassword()));
+		LoginResult result = authSvc.login(authModel, request.getRemoteAddr());
+		return getAuthResponse(tracking, authModel, result, session);
+	}
 
-    private AuthResponse getAuthResponse(String tracking, AuthModel authModel, LoginResult result,
-                                         HttpSession session) {
-        AuthResponse loginResponse;
-        if (result.result == LoginResult.ResultOptions.SUCCESS) {
-            session.removeAttribute("user");
-            session.setAttribute("user", result.user);
-            loginResponse = new AuthResponse();
-            loginResponse.nextLanding = "selectGame";
-            loginResponse.token = hashingUtil.generateHmacHash("<userName>"+authModel.getUserName()+
-                    "</userName><tracking>"+tracking+"</tracking>");
-            logger.debug("submit() - loginResponse:{}", loginResponse);
-            return loginResponse;
-        } else {
-            loginResponse = new AuthResponse();
+	private AuthResponse getAuthResponse(String tracking, AuthModel authModel, LoginResult result,
+	                                     HttpSession session) {
+		AuthResponse loginResponse;
+		if (result.result == LoginResult.ResultOptions.SUCCESS) {
+			session.removeAttribute("user");
+			session.setAttribute("user", result.user);
+			loginResponse = new AuthResponse();
+			loginResponse.nextLanding = "selectGame";
+			loginResponse.token = hashingUtil.generateHmacHash("<userName>" + authModel.getUserName() +
+					"</userName><tracking>" + tracking + "</tracking>");
+			logger.debug("submit() - loginResponse:{}", loginResponse);
+			return loginResponse;
+		} else {
+			loginResponse = new AuthResponse();
 			loginResponse.errorBold = "Slow down, Sparky!";
-            loginResponse.errorMsg = "Check your email/password combination.";
-            return loginResponse;
-        }
-    }
+			loginResponse.errorMsg = "Check your email/password combination.";
+			return loginResponse;
+		}
+	}
 }

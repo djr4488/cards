@@ -15,15 +15,18 @@
     </div>
 </div>
 <div class="alert alert-warning" ng-show="errorMsg">
-    <strong>{{errorBold}}  </strong>{{errorMsg}}
+    <strong>{{errorBold}} </strong>{{errorMsg}}
 </div>
 <div class="container">
     <form class="form-create">
         <h2 class="form-create-heading">Create an account</h2>
-        <input type="email" ng-model="authForm.createAccountForm.emailAddress" placeholder="Email address" class="form-control"/>
+        <input type="email" ng-model="authForm.createAccountForm.emailAddress" placeholder="Email address"
+               class="form-control"/>
         <input type="text" ng-model="authForm.createAccountForm.alias" placeholder="Alias" class="form-control"/>
-        <input id="password" type="password" ng-model="authForm.createAccountForm.password" placeholder="password" class="form-control"/>
-        <input id="confirmPassword" type="password" ng-model="authForm.createAccountForm.confirmPassword" placeholder="Confirm password" class="form-control"/><br/>
+        <input id="password" type="password" ng-model="authForm.createAccountForm.password" placeholder="password"
+               class="form-control"/>
+        <input id="confirmPassword" type="password" ng-model="authForm.createAccountForm.confirmPassword"
+               placeholder="Confirm password" class="form-control"/><br/>
         <button id="create" ng-click="createAccount()" class="btn btn-lg btn-primary btn-block">Create Account</button>
     </form>
 </div>
@@ -32,10 +35,12 @@
     <div class="row">
         <div class="col-lg-6">
             <h2>Epiphany!</h2>
+
             <p>I remember, I have a <a href="#login">login!</a></p>
         </div>
         <div class="col-lg-6">
             <h2>I sorta remember</h2>
+
             <p>I have a login but I <a href="#forgotPassword">forgot my password!</a></p>
         </div>
     </div>
