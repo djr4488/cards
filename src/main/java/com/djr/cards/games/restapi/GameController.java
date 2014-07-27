@@ -8,6 +8,7 @@ import com.djr.cards.games.exceptions.PlayGameException;
 import com.djr.cards.games.models.*;
 import org.slf4j.Logger;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
@@ -20,7 +21,9 @@ import java.util.List;
  * Date: 3/22/2014
  * Time: 12:23 AM
  */
-public abstract class GameController extends BaseGameController {
+@Path("gamesvc")
+@ApplicationScoped
+public class GameController extends BaseGameController {
     @Inject
     private Logger log;
     @Inject

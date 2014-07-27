@@ -5,7 +5,7 @@ var authControllers = angular.module('authControllers', []);
 
 authControllers.controller('LoginCtrl', ['$scope', '$http',
     function ($scope, $http) {
-        $scope.baseURL = 'http://djr2.dyndns.org:9074';
+        $scope.baseURL = '';
         $scope.method = 'POST';
         $scope.url = $scope.baseURL + '/cardsapi/login/submit';
         $scope.authForm = {
@@ -64,9 +64,9 @@ authControllers.controller('LoginCtrl', ['$scope', '$http',
     }
 ]).controller('CreateAcctCtrl', ['$scope', '$http', '$route',
     function ($scope, $http) {
-        $scope.baseURL = 'http://djr2.dyndns.org:9074';
+        $scope.baseURL = '';
         $scope.method = 'POST';
-        $scope.url = $scope.baseURL + '/cardsapi/createAccount/submit';
+        $scope.url = $scope.baseURL + '/cardsapi/createaccount/submit';
         $scope.authForm = {
             createAccountForm: {
                 emailAddress: "",
@@ -129,7 +129,7 @@ authControllers.controller('LoginCtrl', ['$scope', '$http',
     }
 ]).controller('ForgotPasswordCtrl', ['$scope', '$http', '$route',
     function ($scope, $http) {
-        $scope.baseURL = 'http://djr2.dyndns.org:9074';
+        $scope.baseURL = '';
         $scope.method = 'POST';
         $scope.url = $scope.baseURL + '/cardsapi/forgotpassword/submit';
         $scope.authForm = {
@@ -187,7 +187,7 @@ authControllers.controller('LoginCtrl', ['$scope', '$http',
     }
 ]).controller('ResetPasswordCtrl', ['$scope', '$http', '$route',
     function ($scope, $http) {
-        $scope.baseURL = 'http://djr2.dyndns.org:9074';
+        $scope.baseURL = '';
         $scope.method = 'POST';
         $scope.url = $scope.baseURL + '/cardsapi/resetpassword/submit';
         $scope.authForm = {

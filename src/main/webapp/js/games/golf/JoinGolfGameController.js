@@ -4,7 +4,7 @@
 var joinGolfController = angular.module('joinGolfController', []);
 joinGolfController.controller('JoinGolfCtrl', ['$scope', '$http',
     function ($scope, $http) {
-        $scope.baseURL = 'http://djr2.dyndns.org:9074';
+        $scope.baseURL = '';
         $scope.method = 'POST';
         $scope.url = $scope.baseURL + '/cardsapi/gamesvc/join/submit';
         $scope.joinGameRequest = {

@@ -6,6 +6,7 @@ import com.djr.cards.games.stats.GameStatsService;
 import com.djr.cards.games.stats.model.GameStats;
 import org.slf4j.Logger;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -20,7 +21,9 @@ import javax.ws.rs.core.MediaType;
  * Date: 3/20/2014
  * Time: 7:12 PM
  */
-public abstract class GolfStatsController extends BaseGameController {
+@Path("golfStats")
+@ApplicationScoped
+public class GolfStatsController extends BaseGameController {
 	@Inject
 	private Logger log;
 	@Inject

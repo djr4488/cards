@@ -6,7 +6,7 @@
 var createGolfController = angular.module('createGolfController', []);
 createGolfController.controller('CreateGolfCtrl', ['$scope', '$http',
     function ($scope, $http) {
-        $scope.baseURL = 'http://djr2.dyndns.org:9074';
+        $scope.baseURL = '';
         $scope.method = 'POST';
         $scope.url = $scope.baseURL + '/cardsapi/gamesvc/create/submit';
         $scope.createGameRequest = {

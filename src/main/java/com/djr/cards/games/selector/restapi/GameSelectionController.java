@@ -4,6 +4,7 @@ import com.djr.cards.games.BaseGameController;
 import com.djr.cards.games.selector.SelectorService;
 import org.slf4j.Logger;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
@@ -15,7 +16,9 @@ import javax.ws.rs.core.MediaType;
  * Date: 3/14/14
  * Time: 11:01 PM
  */
-public abstract class GameSelectionController extends BaseGameController {
+@Path("gameSelection")
+@ApplicationScoped
+public class GameSelectionController extends BaseGameController {
 	@Inject
 	private Logger logger;
 	@Inject
