@@ -2,9 +2,10 @@ package com.djr.cards.auth.restapi.resetpassword;
 
 import com.djr.cards.auth.AuthModel;
 import com.djr.cards.auth.restapi.AuthForm;
-import com.sun.istack.internal.NotNull;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;

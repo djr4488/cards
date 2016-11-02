@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="282527538">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
     <data-source source="LOCAL" name="Data Source" uuid="f26042e2-ecb7-467b-9ec7-9c9476c12219">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost/cards</jdbc-url>
-      <user-name>root</user-name>
-      <user-password>dffedfd8dfcfdfcfdfd9df8adfc2dfcbdfdcdfcfdf8adfc6dfcfdfcbdfdcdfcfdfd9df84</user-password>
-      <libraries />
     </data-source>
   </component>
 </project>
-
