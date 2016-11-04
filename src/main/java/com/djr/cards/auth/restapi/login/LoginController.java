@@ -7,6 +7,7 @@ import com.djr.cards.auth.restapi.AuthResponse;
 import com.djr.cards.auth.restapi.BaseAuthController;
 import com.djr.cards.auth.service.AuthService;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -26,6 +27,7 @@ import java.util.Calendar;
  *         Date: 2/22/14
  *         Time: 7:57 AM
  */
+@ApplicationScoped
 @Path("login")
 public class LoginController extends BaseAuthController {
 	@Inject

@@ -15,6 +15,7 @@ import java.util.Calendar;
  * Time: 9:37 PM
  */
 @Stateless
+@TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class AuditServiceImpl implements AuditService {
 	@Inject
 	private org.slf4j.Logger logger;
@@ -22,7 +23,6 @@ public class AuditServiceImpl implements AuditService {
 	private EntityManager em;
 
 	@Override
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void writeAudit(AuditLog auditLog) {
 		logger.debug("writeAudit() auditLog:{}", auditLog);
 		try {
