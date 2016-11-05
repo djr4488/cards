@@ -13,3 +13,5 @@ Goals -
 6. Making it available for folks to have something to see in regard to my coding style.
 
 See /cards/wiki/Licensing for the Apache licensing I am choosing to release this under.  
+
+Will clean up docs and add TODOs and travis and coveralls on this eventually.
