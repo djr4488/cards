@@ -7,7 +7,6 @@ import com.djr.cards.auth.restapi.resetpassword.ResetPasswordController;
 import com.djr.cards.games.golf.restapi.GolfStatsController;
 import com.djr.cards.games.restapi.GameController;
 import com.djr.cards.games.selector.restapi.GameSelectionController;
-import com.djr4488.metrics.rest.MetricsApi;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -24,7 +23,7 @@ import java.util.Set;
 public class CardsApplication extends Application {
 	@Override
 	public Set<Class<?>> getClasses() {
-		return new HashSet<Class<?>>(Arrays.asList(MetricsApi.class, LoginController.class, CreateAccountController.class,
+		return new HashSet<Class<?>>(Arrays.asList(LoginController.class, CreateAccountController.class,
 				ForgotPasswordController.class, ResetPasswordController.class, GameSelectionController.class,
 				GolfStatsController.class, GameController.class));
 	}

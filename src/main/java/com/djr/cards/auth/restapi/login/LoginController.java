@@ -1,6 +1,5 @@
 package com.djr.cards.auth.restapi.login;
 
-import com.codahale.metrics.annotation.Timed;
 import com.djr.cards.audit.AuditService;
 import com.djr.cards.auth.AuthModel;
 import com.djr.cards.auth.restapi.AuthResponse;
@@ -43,7 +42,6 @@ public class LoginController extends BaseAuthController {
 	@Path("/submit")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	@Timed
 	public AuthResponse submit(LoginForm restLoginForm, @Context HttpServletRequest request) {
 		String tracking = generateTrackingId(request);
 		HttpSession session = getSession(request);
