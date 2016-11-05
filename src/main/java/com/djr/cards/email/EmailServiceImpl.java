@@ -1,9 +1,6 @@
 package com.djr.cards.email;
 
 import org.slf4j.Logger;
-import javax.annotation.Resource;
-import javax.enterprise.inject.Default;
-import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
