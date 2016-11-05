@@ -14,4 +14,7 @@ Goals -
 
 See /cards/wiki/Licensing for the Apache licensing I am choosing to release this under.  
 
-Will clean up docs and add TODOs and travis and coveralls on this eventually.
+##
+Status
+* Build: [![Build Status](https://travis-ci.org/djr4488/cards.svg?branch=master)](https://travis-ci.org/djr4488/cards)
+* Coverage: [![Coverage Status](https://coveralls.io/repos/djr4488/cards/badge.svg?branch=master)](https://coveralls.io/r/djr4488/cards?branch=master)
