@@ -1,8 +1,12 @@
-The purpose of this project to have an implemention of some popular card games(Pitch, Spades, Hearts) and one of my own little invention Golf.
+# Cards
 
-Originally, I started out with the idea I would convert from my original C# Windows Desktop/Server implementation and just convert it to Java.  However, it was obvious this was not a good idea.  A couple reason, I have not done much with the code since 2007 and two it was pretty crappy code.
+## Purpose
+To provide an implementation of a few simple card games, e.g. Pitch, Hearts, Spades, Golf, and so forth.
 
-Goals - 
+## History
+It started out life in C#, wasn't terribly great but it worked, but why require the Windows to play a game?
+
+## Goals - 
 1. Use AngularJS to implement my front end and TomEE and JavaEE to implement the backend using restful services.
 1a. Originally, I started out using Struts2, but then I thought there might be a better way to use REST APIs and separate the front and back end components.
 1b. That is why I chose AngularJS and Bootstrap for the front end.
@@ -12,9 +16,10 @@ Goals -
 5. Making it open source so anybody can contribute to it, just doing this under the Apache licensing.
 6. Making it available for folks to have something to see in regard to my coding style.
 
+## Licensing
 See /cards/wiki/Licensing for the Apache licensing I am choosing to release this under.  
 
 ##
 Status
 * Build: [![Build Status](https://travis-ci.org/djr4488/cards.svg?branch=master)](https://travis-ci.org/djr4488/cards)
-* Coverage: [![Coverage Status](https://coveralls.io/repos/djr4488/cards/badge.svg?branch=master)](https://coveralls.io/r/djr4488/cards?branch=master)
+* Coverage: [![Coverage Status](https://coveralls.io/repos/github/djr4488/cards/badge.svg)](https://coveralls.io/github/djr4488/cards)
